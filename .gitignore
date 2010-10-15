@@ -1,0 +1,11 @@
+backups/*
+elpa/*
+auto-save-list
+custom.el
+*elc
+url/cookies
+thumbs/*
+image-dired/
+session*
+tramp
+\#*
