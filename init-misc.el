@@ -32,6 +32,8 @@
       eshell-cmpl-cycle-completions nil
       redisplay-dont-pause t
       help-window-select t
+      fill-column 80
+      vc-handled-backends (delq 'Git vc-handled-backends) ;; vc-git is slow
       eproject-completing-read-function 'eproject--ido-completing-read)
 
 (eval-after-load 'esh-opt
