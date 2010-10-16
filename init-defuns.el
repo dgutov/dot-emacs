@@ -51,11 +51,11 @@ The function is passed the old value and ARGS as arguments."
   (add-to-list 'load-path directory)
   (when add-to-autoloads (add-to-list 'autoload-directory-list directory)))
 
-(defun vc-dir (dir-name)
+(defun get-vc-dir (dir-name)
   (expand-file-name (concat "~/vc/" dir-name)))
 
 (defun update-load-path-vc (dir-name &optional add-to-autoloads)
-  (update-load-path (vc-dir dir-name) add-to-autoloads))
+  (update-load-path (get-vc-dir dir-name) add-to-autoloads))
 
 (defun global-change-key (key command)
   (mapc #'global-unset-key (where-is-internal command))
