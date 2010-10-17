@@ -25,6 +25,8 @@
 (global-set-key (kbd "C-S-z") 'redo)
 (global-set-key (kbd "<M-S-backspace>") 'backward-kill-sexp)
 (global-set-key (kbd "<M-S-delete>") 'kill-sexp)
+(global-set-key (kbd "<C-delete>") 'kill-word-dwim)
+(global-set-key (kbd "<C-backspace>") 'backward-kill-word-dwim)
 
 (global-set-key (kbd "C-/") 'auto-complete)
 (global-set-key (kbd "C-x C-n") 'nav)

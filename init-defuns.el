@@ -84,6 +84,44 @@ The function is passed the old value and ARGS as arguments."
   (interactive)
   (select-window (split-window-horizontally)))
 
+(defmacro whack-skipped-chars (&rest forms)
+  `(let ((start (point))
+         (skip-chars-fn (if backward
+                            'skip-chars-backward
+                          'skip-chars-forward)))
+     ,@forms
+     (prog1 (abs (- (point) start))
+       (delete-region start (point)))))
+
+(defun whack-whitespace (delete-newlines &optional backward)
+  "Deletes all whitespace before or after the point.
+If DELETE-NEWLINES is true, it first deletes the newlines after the point.
+Returns the deleted character count if it's non-zero or nil."
+  (whack-skipped-chars
+   (if delete-newlines
+       (funcall skip-chars-fn "\n"))
+   (funcall skip-chars-fn " \t")))
+
+(defun whack-nonchars (&optional backward)
+  "Deletes all visible non-word characters before or after the point.
+Returns the deleted character count if it's non-zero or nil."
+  (whack-skipped-chars
+   (funcall skip-chars-fn "[:punct:]")))
+
+(defun kill-word-dwim (arg)
+  (interactive "p")
+  (when (zerop (whack-whitespace t))
+    (if (zerop (whack-nonchars))
+        (kill-word arg))
+    (whack-whitespace nil)))
+
+(defun backward-kill-word-dwim (arg)
+  (interactive "p")
+  (when (zerop (whack-whitespace t t))
+    (if (zerop (whack-nonchars t))
+        (backward-kill-word arg))
+    (whack-whitespace nil t)))
+
 (if (fboundp 'w32-send-sys-command)
     (progn
       (defsubst toggle-fs-on ()
