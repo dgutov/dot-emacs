@@ -45,9 +45,6 @@
 (global-set-key (kbd "C-x n t") 'nav-tags-here)
 (global-set-key (kbd "C-x n b") 'nav-show-bufs)
 
-(global-set-key (kbd "<C-next>") (lambda () (interactive) (scroll-up 3)))
-(global-set-key (kbd "<C-prior>") (lambda () (interactive) (scroll-down 3)))
-
 (eval-after-load 'dired
   '(progn
      (define-key dired-mode-map (kbd "RET") 'dired-find-file-same-buffer)
