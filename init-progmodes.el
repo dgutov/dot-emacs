@@ -1,6 +1,7 @@
 (update-load-path-vc "eproject")
 (update-load-path-vc "emacs-nav" t)
 (update-load-path "~/emacs-hs" t)
+(update-load-path-vc "js2-mode" t)
 
 (require 'eproject)
 (require 'eproject-extras)
@@ -14,10 +15,8 @@
 (define-project-type haskell (generic) (look-for "Setup.hs"))
 (define-project-type emacs (generic) (look-for "init.el"))
 
-(setq auto-mode-alist
-      (cons '("SConstruct" . python-mode) auto-mode-alist))
-(setq auto-mode-alist
-      (cons '("SConscript" . python-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("SConstruct" . python-mode))
+(add-to-list 'auto-mode-alist '("SConscript" . python-mode))
 
 (add-hook 'scons-project-file-visit-hook
           (lambda ()
@@ -52,7 +51,21 @@
               (jdh-refresh-url (car javadoc)))
             *jdh-javadocs*)))
 
+(eval-after-load 'haskell-mode
+  '(define-key haskell-mode-map (kbd "C-c h") 'haskell-hoogle))
+
 (eval-after-load 'javadoc-help
   '(javadocs-refresh))
+
+(add-hook 'js2-mode-hook 'run-coding-hook)
+
+(setq js2-basic-offset 2
+      js2-mirror-mode t
+      js2-auto-indent-p t
+      js2-consistent-level-indent-inner-bracket-p t
+      js2-use-ast-for-indentation-p t
+      js2-enter-indents-newline t
+      js2-allow-keywords-as-property-names nil
+      js2-move-point-on-right-click nil)
 
 (provide 'init-progmodes)
