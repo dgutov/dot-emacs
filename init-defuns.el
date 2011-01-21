@@ -96,7 +96,7 @@ The function is passed the old value and ARGS as arguments."
 (defun whack-whitespace (delete-newlines &optional backward)
   "Deletes all whitespace before or after the point.
 If DELETE-NEWLINES is true, it first deletes the newlines after the point.
-Returns the deleted character count if it's non-zero or nil."
+Returns the deleted character count."
   (whack-skipped-chars
    (if delete-newlines
        (funcall skip-chars-fn "\n"))
@@ -104,7 +104,7 @@ Returns the deleted character count if it's non-zero or nil."
 
 (defun whack-nonchars (&optional backward)
   "Deletes all visible non-word characters before or after the point.
-Returns the deleted character count if it's non-zero or nil."
+Returns the deleted character count."
   (whack-skipped-chars
    (funcall skip-chars-fn "[:punct:]")))
 
@@ -119,8 +119,7 @@ Returns the deleted character count if it's non-zero or nil."
   (interactive "p")
   (when (zerop (whack-whitespace t t))
     (if (zerop (whack-nonchars t))
-        (backward-kill-word arg))
-    (whack-whitespace nil t)))
+        (backward-kill-word arg))))
 
 (if (fboundp 'w32-send-sys-command)
     (progn
