@@ -21,7 +21,7 @@
       scroll-conservatively most-positive-fixnum
       scroll-step 1
       scroll-margin 0
-      setq scroll-preserve-screen-position t
+      scroll-preserve-screen-position t
       truncate-lines 't
       mouse-wheel-scroll-amount '(3)
       mouse-wheel-progressive-speed nil
