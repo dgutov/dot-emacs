@@ -34,6 +34,7 @@
       redisplay-dont-pause t
       help-window-select t
       fill-column 80
+      cua-paste-pop-rotate-temporarily t
       vc-handled-backends (delq 'Git vc-handled-backends) ;; vc-git is slow
       eproject-completing-read-function 'eproject--ido-completing-read)
 
@@ -46,5 +47,6 @@
 (line-number-mode t)
 (column-number-mode t)
 (winner-mode t)
+(cua-mode t)
 
 (provide 'init-misc)

@@ -33,11 +33,7 @@
 (global-set-key (kbd "C-c C-g") 'eproject-grep)
 (global-set-key (kbd "C-h j") 'javadoc-lookup)
 
-(defun yank-pop-forwards (arg)
-  (interactive "p")
-  (yank-pop (- arg)))
-
-(global-set-key "\M-Y" 'yank-pop-forwards)
+(global-set-key "\C-Y" 'cua-paste-pop)
 
 (global-set-key (kbd "M-<RET>") 'toggle-fs)
 (global-set-key (kbd "C-c R") 'rename-current-file-or-buffer)
