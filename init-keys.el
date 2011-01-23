@@ -38,9 +38,6 @@
 (global-set-key (kbd "M-<RET>") 'toggle-fs)
 (global-set-key (kbd "C-c R") 'rename-current-file-or-buffer)
 
-(global-set-key (kbd "C-x n t") 'nav-tags-here)
-(global-set-key (kbd "C-x n b") 'nav-show-bufs)
-
 (eval-after-load 'dired
   '(progn
      (define-key dired-mode-map (kbd "RET") 'dired-find-file-same-buffer)

@@ -35,6 +35,7 @@
       help-window-select t
       fill-column 80
       cua-paste-pop-rotate-temporarily t
+      cua-prefix-override-inhibit-delay 0.05
       vc-handled-backends (delq 'Git vc-handled-backends) ;; vc-git is slow
       eproject-completing-read-function 'eproject--ido-completing-read)
 
