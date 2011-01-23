@@ -5,6 +5,8 @@
 
 (require 'eproject)
 (require 'eproject-extras)
+(or (require 'yasnippet-bundle nil t)
+    (message "Yasnippet bundle not found!"))
 
 (define-project-type make (generic) (look-for "Makefile"))
 (define-project-type rake (generic) (look-for "Rakefile"))
