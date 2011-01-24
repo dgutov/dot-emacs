@@ -36,6 +36,7 @@
       fill-column 80
       cua-paste-pop-rotate-temporarily t
       cua-prefix-override-inhibit-delay 0.05
+      yas/wrap-around-region 'cua
       vc-handled-backends (delq 'Git vc-handled-backends) ;; vc-git is slow
       eproject-completing-read-function 'eproject--ido-completing-read)
 
@@ -43,7 +44,6 @@
   '(set-face-attribute 'eshell-prompt nil
                        :foreground "SlateBlue4"))
 
-(delete-selection-mode t)
 (global-hl-line-mode t)
 (line-number-mode t)
 (column-number-mode t)

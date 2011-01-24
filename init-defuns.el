@@ -179,4 +179,10 @@ Returns the deleted character count."
                         (get-vc-dir "yasnippet/dropdown-list.el"))
     (byte-compile-file bundle-file)))
 
+(defadvice cua-delete-region (around dont-copy-to-register-0 (&optional arg) activate)
+  ;; Still want to copy it when doing cua-replace-region
+  (interactive "p")
+  (let ((cua-delete-copy-to-register-0 (not arg)))
+    ad-do-it))
+
 (provide 'init-defuns)
