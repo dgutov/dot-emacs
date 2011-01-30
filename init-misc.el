@@ -23,6 +23,7 @@
       scroll-margin 0
       scroll-preserve-screen-position t
       truncate-lines 't
+      kill-whole-line t
       mouse-wheel-scroll-amount '(3)
       mouse-wheel-progressive-speed nil
       mouse-wheel-follow-mouse 't
