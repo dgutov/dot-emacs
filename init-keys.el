@@ -34,6 +34,9 @@
 (global-set-key (kbd "C-h j") 'javadoc-lookup)
 
 (global-set-key "\M-Y" 'cua-paste-pop)
+(global-unset-key (kbd "<S-delete>"))
+(global-unset-key (kbd "<S-insert>"))
+(global-unset-key (kbd "<C-insert>"))
 
 (global-set-key (kbd "M-<RET>") 'toggle-fs)
 (global-set-key (kbd "C-c R") 'rename-current-file-or-buffer)
