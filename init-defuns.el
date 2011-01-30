@@ -174,7 +174,7 @@ Returns the deleted character count."
     (yas/compile-bundle (get-vc-dir "yasnippet/yasnippet.el")
                         bundle-file
                         `(,(get-vc-dir "yasnippet/snippets")
-                          ,(get-vc-dir "snippets"))
+                          ,(get-vc-dir "js-yasnippets"))
                         "(yas/initialize-bundle)\n;;;### autoload(require 'yasnippet-bundle)"
                         (get-vc-dir "yasnippet/dropdown-list.el"))
     (byte-compile-file bundle-file)))
