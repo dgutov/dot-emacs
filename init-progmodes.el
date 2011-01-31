@@ -70,4 +70,10 @@
       js2-allow-keywords-as-property-names nil
       js2-move-point-on-right-click nil)
 
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(add-hook 'snippet-mode-hook
+          (lambda ()
+            (add-hook 'write-contents-functions 'delete-trailing-newlines)))
+
 (provide 'init-progmodes)

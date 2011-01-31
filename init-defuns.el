@@ -185,4 +185,12 @@ Returns the deleted character count."
   (let ((cua-delete-copy-to-register-0 (not arg)))
     ad-do-it))
 
+(defun delete-trailing-newlines ()
+  (interactive)
+  (save-excursion
+    (goto-char (point-max))
+    (delete-blank-lines)
+    (if (looking-at "^")
+        (delete-backward-char 1))))
+
 (provide 'init-defuns)
