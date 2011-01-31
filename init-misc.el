@@ -22,11 +22,11 @@
       scroll-step 1
       scroll-margin 0
       scroll-preserve-screen-position t
-      truncate-lines 't
+      truncate-lines t
       kill-whole-line t
       mouse-wheel-scroll-amount '(3)
       mouse-wheel-progressive-speed nil
-      mouse-wheel-follow-mouse 't
+      mouse-wheel-follow-mouse t
       compilation-window-height 17
       recentf-max-saved-items 100
       save-place-limit 100
