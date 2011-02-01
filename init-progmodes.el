@@ -2,11 +2,13 @@
 (update-load-path-vc "emacs-nav" t)
 (update-load-path "~/emacs-hs" t)
 (update-load-path-vc "js2-mode" t)
+(update-load-path-vc "autopair")
 
 (require 'eproject)
 (require 'eproject-extras)
 (or (require 'yasnippet-bundle nil t)
     (message "Yasnippet bundle not found!"))
+(require 'autopair)
 
 (define-project-type make (generic) (look-for "Makefile"))
 (define-project-type rake (generic) (look-for "Rakefile"))
@@ -62,13 +64,13 @@
 (add-hook 'js2-mode-hook 'run-coding-hook)
 
 (setq js2-basic-offset 2
-      js2-mirror-mode t
       js2-auto-indent-p t
       js2-consistent-level-indent-inner-bracket-p t
       js2-use-ast-for-indentation-p t
       js2-enter-indents-newline t
       js2-allow-keywords-as-property-names nil
-      js2-move-point-on-right-click nil)
+      js2-move-point-on-right-click nil
+      autopair-blink nil)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 

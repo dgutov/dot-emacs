@@ -45,10 +45,10 @@
   '(set-face-attribute 'eshell-prompt nil
                        :foreground "SlateBlue4"))
 
-(global-hl-line-mode t)
 (line-number-mode t)
 (column-number-mode t)
 (winner-mode t)
 (cua-mode t)
+(autopair-global-mode)
 
 (provide 'init-misc)
