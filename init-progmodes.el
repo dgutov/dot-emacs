@@ -17,7 +17,9 @@
 (define-project-type scons (generic) (look-for "SConstruct"))
 (define-project-type ant (generic) (look-for "build.xml"))
 (define-project-type haskell (generic) (look-for "Setup.hs"))
-(define-project-type emacs (generic) (look-for "init.el"))
+(define-project-type emacs (generic) (look-for "init.el")
+  :irrelevant-files ("^[.]" "/elpa/" "/site-lisp/"
+                     "/url/cookies$" "tramp$" "^custom.el$"))
 
 (add-to-list 'auto-mode-alist '("SConstruct" . python-mode))
 (add-to-list 'auto-mode-alist '("SConscript" . python-mode))
@@ -75,7 +77,11 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (add-hook 'snippet-mode-hook
-          (lambda ()
-            (add-hook 'write-contents-functions 'delete-trailing-newlines)))
+          (lambda () (add-hook 'write-contents-functions
+                          'delete-trailing-newlines)))
+
+(dolist (mode '(emacs-lisp clojure))
+  (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
+            (lambda () (setq autopair-dont-activate t))))
 
 (provide 'init-progmodes)

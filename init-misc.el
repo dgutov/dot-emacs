@@ -7,6 +7,7 @@
 (setq autoload-file (expand-file-name "~/.emacs-loaddefs.el")
       save-place-file (expand-file-name "~/.emacs-places.el")
       locals-file (expand-file-name "~/.emacs-locals.el")
+      anything-c-adaptive-history-file "~/.anything-c-adaptive-history"
       indent-tabs-mode nil
       make-backup-files t
       version-control t
@@ -39,6 +40,9 @@
       cua-prefix-override-inhibit-delay 0.05
       yas/wrap-around-region 'cua
       vc-handled-backends (delq 'Git vc-handled-backends) ;; vc-git is slow
+      anything-input-idle-delay 0.2
+      anything-samewindow t
+      flyspell-auto-correct-binding [(control ?\')]
       eproject-completing-read-function 'eproject--ido-completing-read)
 
 (eval-after-load 'esh-opt
