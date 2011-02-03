@@ -342,9 +342,9 @@ not given then the currently selected frame is used."
     (while (<= 0 n)
       (setq table (cons (cons (winring-name-of (ring-ref ring n)) n) table)
             n (1- n)))
-    (setq name (completing-read
+    (setq name (ido-completing-read
                 (format "Window configuration name (%s): " current)
-                table nil 'must nil 'winring-name-history))
+                (mapcar 'car table) nil 'must nil 'winring-name-history))
     (if (string-equal name "")
         (setq name current))
     (cdr (assoc name table))))
