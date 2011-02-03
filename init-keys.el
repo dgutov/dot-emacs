@@ -16,12 +16,19 @@
 (global-change-key (kbd "C-x <right>") 'windmove-right)
 (global-set-key (kbd "<C-tab>") 'iflipb-next-buffer)
 (global-set-key (kbd "<C-S-tab>") 'iflipb-previous-buffer)
+(global-set-key (kbd "C-c n") 'winring-new-configuration)
+(global-set-key (kbd "C-c 2") 'winring-duplicate-configuration)
+(global-set-key (kbd "C-c 0") 'winring-delete-configuration)
+(global-set-key (kbd "C-c r") 'winring-rename-configuration)
+(global-set-key (kbd "C-c o") 'winring-prev-configuration)
+(global-set-key (kbd "C-c p") 'winring-next-configuration)
+(global-set-key (kbd "C-c j") 'winring-jump-to-configuration)
 
 (global-set-key (kbd "RET") 'newline-and-indent)
-(global-set-key (kbd "C-c j") 'join-line)
 (global-set-key (kbd "<C-left>") 'backward-word)
 (global-set-key (kbd "<C-right>") 'forward-word)
 (global-set-key (kbd "C-z") 'undo)
+(global-set-key (kbd "C-x C-z") 'undo)
 (global-set-key (kbd "C-Z") 'redo)
 (global-set-key (kbd "<M-S-backspace>") 'backward-kill-sexp)
 (global-set-key (kbd "<M-S-delete>") 'kill-sexp)
@@ -41,6 +48,8 @@
 
 (global-set-key (kbd "M-<RET>") 'toggle-fs)
 (global-set-key (kbd "C-c R") 'rename-current-file-or-buffer)
+(global-set-key (kbd "C-c N") 'cleanup-buffer)
+(global-set-key (kbd "C-c P") 'message-point)
 
 (eval-after-load 'dired
   '(progn

@@ -6,7 +6,7 @@
 (require 'ffap)
 (require 'uniquify)
 (require 'ansi-color)
-(require 'recentf) 
+(require 'recentf)
 (require 'assoc)
 
 (setq dotfiles-dir (file-name-directory

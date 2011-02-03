@@ -3,6 +3,7 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
 (require 'saveplace)
+(require 'winring)
 
 (setq autoload-file (expand-file-name "~/.emacs-loaddefs.el")
       save-place-file (expand-file-name "~/.emacs-places.el")
@@ -55,5 +56,6 @@
 (winner-mode t)
 (cua-mode t)
 (autopair-global-mode)
+(winring-initialize)
 
 (provide 'init-misc)
