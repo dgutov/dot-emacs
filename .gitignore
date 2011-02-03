@@ -1,4 +1,4 @@
-backups/*
+.backups/*
 elpa/*
 auto-save-list
 custom.el

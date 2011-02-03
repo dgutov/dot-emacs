@@ -188,7 +188,7 @@ Returns the deleted character count."
 (defun delete-trailing-newlines ()
   (interactive)
   (save-excursion
-    (goto-char (point-max))
+    (end-of-buffer)
     (delete-blank-lines)
     (if (looking-at "^")
         (delete-backward-char 1))))

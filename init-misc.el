@@ -8,6 +8,7 @@
       save-place-file (expand-file-name "~/.emacs-places.el")
       locals-file (expand-file-name "~/.emacs-locals.el")
       anything-c-adaptive-history-file "~/.anything-c-adaptive-history"
+      backup-directory-alist `(("." . ,(expand-file-name (concat dotfiles-dir ".backups"))))
       indent-tabs-mode nil
       make-backup-files t
       version-control t
