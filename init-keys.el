@@ -10,6 +10,7 @@
 
 (global-set-key (kbd "C-x 2") 'split-window-vertically-1)
 (global-set-key (kbd "C-x 3") 'split-window-horizontally-1)
+(global-set-key (kbd "C-x 8") 'rotate-windows)
 (global-change-key (kbd "C-x <up>") 'windmove-up)
 (global-change-key (kbd "C-x <down>") 'windmove-down)
 (global-change-key (kbd "C-x <left>") 'windmove-left)
@@ -20,8 +21,8 @@
 (global-set-key (kbd "C-c 2") 'winring-duplicate-configuration)
 (global-set-key (kbd "C-c 0") 'winring-delete-configuration)
 (global-set-key (kbd "C-c r") 'winring-rename-configuration)
-(global-set-key (kbd "C-c o") 'winring-prev-configuration)
-(global-set-key (kbd "C-c p") 'winring-next-configuration)
+(global-set-key (kbd "C-c p") 'winring-prev-configuration)
+(global-set-key (kbd "C-c o") 'winring-next-configuration)
 (global-set-key (kbd "C-c j") 'winring-jump-to-configuration)
 
 (global-set-key (kbd "RET") 'newline-and-indent)
@@ -29,7 +30,7 @@
 (global-set-key (kbd "<C-right>") 'forward-word)
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-x C-z") 'undo)
-(global-set-key (kbd "C-Z") 'redo)
+(global-set-key (kbd "C-S-z") 'redo)
 (global-set-key (kbd "<M-S-backspace>") 'backward-kill-sexp)
 (global-set-key (kbd "<M-S-delete>") 'kill-sexp)
 (global-set-key (kbd "<C-delete>") 'kill-word-dwim)
@@ -40,6 +41,7 @@
 (global-set-key (kbd "C-c C-g") 'eproject-grep)
 (global-set-key (kbd "C-h j") 'javadoc-lookup)
 (global-set-key (kbd "C-;") 'anything-in-project)
+(global-set-key (kbd "C-x C-i") 'anything-imenu-thingatpt)
 
 (global-set-key "\M-Y" 'cua-paste-pop)
 (global-unset-key (kbd "<S-delete>"))
@@ -64,6 +66,9 @@
      (define-key paredit-mode-map (kbd "<M-right>") 'paredit-forward-slurp-sexp)
      (define-key paredit-mode-map (kbd "<M-backspace>") 'paredit-backward-kill-word)
      (define-key paredit-mode-map (kbd "<M-DEL>") 'paredit-forward-kill-word)))
+
+(eval-after-load 'org
+  (define-key org-mode-map (kbd "<C-tab>") nil))
 
 (add-hook 'eshell-mode-hook
           (lambda ()

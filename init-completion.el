@@ -59,9 +59,27 @@
 (defun anything-in-project ()
   (interactive)
   (require 'anything-config)
-  (anything '(anything-c-source-buffers
+  (anything '(anything-c-source-buffers+
               anything-c-project-files
               anything-c-source-recentf)))
+
+(defun anything-imenu-discard-bad-input ()
+  "If the input has no matches, deletes the input and displays all candidates."
+  (remove-hook 'anything-after-update-hook 'anything-imenu-discard-bad-input)
+  (when (= 1 (point-max)) ; candidates buffer is empty
+    ;; `any-input' is function argument in `anything-read-pattern-maybe'
+    ;; dynamic scoping is evil
+    (setq any-input nil)
+    (setq anything-pattern "")
+    (anything-update)))
+
+(defun anything-imenu-thingatpt ()
+  (interactive)
+  (require 'anything-config)
+  (let ((input (thing-at-point 'symbol)))
+    (if input
+        (add-hook 'anything-after-update-hook 'anything-imenu-discard-bad-input))
+    (anything 'anything-c-source-imenu input nil nil nil "*anything imenu*")))
 
 (eval-after-load 'anything-config
   '(progn
