@@ -185,12 +185,22 @@ Returns the deleted character count."
   (let ((cua-delete-copy-to-register-0 (not arg)))
     ad-do-it))
 
-(defun delete-trailing-newlines ()
+(defun delete-trailing-whitespace-and-newlines ()
   (interactive)
   (save-excursion
     (end-of-buffer)
+    (delete-trailing-whitespace)
     (delete-blank-lines)
     (if (looking-at "^")
         (delete-backward-char 1))))
+
+(defun rotate-windows ()
+  (interactive)
+  (let* ((windows (window-list))
+         (buffers (mapcar 'window-buffer windows))
+         (windows (nconc (cdr windows) (list (car windows)))))
+    (mapcar* (lambda (w b) (set-window-buffer w b))
+             windows buffers)
+    (other-window 1)))
 
 (provide 'init-defuns)

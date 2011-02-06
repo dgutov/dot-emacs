@@ -74,11 +74,9 @@
       js2-move-point-on-right-click nil
       autopair-blink nil)
 
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
 (add-hook 'snippet-mode-hook
           (lambda () (add-hook 'write-contents-functions
-                          'delete-trailing-newlines)))
+                          'delete-trailing-whitespace-and-newlines)))
 
 (dolist (mode '(emacs-lisp clojure))
   (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
