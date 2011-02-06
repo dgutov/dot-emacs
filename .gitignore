@@ -8,4 +8,5 @@ thumbs/*
 image-dired/
 session*
 tramp
+.org-id-locations
 \#*
