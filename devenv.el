@@ -1,21 +1,44 @@
+(update-load-path-vc "eproject")
 (update-load-path "~/emacs-ac")
 (update-load-path-vc "ac-slime")
 (update-load-path-vc "pos-tip")
 (update-load-path-vc "anything-config")
 (update-load-path-vc "anything-config/extensions")
+(update-load-path-vc "point-stack")
 
+(require 'eproject)
+(require 'eproject-extras)
 (require 'auto-complete-config)
 (require 'ac-slime)
 (require 'pos-tip)
+(require 'point-stack)
+
+(define-project-type make (generic) (look-for "Makefile"))
+(define-project-type rake (generic) (look-for "Rakefile"))
+(define-project-type lein (generic) (look-for "project.clj"))
+(define-project-type gae (generic) (look-for "app.yaml"))
+(define-project-type scons (generic) (look-for "SConstruct"))
+(define-project-type ant (generic) (look-for "build.xml"))
+(define-project-type haskell (generic) (look-for "Setup.hs"))
+(define-project-type emacs (generic) (look-for "init.el")
+  :irrelevant-files ("^[.]" "/elpa/" "/site-lisp/"
+                     "/url/cookies$" "tramp$" "^custom.el$"))
+
+(add-to-list 'auto-mode-alist '("SConstruct" . python-mode))
+(add-to-list 'auto-mode-alist '("SConscript" . python-mode))
+
+(add-hook 'scons-project-file-visit-hook
+          (lambda ()
+            (setq-local compile-command (format "cd %s && scons" (eproject-root)))))
 
 (add-to-list 'ac-dictionary-directories "~/emacs-ac/ac-dict")
 
 (ac-config-default)
 
-(setq ac-quick-help-delay 0.2)
-(setq ac-use-comphist nil)
-(setq ac-quick-help-prefer-x t)
-(setq ac-auto-start nil)
+(setq ac-quick-help-delay 0.2
+      ac-use-comphist nil
+      ac-quick-help-prefer-x t
+      ac-auto-start nil)
 
 (set-face-attribute 'popup-tip-face nil
                     :background pos-tip-background-color)
@@ -86,4 +109,8 @@
      (define-key anything-map (kbd "C-z") nil) ; hide from persistent help
      (define-key anything-map (kbd "C-;") 'anything-execute-persistent-action)))
 
-(provide 'init-completion)
+(defadvice* point-stack-push before (imenu find-function-at-point-same-window)
+  (setq point-stack-forward-stack nil) ; new step resets forward history
+  (point-stack-push))
+
+(provide 'devenv)

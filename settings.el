@@ -58,4 +58,4 @@
 (autopair-global-mode)
 (winring-initialize)
 
-(provide 'init-misc)
+(provide 'settings)

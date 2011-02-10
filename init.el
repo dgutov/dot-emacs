@@ -18,7 +18,7 @@
       custom-file (concat dotfiles-dir "custom.el"))
 (load custom-file 'noerror)
 
-(require 'init-defuns)
+(require 'defuns)
 (update-load-path (concat dotfiles-dir "site-lisp"))
 (update-load-path-vc "emacs-starter-kit")
 (update-load-path-vc "emacs-starter-kit/elpa-to-submit" t)
@@ -35,11 +35,10 @@
 
 (remove-hook 'coding-hook 'idle-highlight)
 
-(require 'init-progmodes)
-(require 'init-slime)
-(require 'init-completion)
-(require 'init-misc)
-(require 'init-keys)
+(require 'progmodes)
+(require 'devenv)
+(require 'settings)
+(require 'keys)
 
 (if (file-exists-p locals-file) (load locals-file))
 (update-autoloads)

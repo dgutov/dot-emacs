@@ -79,4 +79,4 @@
           (lambda ()
             (define-key eshell-mode-map [home] 'eshell-bol)))
 
-(provide 'init-keys)
+(provide 'keys)

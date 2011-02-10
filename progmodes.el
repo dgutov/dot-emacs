@@ -1,32 +1,15 @@
-(update-load-path-vc "eproject")
 (update-load-path-vc "emacs-nav" t)
 (update-load-path "~/emacs-hs" t)
 (update-load-path-vc "js2-mode" t)
 (update-load-path-vc "autopair")
+(update-load-path-vc "slime" t)
+(update-load-path-vc "slime/contrib")
+(update-load-path-vc "clojure-mode" t)
 
-(require 'eproject)
-(require 'eproject-extras)
+(require 'starter-kit-lisp)
 (or (require 'yasnippet-bundle nil t)
     (message "Yasnippet bundle not found!"))
 (require 'autopair)
-
-(define-project-type make (generic) (look-for "Makefile"))
-(define-project-type rake (generic) (look-for "Rakefile"))
-(define-project-type lein (generic) (look-for "project.clj"))
-(define-project-type gae (generic) (look-for "app.yaml"))
-(define-project-type scons (generic) (look-for "SConstruct"))
-(define-project-type ant (generic) (look-for "build.xml"))
-(define-project-type haskell (generic) (look-for "Setup.hs"))
-(define-project-type emacs (generic) (look-for "init.el")
-  :irrelevant-files ("^[.]" "/elpa/" "/site-lisp/"
-                     "/url/cookies$" "tramp$" "^custom.el$"))
-
-(add-to-list 'auto-mode-alist '("SConstruct" . python-mode))
-(add-to-list 'auto-mode-alist '("SConscript" . python-mode))
-
-(add-hook 'scons-project-file-visit-hook
-          (lambda ()
-            (setq-local compile-command (format "cd %s && scons" (eproject-root)))))
 
 (add-hook 'c-mode-hook
           (lambda ()
@@ -74,6 +57,62 @@
       js2-move-point-on-right-click nil
       autopair-blink nil)
 
+(defun load-user-clj ()
+  (swank-eval (format "(load-file \"%s\")"
+                      (expand-file-name (concat dotfiles-dir "user.clj")))))
+
+(add-hook 'slime-connected-hook
+          'load-user-clj)
+
+(defun slime-next-sexp ()
+  (save-excursion
+    (forward-sexp)
+    (buffer-substring-no-properties
+     (save-excursion
+       (backward-sexp)
+       (point))
+     (point))))
+
+(defun swank-eval (string)
+  (slime-eval `(swank:interactive-eval ,string)))
+
+(defun clojure-next-sexp-class ()
+  (interactive)
+  (message
+   (swank-eval (format "(user/expression-classname `%s)" (slime-next-sexp)))))
+
+(defun clojure-next-sexp-javadoc ()
+  (interactive)
+  (swank-eval (format "(user/expression-javadoc `%s)" (slime-next-sexp))))
+
+(eval-after-load 'slime
+  '(progn
+     (slime-setup '(slime-fancy slime-banner slime-repl))
+     (setq slime-startup-animation nil)
+     (setq slime-protocol-version 'ignore)
+     (define-key slime-mode-map (kbd "C-c d") 'clojure-next-sexp-class)
+     (define-key slime-mode-map (kbd "C-c D") 'clojure-next-sexp-javadoc)))
+
+(eval-after-load 'slime-repl
+  '(progn
+     (define-key slime-repl-mode-map (kbd "C-c d") 'clojure-next-sexp-class)
+     (define-key slime-repl-mode-map (kbd "C-c D") 'clojure-next-sexp-javadoc)))
+
+(eval-after-load 'clojure-mode
+  '(progn
+     (define-key clojure-mode-map [f5] 'slime-connect)
+     (define-clojure-indent
+       ;; clojure.test
+       (thrown? 1)
+       ;; compojure
+       (html 0)
+       (xhtml-tag 1)
+       (GET 2)
+       (POST 2)
+       (PUT 2)
+       (DELETE 2)
+       (ANY 2))))
+
 (add-hook 'snippet-mode-hook
           (lambda () (add-hook 'write-contents-functions
                           'delete-trailing-whitespace-and-newlines)))
@@ -82,4 +121,4 @@
   (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
             (lambda () (setq autopair-dont-activate t))))
 
-(provide 'init-progmodes)
+(provide 'progmodes)

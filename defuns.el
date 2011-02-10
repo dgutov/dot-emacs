@@ -202,11 +202,4 @@ Returns the deleted character count."
            (ad-activate func nil))
          ',functions))
 
-(update-load-path-vc "point-stack")
-(require 'point-stack)
-
-(defadvice* point-stack-push before (imenu find-function-at-point-same-window)
-  (setq point-stack-forward-stack nil) ; new step resets forward history
-  (point-stack-push))
-
-(provide 'init-defuns)
+(provide 'defuns)
