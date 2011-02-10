@@ -214,7 +214,8 @@ Returns the deleted character count."
   `(mapc (lambda (func)
            (ad-add-advice
             func '(,name nil t (advice . (lambda () ,@body)))
-            ',type 'last))
+            ',type 'last)
+           (ad-activate func nil))
          ',functions))
 
 (update-load-path-vc "point-stack")
