@@ -13,22 +13,6 @@
       (setq list (cdr list)))
     (cdr result)))
 
-(defun conj (list element)
-  "Returns LIST prepended by ELEMENT."
-  (cons element list))
-
-(defun update-hash (table key function &rest args)
-  "Changes value associated with KEY to the one returned by FUNCTION.
-The function is passed the old value and ARGS as arguments."
-  (puthash key (apply function (gethash key table) args)
-           table))
-
-(defun hash-to-sorted-alist (table compare-fn)
-  "Converts hash table to associative list sorted with supplied function."
-  (let (alist)
-    (maphash (lambda (k v) (add-to-list 'alist (cons k v))) table)
-    (sort alist (lambda (e1 e2) (funcall compare-fn (car e1) (car e2))))))
-
 (defvar autoload-directory-list nil
   "List of directories to generate autoloads from.")
 
