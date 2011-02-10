@@ -203,4 +203,25 @@ Returns the deleted character count."
              windows buffers)
     (other-window 1)))
 
+(defun find-function-at-point-same-window ()
+  "Finds directly the function at point in the current window."
+  (interactive)
+  (let ((symb (function-called-at-point))
+        (find-function-recenter-line nil))
+    (when symb (find-function symb))))
+
+(defmacro defadvice* (name type functions &rest body)
+  `(mapc (lambda (func)
+           (ad-add-advice
+            func '(,name nil t (advice . (lambda () ,@body)))
+            ',type 'last))
+         ',functions))
+
+(update-load-path-vc "point-stack")
+(require 'point-stack)
+
+(defadvice* point-stack-push before (imenu find-function-at-point-same-window)
+  (setq point-stack-forward-stack nil) ; new step resets forward history
+  (point-stack-push))
+
 (provide 'init-defuns)

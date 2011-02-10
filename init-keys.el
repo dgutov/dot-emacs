@@ -42,6 +42,8 @@
 (global-set-key (kbd "C-h j") 'javadoc-lookup)
 (global-set-key (kbd "C-;") 'anything-in-project)
 (global-set-key (kbd "C-x C-i") 'anything-imenu-thingatpt)
+(global-set-key (kbd "C-M-,") 'point-stack-pop)
+(global-set-key (kbd "C-M-.") 'point-stack-forward-stack-pop)
 
 (global-set-key "\M-Y" 'cua-paste-pop)
 (global-unset-key (kbd "<S-delete>"))
@@ -68,7 +70,10 @@
      (define-key paredit-mode-map (kbd "<M-DEL>") 'paredit-forward-kill-word)))
 
 (eval-after-load 'org
-  (define-key org-mode-map (kbd "<C-tab>") nil))
+  '(define-key org-mode-map (kbd "<C-tab>") nil))
+
+(eval-after-load 'lisp-mode
+  '(define-key emacs-lisp-mode-map (kbd "M-.") 'find-function-at-point-same-window))
 
 (add-hook 'eshell-mode-hook
           (lambda ()
