@@ -44,6 +44,7 @@
 (global-set-key (kbd "C-x C-i") 'anything-imenu-thingatpt)
 (global-set-key (kbd "C-M-,") 'point-stack-pop)
 (global-set-key (kbd "C-M-.") 'point-stack-forward-stack-pop)
+(global-set-key (kbd "C-M-/") 'point-stack-push)
 
 (global-set-key "\M-Y" 'cua-paste-pop)
 (global-unset-key (kbd "<S-delete>"))
