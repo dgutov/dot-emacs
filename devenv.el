@@ -109,7 +109,7 @@
      (define-key anything-map (kbd "C-z") nil) ; hide from persistent help
      (define-key anything-map (kbd "C-;") 'anything-execute-persistent-action)))
 
-(defadvice* point-stack-push before (imenu find-function-at-point-same-window)
+(defadvice* point-stack-push before (imenu find-function isearch-mode)
   (setq point-stack-forward-stack nil) ; new step resets forward history
   (point-stack-push))
 
