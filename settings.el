@@ -50,6 +50,10 @@
   '(set-face-attribute 'eshell-prompt nil
                        :foreground "SlateBlue4"))
 
+(add-hook 'org-mode-hook
+          (lambda () (add-hook 'write-contents-functions
+                          'delete-trailing-whitespace)))
+
 (line-number-mode t)
 (column-number-mode t)
 (winner-mode t)
