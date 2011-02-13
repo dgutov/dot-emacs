@@ -40,7 +40,6 @@
       fill-column 80
       cua-paste-pop-rotate-temporarily t
       cua-prefix-override-inhibit-delay 0.05
-      yas/wrap-around-region 'cua
       vc-handled-backends (delq 'Git vc-handled-backends) ;; vc-git is slow
       anything-input-idle-delay 0.2
       anything-samewindow t
