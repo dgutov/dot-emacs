@@ -54,6 +54,10 @@
           (lambda () (add-hook 'write-contents-functions
                           'delete-trailing-whitespace)))
 
+(add-hook 'emacs-startup-hook
+          (lambda () (with-current-buffer "*scratch*"
+                  (rename-buffer "-scratch-"))))
+
 (line-number-mode t)
 (column-number-mode t)
 (winner-mode t)
