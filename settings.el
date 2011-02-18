@@ -37,7 +37,6 @@
       eshell-cmpl-cycle-completions nil
       redisplay-dont-pause t
       help-window-select t
-      fill-column 80
       cua-paste-pop-rotate-temporarily t
       cua-prefix-override-inhibit-delay 0.05
       vc-handled-backends (delq 'Git vc-handled-backends) ;; vc-git is slow
@@ -45,6 +44,8 @@
       anything-samewindow t
       flyspell-auto-correct-binding [(control ?\')]
       eproject-completing-read-function 'eproject--ido-completing-read)
+
+(setq-default fill-column 80)
 
 (eval-after-load 'esh-opt
   '(set-face-attribute 'eshell-prompt nil
