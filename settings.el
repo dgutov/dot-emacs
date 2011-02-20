@@ -39,6 +39,7 @@
       help-window-select t
       cua-paste-pop-rotate-temporarily t
       cua-prefix-override-inhibit-delay 0.05
+      org-replace-disputed-keys t
       vc-handled-backends (delq 'Git vc-handled-backends) ;; vc-git is slow
       anything-input-idle-delay 0.2
       anything-samewindow t
@@ -58,6 +59,9 @@
 (add-hook 'emacs-startup-hook
           (lambda () (with-current-buffer "*scratch*"
                   (rename-buffer "-scratch-"))))
+
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
 (line-number-mode t)
 (column-number-mode t)
