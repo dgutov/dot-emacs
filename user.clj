@@ -1,7 +1,7 @@
 (ns user
   (:use [clojure.contrib.repl-utils :only (show expression-info)]))
 
-(def *print-length* 23)
+(set! clojure.core/*print-length* 23)
 
 (defmacro ns-reload! [ns]
   `(do

@@ -117,7 +117,7 @@
           (lambda () (add-hook 'write-contents-functions
                           'delete-trailing-whitespace-and-newlines)))
 
-(dolist (mode '(emacs-lisp clojure))
+(dolist (mode '(emacs-lisp clojure slime-repl))
   (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
             (lambda () (setq autopair-dont-activate t))))
 
