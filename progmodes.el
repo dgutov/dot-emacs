@@ -64,6 +64,13 @@
 (add-hook 'slime-connected-hook
           'load-user-clj)
 
+(add-hook 'slime-repl-mode-hook
+          (lambda ()
+            (set-syntax-table clojure-mode-syntax-table)
+            (define-key slime-repl-mode-map (kbd "{") 'paredit-open-curly)
+            (define-key slime-repl-mode-map (kbd "}") 'paredit-close-curly)
+            (paredit-mode t)))
+
 (defun slime-next-sexp ()
   (save-excursion
     (forward-sexp)
