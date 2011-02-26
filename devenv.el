@@ -62,12 +62,13 @@
 
 (defun anything-project-files-candidates ()
   (with-current-buffer anything-current-buffer
-    (let ((dir (if eproject-mode eproject-root (anything-c-current-directory))))
+    (let ((dir (if eproject-mode eproject-root default-directory)))
       (mapcar (lambda (file)
                   `(,(file-relative-name file dir) . ,file))
               (if eproject-mode
                   (eproject-list-project-files)
-                (directory-files dir nil "^[^._]"))))))
+                (if (buffer-file-name)
+                    (directory-files dir nil "^[^._]")))))))
 
 (defun anything-project-files-transformer (files)
   (nreverse
