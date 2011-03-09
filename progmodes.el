@@ -5,6 +5,7 @@
 (update-load-path-vc "slime" t)
 (update-load-path-vc "slime/contrib")
 (update-load-path-vc "clojure-mode" t)
+(update-load-path-vc "rhtml")
 
 (require 'starter-kit-lisp)
 (or (require 'yasnippet-bundle nil t)
@@ -119,6 +120,9 @@
        (PUT 2)
        (DELETE 2)
        (ANY 2))))
+
+(add-auto-mode 'rhtml-mode "\.html\.erb$")
+(autoload 'rhtml-mode "rhtml-mode" nil t)
 
 (add-hook 'snippet-mode-hook
           (lambda () (add-hook 'write-contents-functions
