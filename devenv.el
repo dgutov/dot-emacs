@@ -24,8 +24,7 @@
   :irrelevant-files ("^[.]" "/elpa/" "/site-lisp/"
                      "/url/cookies$" "tramp$" "^custom.el$"))
 
-(add-to-list 'auto-mode-alist '("SConstruct" . python-mode))
-(add-to-list 'auto-mode-alist '("SConscript" . python-mode))
+(add-auto-mode 'python-mode "SConstruct" "SConscript")
 
 (add-hook 'scons-project-file-visit-hook
           (lambda ()

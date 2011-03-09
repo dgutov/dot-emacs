@@ -41,6 +41,10 @@
 (defun update-load-path-vc (dir-name &optional add-to-autoloads)
   (update-load-path (get-vc-dir dir-name) add-to-autoloads))
 
+(defun add-auto-mode (mode &rest patterns)
+  (dolist (pattern patterns)
+    (add-to-list 'auto-mode-alist (cons pattern mode))))
+
 (defun global-change-key (key command)
   (mapc #'global-unset-key (where-is-internal command))
   (global-set-key key command))
