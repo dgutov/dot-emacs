@@ -38,11 +38,12 @@
       redisplay-dont-pause t
       help-window-select t
       cua-paste-pop-rotate-temporarily t
-      cua-prefix-override-inhibit-delay 0.05
+      cua-enable-cua-keys nil
       org-replace-disputed-keys t
       vc-handled-backends (delq 'Git vc-handled-backends) ;; vc-git is slow
       anything-input-idle-delay 0.2
       anything-samewindow t
+      css-indent-offset 2
       flyspell-auto-correct-binding [(control ?\')]
       eproject-completing-read-function 'eproject--ido-completing-read)
 
