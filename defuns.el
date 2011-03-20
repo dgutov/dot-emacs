@@ -200,4 +200,8 @@ Returns the deleted character count."
            (ad-activate func nil))
          ',functions))
 
+(defun align-to-equals (begin end)
+  (interactive "r")
+  (align-regexp begin end "\\(\\s-*\\)=" 1 1 ))
+
 (provide 'defuns)
