@@ -16,6 +16,14 @@
 (update-load-path-vc "emacs-starter-kit")
 (update-load-path-vc "emacs-starter-kit/elpa-to-submit" t)
 
+(require 'ffap)
+(require 'uniquify)
+(require 'ansi-color)
+(require 'recentf)
+(require 'assoc)
+(require 'saveplace)
+(require 'winring)
+
 (require 'starter-kit-defuns)
 (require 'starter-kit-bindings)
 (require 'starter-kit-misc)
@@ -33,14 +41,6 @@
 
 (if (file-exists-p locals-file) (load locals-file))
 (update-autoloads)
-
-(require 'ffap)
-(require 'uniquify)
-(require 'ansi-color)
-(require 'recentf)
-(require 'assoc)
-(require 'saveplace)
-(require 'winring)
 
 (line-number-mode t)
 (column-number-mode t)
