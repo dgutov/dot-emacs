@@ -64,7 +64,8 @@
              '("elpa" . "http://tromey.com/elpa/") t)
 
 (defadvice* hide-from-recentf around (ido-save-history update-autoloads)
-  (let (write-file-functions)
+  (let (write-file-functions
+        (find-file-hook (delq 'recentf-track-opened-file find-file-hook)))
     ad-do-it))
 
 (provide 'prefs)
