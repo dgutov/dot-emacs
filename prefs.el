@@ -63,4 +63,8 @@
 (add-to-list 'package-archives
              '("elpa" . "http://tromey.com/elpa/") t)
 
+(defadvice* hide-from-recentf around (ido-save-history update-autoloads)
+  (let (write-file-functions)
+    ad-do-it))
+
 (provide 'prefs)
