@@ -2,9 +2,6 @@
 (put 'upcase-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
 
-(require 'saveplace)
-(require 'winring)
-
 (setq autoload-file (expand-file-name "~/.emacs-loaddefs.el")
       save-place-file (expand-file-name "~/.emacs-places.el")
       locals-file (expand-file-name "~/.emacs-locals.el")
@@ -66,11 +63,4 @@
 (add-to-list 'package-archives
              '("elpa" . "http://tromey.com/elpa/") t)
 
-(line-number-mode t)
-(column-number-mode t)
-(winner-mode t)
-(cua-mode t)
-(autopair-global-mode)
-(winring-initialize)
-
-(provide 'settings)
+(provide 'prefs)

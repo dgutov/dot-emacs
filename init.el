@@ -2,13 +2,6 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-(require 'cl)
-(require 'ffap)
-(require 'uniquify)
-(require 'ansi-color)
-(require 'recentf)
-(require 'assoc)
-
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
 
@@ -23,9 +16,6 @@
 (update-load-path-vc "emacs-starter-kit")
 (update-load-path-vc "emacs-starter-kit/elpa-to-submit" t)
 
-(require 'package)
-(package-initialize)
-
 (require 'starter-kit-defuns)
 (require 'starter-kit-bindings)
 (require 'starter-kit-misc)
@@ -33,12 +23,28 @@
 (require 'starter-kit-ruby)
 (require 'starter-kit-js)
 
+(package-initialize)
 (remove-hook 'coding-hook 'idle-highlight)
 
+(require 'prefs)
+(require 'keys)
 (require 'progmodes)
 (require 'devenv)
-(require 'settings)
-(require 'keys)
 
 (if (file-exists-p locals-file) (load locals-file))
 (update-autoloads)
+
+(require 'ffap)
+(require 'uniquify)
+(require 'ansi-color)
+(require 'recentf)
+(require 'assoc)
+(require 'saveplace)
+(require 'winring)
+
+(line-number-mode t)
+(column-number-mode t)
+(winner-mode t)
+(cua-mode t)
+(autopair-global-mode)
+(winring-initialize)
