@@ -55,7 +55,7 @@
 
 (add-hook 'org-mode-hook
           (lambda () (add-hook 'write-contents-functions
-                          'delete-trailing-whitespace)))
+                          (lambda () (delete-trailing-whitespace) nil))))
 
 (add-hook 'emacs-startup-hook
           (lambda () (with-current-buffer "*scratch*"
