@@ -31,6 +31,7 @@
 (require 'starter-kit-ruby)
 (require 'starter-kit-js)
 
+(require 'package)
 (package-initialize)
 (remove-hook 'coding-hook 'idle-highlight)
 
