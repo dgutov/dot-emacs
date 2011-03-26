@@ -5,7 +5,6 @@
 (update-load-path-vc "anything-config")
 (update-load-path-vc "anything-config/extensions")
 (update-load-path-vc "point-stack")
-(update-load-path-vc "magit" t)
 
 (require 'eproject)
 (require 'eproject-extras)
