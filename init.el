@@ -49,3 +49,4 @@
 (cua-mode t)
 (autopair-global-mode)
 (winring-initialize)
+(global-auto-revert-mode t)
