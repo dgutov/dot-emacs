@@ -42,7 +42,8 @@
       anything-samewindow t
       css-indent-offset 2
       flyspell-auto-correct-binding [(control ?\')]
-      eproject-completing-read-function 'eproject--ido-completing-read)
+      eproject-completing-read-function 'eproject--ido-completing-read
+      quack-remap-find-file-bindings-p nil)
 
 (setq-default fill-column 80)
 

@@ -1,6 +1,8 @@
 (require 'smex)
 (require 'redo+)
 (require 'iflipb)
+(update-load-path-vc "transpose-frame")
+(require 'transpose-frame)
 
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
@@ -11,6 +13,7 @@
 (global-set-key (kbd "C-x 2") 'split-window-vertically-1)
 (global-set-key (kbd "C-x 3") 'split-window-horizontally-1)
 (global-set-key (kbd "C-x 8") 'rotate-windows)
+(global-set-key (kbd "C-x t") 'transpose-frame)
 (global-change-key (kbd "C-x <up>") 'windmove-up)
 (global-change-key (kbd "C-x <down>") 'windmove-down)
 (global-change-key (kbd "C-x <left>") 'windmove-left)

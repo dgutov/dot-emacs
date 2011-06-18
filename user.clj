@@ -1,5 +1,5 @@
 (ns user
-  (:use [clojure.contrib.repl-utils :only (show expression-info)]))
+  (:use [clojure.contrib.repl-utils :only (show expression-info javadoc)]))
 
 (set! clojure.core/*print-length* 23)
 
