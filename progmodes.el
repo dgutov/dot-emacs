@@ -6,11 +6,13 @@
 (update-load-path-vc "slime/contrib")
 (update-load-path-vc "clojure-mode" t)
 (update-load-path-vc "rhtml")
+(update-load-path "~/ecb-snap")
 
 (require 'starter-kit-lisp)
 (or (require 'yasnippet-bundle nil t)
     (message "Yasnippet bundle not found!"))
 (require 'autopair)
+(require 'ecb-autoloads)
 
 (add-hook 'c-mode-hook
           (lambda ()

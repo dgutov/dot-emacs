@@ -43,7 +43,10 @@
       css-indent-offset 2
       flyspell-auto-correct-binding [(control ?\')]
       eproject-completing-read-function 'eproject--ido-completing-read
-      quack-remap-find-file-bindings-p nil)
+      quack-remap-find-file-bindings-p nil
+      ecb-windows-width 36
+      ecb-fix-window-size 'auto
+      ecb-layout-name "left15")
 
 (setq-default fill-column 80)
 
