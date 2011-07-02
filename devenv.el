@@ -112,4 +112,23 @@
 (defadvice* point-stack-push before (imenu find-function isearch-mode)
   (point-stack-push))
 
+(defun ecb-add-project-to-sources (&optional root)
+  (let ((root (or root eproject-root)))
+    (ecb-add-source-path root
+                         (car (last (split-string root "/" t)))
+                         t)))
+
+(defun ecb-hook-eproject ()
+  (let ((known-paths (mapcar 'car (ecb-normed-source-paths))))
+    (dolist (root (eproject--known-project-roots))
+      (unless (member (directory-file-name root) known-paths)
+        (ecb-add-project-to-sources root))))
+  (add-hook 'eproject-first-buffer-hook 'ecb-add-project-to-sources))
+
+(defun ecb-unhook-eproject ()
+  (remove-hook 'eproject-first-buffer-hook 'add-project-to-ecb-sources))
+
+(add-hook 'ecb-before-activate-hook 'ecb-hook-eproject)
+(add-hook 'ecb-deactivate-hook 'ecb-unhook-eproject)
+
 (provide 'devenv)
