@@ -25,6 +25,7 @@
                      "/url/cookies$" "tramp$" "^custom.el$"))
 
 (add-auto-mode 'python-mode "SConstruct" "SConscript")
+(add-auto-mode 'markdown-mode "md")
 
 (add-hook 'scons-project-file-visit-hook
           (lambda ()
