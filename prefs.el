@@ -42,11 +42,13 @@
       anything-samewindow t
       css-indent-offset 2
       flyspell-auto-correct-binding [(control ?\')]
+      flymake-start-syntax-check-on-find-file nil
       eproject-completing-read-function 'eproject--ido-completing-read
       quack-remap-find-file-bindings-p nil
       ecb-windows-width 36
       ecb-fix-window-size 'auto
-      ecb-layout-name "left15")
+      ecb-layout-name "left15"
+      ecb-tip-of-the-day nil)
 
 (setq-default fill-column 80)
 
