@@ -6,6 +6,7 @@
 (update-load-path-vc "slime/contrib")
 (update-load-path-vc "clojure-mode" t)
 (update-load-path-vc "rhtml")
+(update-load-path-vc "rinari" t)
 (update-load-path "~/ecb-snap")
 
 (require 'starter-kit-lisp)
