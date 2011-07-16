@@ -1,5 +1,5 @@
 (update-load-path-vc "eproject")
-(update-load-path "~/emacs-ac")
+(update-load-path-vc "auto-complete")
 (update-load-path-vc "ac-slime")
 (update-load-path-vc "pos-tip")
 (update-load-path-vc "anything-config")
@@ -31,7 +31,7 @@
           (lambda ()
             (setq-local compile-command (format "cd %s && scons" (eproject-root)))))
 
-(add-to-list 'ac-dictionary-directories "~/emacs-ac/ac-dict")
+(add-to-list 'ac-dictionary-directories (get-vc-dir "auto-complete/dict"))
 
 (ac-config-default)
 
