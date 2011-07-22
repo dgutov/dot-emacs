@@ -204,4 +204,8 @@ Returns the deleted character count."
   (interactive "r")
   (align-regexp begin end "\\(\\s-*\\)=" 1 1 ))
 
+(defmacro add-lambda (hook &rest body)
+  (declare (indent 1))
+  `(add-hook ,hook (lambda () ,@body)))
+
 (provide 'defuns)

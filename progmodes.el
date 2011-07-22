@@ -15,18 +15,16 @@
 (require 'autopair)
 (require 'ecb-autoloads)
 
-(add-hook 'c-mode-hook
-          (lambda ()
-            (setq-local c-basic-offset 2)))
+(add-lambda 'c-mode-hook
+  (setq-local c-basic-offset 2))
 
 (autoload 'ghc-init "ghc" nil t)
 
-(add-hook 'haskell-mode-hook
-          (lambda ()
-            (turn-on-haskell-indentation)
-            (turn-on-haskell-doc-mode)
-            (turn-on-font-lock)
-            (ghc-init)))
+(add-lambda 'haskell-mode-hook
+  (turn-on-haskell-indentation)
+  (turn-on-haskell-doc-mode)
+  (turn-on-font-lock)
+  (ghc-init))
 
 (setq *jdh-javadocs*
       (mapcar (lambda (url) `(,url nil t t))
@@ -68,12 +66,11 @@
 (add-hook 'slime-connected-hook
           'load-user-clj)
 
-(add-hook 'slime-repl-mode-hook
-          (lambda ()
-            (set-syntax-table clojure-mode-syntax-table)
-            (define-key slime-repl-mode-map (kbd "{") 'paredit-open-curly)
-            (define-key slime-repl-mode-map (kbd "}") 'paredit-close-curly)
-            (paredit-mode t)))
+(add-lambda 'slime-repl-mode-hook
+  (set-syntax-table clojure-mode-syntax-table)
+  (define-key slime-repl-mode-map (kbd "{") 'paredit-open-curly)
+  (define-key slime-repl-mode-map (kbd "}") 'paredit-close-curly)
+  (paredit-mode t))
 
 (defun slime-next-sexp ()
   (save-excursion
@@ -129,9 +126,9 @@
 (add-auto-mode 'rhtml-mode "\.html\.erb$")
 (autoload 'rhtml-mode "rhtml-mode" nil t)
 
-(add-hook 'snippet-mode-hook
-          (lambda () (add-hook 'write-contents-functions
-                          'delete-trailing-whitespace-and-newlines)))
+(add-lambda 'snippet-mode-hook
+  (add-hook 'write-contents-functions
+            'delete-trailing-whitespace-and-newlines))
 
 (dolist (mode '(emacs-lisp clojure slime-repl sldb))
   (add-hook (intern (concat (symbol-name mode) "-mode-hook"))

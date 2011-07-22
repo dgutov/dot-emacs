@@ -27,9 +27,8 @@
 (add-auto-mode 'python-mode "SConstruct" "SConscript")
 (add-auto-mode 'markdown-mode "md")
 
-(add-hook 'scons-project-file-visit-hook
-          (lambda ()
-            (setq-local compile-command (format "cd %s && scons" (eproject-root)))))
+(add-lambda 'scons-project-file-visit-hook
+  (setq-local compile-command (format "cd %s && scons" (eproject-root))))
 
 (add-to-list 'ac-dictionary-directories (get-vc-dir "auto-complete/dict"))
 
@@ -47,19 +46,17 @@
 (put 'dropdown-list-face 'face-alias 'popup-menu-face)
 (put 'dropdown-list-selection-face 'face-alias 'popup-menu-selection-face)
 
-(add-hook 'slime-mode-hook
-          (lambda () (setq-local ac-sources
-                            '(ac-source-slime-simple
-                              ac-source-words-in-same-mode-buffers
-                              ac-source-filename))))
+(add-lambda 'slime-mode-hook
+  (setq-local ac-sources '(ac-source-slime-simple
+                           ac-source-words-in-same-mode-buffers
+                           ac-source-filename)))
 
 (add-lambda 'haskell-mode-hook
   (setq-local ac-sources '(ac-source-ghc-mod
                            ac-source-words-in-same-mode-buffers)))
 
-(add-hook 'auto-complete-mode-hook
-          (lambda ()
-            (setq completion-at-point-functions '((lambda () #'auto-complete)))))
+(add-lambda 'auto-complete-mode-hook
+  (setq completion-at-point-functions '((lambda () #'auto-complete))))
 
 (setq anything-c-project-files
       '((name . "Project Files")
