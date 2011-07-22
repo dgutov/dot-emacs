@@ -38,7 +38,8 @@
 (setq ac-quick-help-delay 0.2
       ac-use-comphist nil
       ac-quick-help-prefer-x t
-      ac-auto-start nil)
+      ac-auto-start nil
+      tab-always-indent 'complete)
 
 (set-face-attribute 'popup-tip-face nil
                     :background pos-tip-background-color)
@@ -53,6 +54,10 @@
           (lambda () (setq-local ac-sources
                             '(ac-source-ghc-mod
                               ac-source-words-in-same-mode-buffers))))
+
+(add-hook 'auto-complete-mode-hook
+          (lambda ()
+            (setq completion-at-point-functions '((lambda () #'auto-complete)))))
 
 (setq anything-c-project-files
       '((name . "Project Files")
