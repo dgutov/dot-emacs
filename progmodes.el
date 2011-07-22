@@ -31,7 +31,7 @@
 (setq *jdh-javadocs*
       (mapcar (lambda (url) `(,url nil t t))
               '("http://java.sun.com/javase/6/docs/api/"
-                "http://java.sun.com/products/servlet/2.5/docs/servlet-2_5-mr2/"
+                "http://tomcat.apache.org/tomcat-5.5-doc/servletapi/"
                 "http://commons.apache.org/codec/api-release/"
                 "http://commons.apache.org/io/api-release/"
                 "http://commons.apache.org/lang/api-release/")))
