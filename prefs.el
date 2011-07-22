@@ -48,7 +48,8 @@
       ecb-windows-width 36
       ecb-fix-window-size 'auto
       ecb-layout-name "left15"
-      ecb-tip-of-the-day nil)
+      ecb-tip-of-the-day nil
+      yas/prompt-functions '(yas/dropdown-prompt))
 
 (setq-default fill-column 80)
 

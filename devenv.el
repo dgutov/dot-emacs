@@ -44,16 +44,18 @@
 (set-face-attribute 'popup-tip-face nil
                     :background pos-tip-background-color)
 
+(put 'dropdown-list-face 'face-alias 'popup-menu-face)
+(put 'dropdown-list-selection-face 'face-alias 'popup-menu-selection-face)
+
 (add-hook 'slime-mode-hook
           (lambda () (setq-local ac-sources
                             '(ac-source-slime-simple
                               ac-source-words-in-same-mode-buffers
                               ac-source-filename))))
 
-(add-hook 'haskell-mode-hook
-          (lambda () (setq-local ac-sources
-                            '(ac-source-ghc-mod
-                              ac-source-words-in-same-mode-buffers))))
+(add-lambda 'haskell-mode-hook
+  (setq-local ac-sources '(ac-source-ghc-mod
+                           ac-source-words-in-same-mode-buffers)))
 
 (add-hook 'auto-complete-mode-hook
           (lambda ()
