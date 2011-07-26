@@ -163,18 +163,14 @@ Returns the deleted character count."
                         bundle-file
                         `(,(get-vc-dir "yasnippet/snippets")
                           ,(get-vc-dir "js-yasnippets"))
-                        "(yas/initialize-bundle)\n;;;### autoload(require 'yasnippet-bundle)"
+                        nil
                         (get-vc-dir "yasnippet/dropdown-list.el"))
     (byte-compile-file bundle-file)))
 
-(defun delete-trailing-whitespace-and-newlines ()
-  (interactive)
-  (save-excursion
-    (end-of-buffer)
-    (delete-trailing-whitespace)
-    (delete-blank-lines)
-    (if (looking-at "^")
-        (delete-backward-char 1))))
+(defadvice yas/parse-template (before clear-newlines () activate)
+  (goto-char (point-max))
+  (skip-chars-backward "\n\r\t ")
+  (delete-region (point) (point-max)))
 
 (defun rotate-windows ()
   (interactive)

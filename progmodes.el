@@ -126,10 +126,6 @@
 (add-auto-mode 'rhtml-mode "\.html\.erb$")
 (autoload 'rhtml-mode "rhtml-mode" nil t)
 
-(add-lambda 'snippet-mode-hook
-  (add-hook 'write-contents-functions
-            'delete-trailing-whitespace-and-newlines))
-
 (dolist (mode '(emacs-lisp clojure slime-repl sldb))
   (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
             (lambda () (setq autopair-dont-activate t))))
