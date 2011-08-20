@@ -13,6 +13,9 @@
       (setq list (cdr list)))
     (cdr result)))
 
+(defun xor (a b)
+  (if a (not b) b))
+
 (defvar autoload-directory-list nil
   "List of directories to generate autoloads from.")
 

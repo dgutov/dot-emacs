@@ -64,32 +64,70 @@
         (candidate-transformer . anything-project-files-transformer)
         (type . file)))
 
+(defvar anything-c-project-buffers+ (copy-alist anything-c-source-buffers+))
+(setcdr (assoc 'candidate-transformer anything-c-project-buffers+)
+        '(anything-c-skip-current-buffer
+          anything-c-highlight-buffers
+          anything-project-skip-buffers))
+
+(defvar anything-c-nonproject-buffers+ (copy-alist anything-c-source-buffers+))
+(setcdr (assoc 'candidate-transformer anything-c-nonproject-buffers+)
+        '(anything-c-skip-current-buffer
+          anything-c-highlight-buffers
+          anything-project-skip-buffers
+          anything-c-skip-boring-buffers))
+
+(defvar anything-c-nonproject-recentf
+  (cons '(candidate-transformer . anything-skip-project-recentf)
+        anything-c-source-recentf))
+
+(defvar not-in-project-p nil)
+
 (defun anything-project-files-candidates ()
   (with-current-buffer anything-current-buffer
-    (let ((dir (if eproject-mode eproject-root default-directory)))
-      (mapcar (lambda (file)
-                  `(,(file-relative-name file dir) . ,file))
-              (if eproject-mode
-                  (eproject-list-project-files)
-                (if (buffer-file-name)
-                    (directory-files dir nil "^[^._]")))))))
+    (mapcar (lambda (file)
+              (cons (file-relative-name file eproject-root) file))
+            (eproject-list-project-files))))
+
+(defun anything-project-skip-buffers (buffers)
+  (with-current-buffer anything-current-buffer
+    (let ((project-root eproject-root))
+      (loop for buffer in buffers
+            when (with-current-buffer buffer
+                   (xor not-in-project-p
+                        (and eproject-root
+                             (equal eproject-root project-root))))
+            collect buffer))))
 
 (defun anything-project-files-transformer (files)
   (nreverse
    (mapcar (lambda (i)
-             `(,(propertize (car i)
-                            'face (if (file-directory-p (cdr i))
-                                      anything-c-files-face1
-                                    anything-c-files-face2))
-               . ,(cdr i)))
+             (cons (propertize (car i) 'face anything-c-files-face2)
+                   (cdr i)))
            files)))
+
+(defun anything-skip-project-recentf (files)
+  (with-current-buffer anything-current-buffer
+    (if eproject-root
+        (loop for file in files
+              when (not (string-prefix-p eproject-root file))
+              collect file)
+      files)))
 
 (defun anything-in-project ()
   (interactive)
   (require 'anything-config)
-  (anything '(anything-c-source-buffers+
-              anything-c-project-files
-              anything-c-source-recentf)))
+  (if eproject-mode
+      (anything '(anything-c-project-buffers+
+                  anything-c-project-files))
+    (anything-not-in-project)))
+
+(defun anything-not-in-project ()
+  (interactive)
+  (require 'anything-config)
+  (let ((not-in-project-p t))
+    (anything '(anything-c-nonproject-buffers+
+                anything-c-nonproject-recentf))))
 
 (defun anything-imenu-discard-bad-input ()
   "If the input has no matches, deletes the input and displays all candidates."
