@@ -64,23 +64,6 @@
         (candidate-transformer . anything-project-files-transformer)
         (type . file)))
 
-(defvar anything-c-project-buffers+ (copy-alist anything-c-source-buffers+))
-(setcdr (assoc 'candidate-transformer anything-c-project-buffers+)
-        '(anything-c-skip-current-buffer
-          anything-c-highlight-buffers
-          anything-project-skip-buffers))
-
-(defvar anything-c-nonproject-buffers+ (copy-alist anything-c-source-buffers+))
-(setcdr (assoc 'candidate-transformer anything-c-nonproject-buffers+)
-        '(anything-c-skip-current-buffer
-          anything-c-highlight-buffers
-          anything-project-skip-buffers
-          anything-c-skip-boring-buffers))
-
-(defvar anything-c-nonproject-recentf
-  (cons '(candidate-transformer . anything-skip-project-recentf)
-        anything-c-source-recentf))
-
 (defvar not-in-project-p nil)
 
 (defun anything-project-files-candidates ()
@@ -150,7 +133,24 @@
 (eval-after-load 'anything-config
   '(progn
      (define-key anything-map (kbd "C-z") nil) ; hide from persistent help
-     (define-key anything-map (kbd "C-;") 'anything-execute-persistent-action)))
+     (define-key anything-map (kbd "C-;") 'anything-execute-persistent-action)
+     
+     (defvar anything-c-project-buffers+ (copy-alist anything-c-source-buffers+))
+     (setcdr (assoc 'candidate-transformer anything-c-project-buffers+)
+             '(anything-c-skip-current-buffer
+               anything-c-highlight-buffers
+               anything-project-skip-buffers))
+
+     (defvar anything-c-nonproject-buffers+ (copy-alist anything-c-source-buffers+))
+     (setcdr (assoc 'candidate-transformer anything-c-nonproject-buffers+)
+             '(anything-c-skip-current-buffer
+               anything-c-highlight-buffers
+               anything-project-skip-buffers
+               anything-c-skip-boring-buffers))
+
+     (defvar anything-c-nonproject-recentf
+       (cons '(candidate-transformer . anything-skip-project-recentf)
+             anything-c-source-recentf))))
 
 (defadvice* point-stack-push before (imenu find-function isearch-mode)
   (point-stack-push))
