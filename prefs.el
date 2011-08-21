@@ -49,7 +49,10 @@
       ecb-fix-window-size 'auto
       ecb-layout-name "left15"
       ecb-tip-of-the-day nil
-      yas/prompt-functions '(yas/dropdown-prompt))
+      yas/prompt-functions '(yas/dropdown-prompt)
+      mmm-global-mode 'buffers-with-submode-classes
+      mmm-submode-decoration-level 1
+      js-indent-level 2)
 
 (setq-default fill-column 80)
 

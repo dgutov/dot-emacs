@@ -5,7 +5,7 @@
 (update-load-path-vc "slime" t)
 (update-load-path-vc "slime/contrib")
 (update-load-path-vc "clojure-mode" t)
-(update-load-path-vc "rhtml")
+(update-load-path-vc "mmm-mode")
 (update-load-path-vc "rinari" t)
 (update-load-path "~/ecb-snap")
 
@@ -14,6 +14,7 @@
     (message "Yasnippet bundle not found!"))
 (require 'autopair)
 (require 'ecb-autoloads)
+(require 'mmm-auto)
 
 (add-lambda 'c-mode-hook
   (setq-local c-basic-offset 2))
@@ -123,8 +124,66 @@
 
 (eval-after-load 'scheme '(require 'quack))
 
-(add-auto-mode 'rhtml-mode "\.html\.erb$")
-(autoload 'rhtml-mode "rhtml-mode" nil t)
+(eval-after-load "mmm-vars"
+  `(progn
+     (mmm-add-group
+      'html-js
+      '((js-script-cdata
+         :submode js-mode
+         :face mmm-code-submode-face
+         :front "<script[^>]*>[ \t\n]*\\(//\\)?<!\\[CDATA\\[[ \t]*\n?"
+         :back "[ \t]*\\(//\\)?]]>[ \t\n]*</script>")
+        (js-script
+         :submode js-mode
+         :face mmm-code-submode-face
+         :front "<script[^>]*>[ \t]*\n?"
+         :back "[ \t]*</script>"
+         :insert ((?j js-tag nil @ "<script type=\"text/javascript\">"
+                      @ "\n" _ "\n" @ "</script>" @)))
+        (js-inline
+         :submode js-mode
+         :face mmm-code-submode-face
+         :front "on\w+=\""
+         :back "\"")))
+     (mmm-add-group
+      'html-css
+      '((css-cdata
+         :submode css-mode
+         :face mmm-code-submode-face
+         :front "<style[^>]*>[ \t\n]*\\(//\\)?<!\\[CDATA\\[[ \t]*\n?"
+         :back "[ \t]*\\(//\\)?]]>[ \t\n]*</style>")
+        (css
+         :submode css-mode
+         :face mmm-code-submode-face
+         :front "<style[^>]*>[ \t]*\n?"
+         :back "[ \t]*</style>"
+         :insert ((?c css-tag nil @ "<style type=\"text/css\">"
+                      @ "\n" _ "\n" @ "</style>" @)))
+        (css-inline
+         :submode css-mode
+         :face mmm-code-submode-face
+         :front "style=\""
+         :back "\"")))
+     (mmm-add-classes
+      '((eruby :submode ruby-mode :front "<%[#=]?" :back "-?%>"
+               :match-face (("<%#" . mmm-comment-submode-face)
+                            ("<%=" . mmm-output-submode-face)
+                            ("<%" . mmm-code-submode-face))
+               :insert ((?% erb-code nil @ "<%" @ " " _ " " @ "%>" @)
+                        (?# erb-comment nil @ "<%#" @ " " _ " " @ "%>" @)
+                        (?= erb-expression nil @ "<%=" @ " " _ " " @ "%>" @)))
+        (etanni :submode ruby-mode :front "<\\?r\\|#{" :back "\\?>\\|}"
+                :match-face (("<\\?r" . mmm-code-submode-face)
+                             ("#{" . mmm-output-submode-face))
+                :insert ((?r etanni-code nil @ "<?r" @ " " _ " " @ "?>" @)
+                         (?{ etanni-expression nil @ "#{" @ " " _ " " @ "}" @)))))
+     (dolist (mode (list 'html-mode 'nxml-mode))
+       (mmm-add-mode-ext-class mode "\\.\\(r\\|x\\)?html\\(\\.erb\\)?$" 'html-js)
+       (mmm-add-mode-ext-class mode "\\.\\(r\\|x\\)?html\\(\\.erb\\)?$" 'html-css)
+       (mmm-add-mode-ext-class mode "\\.r?html\\(\\.erb\\)?$" 'eruby)
+       (mmm-add-mode-ext-class mode "\\.xhtml$" 'etanni))))
+
+(add-auto-mode 'html-mode "\.rhtml$" "\.html\.erb$" "\.xhtml$")
 
 (dolist (mode '(emacs-lisp clojure slime-repl sldb))
   (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
