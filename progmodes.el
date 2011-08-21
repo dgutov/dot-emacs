@@ -73,39 +73,11 @@
   (define-key slime-repl-mode-map (kbd "}") 'paredit-close-curly)
   (paredit-mode t))
 
-(defun slime-next-sexp ()
-  (save-excursion
-    (forward-sexp)
-    (buffer-substring-no-properties
-     (save-excursion
-       (backward-sexp)
-       (point))
-     (point))))
-
-(defun swank-eval (string)
-  (slime-eval `(swank:interactive-eval ,string)))
-
-(defun clojure-next-sexp-class ()
-  (interactive)
-  (message
-   (swank-eval (format "(user/expression-classname `%s)" (slime-next-sexp)))))
-
-(defun clojure-next-sexp-javadoc ()
-  (interactive)
-  (swank-eval (format "(user/expression-javadoc `%s)" (slime-next-sexp))))
-
 (eval-after-load 'slime
   '(progn
      (slime-setup '(slime-fancy slime-banner slime-repl))
      (setq slime-startup-animation nil)
-     (setq slime-protocol-version 'ignore)
-     (define-key slime-mode-map (kbd "C-c d") 'clojure-next-sexp-class)
-     (define-key slime-mode-map (kbd "C-c D") 'clojure-next-sexp-javadoc)))
-
-(eval-after-load 'slime-repl
-  '(progn
-     (define-key slime-repl-mode-map (kbd "C-c d") 'clojure-next-sexp-class)
-     (define-key slime-repl-mode-map (kbd "C-c D") 'clojure-next-sexp-javadoc)))
+     (setq slime-protocol-version 'ignore)))
 
 (eval-after-load 'clojure-mode
   '(progn
