@@ -154,9 +154,6 @@ Returns the deleted character count."
         (kill-buffer nil))))
   nil)
 
-(defadvice nav-mode (after window-height-fixed () activate)
-  (setq window-size-fixed 'height))
-
 (defun compile-snippets ()
   (interactive)
   (update-load-path-vc "yasnippet")
