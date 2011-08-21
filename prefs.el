@@ -51,7 +51,7 @@
       ecb-tip-of-the-day nil
       yas/prompt-functions '(yas/dropdown-prompt)
       mmm-global-mode 'buffers-with-submode-classes
-      mmm-submode-decoration-level 1
+      mmm-submode-decoration-level 2
       js-indent-level 2)
 
 (setq-default fill-column 80)
