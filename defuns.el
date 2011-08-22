@@ -2,17 +2,6 @@
   "Makes VAR buffer-local and sets its value."
   `(set (make-local-variable ',var) ,value))
 
-(defun filter (condp list)
-  "Returns new list containing all elements of LIST that satisfy CONDP."
-  (let* ((result (cons nil nil))
-         (cell result))
-    (while list
-      (let ((el (car list)))
-        (if (funcall condp el)
-            (setq cell (setcdr cell (cons el nil)))))
-      (setq list (cdr list)))
-    (cdr result)))
-
 (defun xor (a b)
   (if a (not b) b))
 
@@ -24,10 +13,10 @@
   (let ((generated-autoload-file autoload-file)
         (dirs (if (or force-regen (not (file-exists-p autoload-file)))
                   autoload-directory-list
-                (filter (lambda (directory)
-                          (some (lambda (f) (file-newer-than-file-p f autoload-file))
-                                (directory-files directory t "\\.el$")))
-                        autoload-directory-list))))
+                (loop for directory in autoload-directory-list
+                      when (some (lambda (f) (file-newer-than-file-p f autoload-file))
+                                 (directory-files directory t "\\.el$"))
+                      collect directory))))
     (dolist (dir dirs)
       (message "Updating autoloads from %s" dir)
       (let (emacs-lisp-mode-hook)
