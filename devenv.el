@@ -67,6 +67,9 @@
 
 (defvar not-in-project-p nil)
 
+(defface anything-ip-file
+  '((t (:foreground "Blue"))) "")
+
 (defun anything-project-files-candidates ()
   (with-current-buffer anything-current-buffer
     (mapcar (lambda (file)
@@ -90,7 +93,7 @@
 (defun anything-project-files-transformer (files)
   (nreverse
    (mapcar (lambda (i)
-             (cons (propertize (car i) 'face anything-c-files-face2)
+             (cons (propertize (car i) 'face 'anything-ip-file)
                    (cdr i)))
            files)))
 
@@ -106,16 +109,16 @@
   (interactive)
   (require 'anything-config)
   (if eproject-mode
-      (anything '(anything-c-project-buffers+
+      (anything '(anything-c-project-buffers
                   anything-c-project-files
-                  anything-c-nonproject-buffers+
+                  anything-c-nonproject-buffers
                   anything-c-nonproject-recentf))
     (anything-not-in-project)))
 
 (defun anything-not-in-project ()
   (interactive)
   (require 'anything-config)
-  (anything '(anything-c-nonproject-buffers+
+  (anything '(anything-c-nonproject-buffers
               anything-c-nonproject-recentf)))
 
 (defun anything-imenu-discard-bad-input ()
@@ -141,19 +144,19 @@
      (define-key anything-map (kbd "C-z") nil) ; hide from persistent help
      (define-key anything-map (kbd "C-;") 'anything-execute-persistent-action)
      
-     (defvar anything-c-project-buffers+ (copy-alist anything-c-source-buffers+))
-     (setcdr (assoc 'candidate-transformer anything-c-project-buffers+)
+     (defvar anything-c-project-buffers (copy-alist anything-c-source-buffers-list))
+     (setcdr (assoc 'candidate-transformer anything-c-project-buffers)
              '(anything-c-skip-current-buffer
                anything-c-highlight-buffers
                anything-project-skip-buffers))
 
-     (defvar anything-c-nonproject-buffers+ (copy-alist anything-c-source-buffers+))
-     (setcdr (assoc 'candidate-transformer anything-c-nonproject-buffers+)
+     (defvar anything-c-nonproject-buffers (copy-alist anything-c-source-buffers-list))
+     (setcdr (assoc 'candidate-transformer anything-c-nonproject-buffers)
              '(anything-c-skip-current-buffer
                anything-c-highlight-buffers
                anything-skip-project-buffers
                anything-c-skip-boring-buffers))
-     (setcdr (assoc 'name anything-c-nonproject-buffers+) "Misc Buffers")
+     (setcdr (assoc 'name anything-c-nonproject-buffers) "Misc Buffers")
 
      (defvar anything-c-nonproject-recentf
        (cons '(candidate-transformer . anything-skip-project-recentf)
