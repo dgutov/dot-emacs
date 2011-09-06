@@ -109,8 +109,8 @@
          :face mmm-code-submode-face
          :front "<script[^>]*>[ \t]*\n?"
          :back "[ \t]*</script>"
-         :insert ((?j js-tag nil @ "<script type=\"text/javascript\">"
-                      @ "\n" _ "\n" @ "</script>" @)))
+         :insert ((?j js-tag nil @ "<script type=\"text/javascript\">\n"
+                      @ "" _ "" @ "\n</script>" @)))
         (js-inline
          :submode js-mode
          :face mmm-code-submode-face
@@ -128,8 +128,8 @@
          :face mmm-code-submode-face
          :front "<style[^>]*>[ \t]*\n?"
          :back "[ \t]*</style>"
-         :insert ((?c css-tag nil @ "<style type=\"text/css\">"
-                      @ "\n" _ "\n" @ "</style>" @)))
+         :insert ((?c css-tag nil @ "<style type=\"text/css\">\n"
+                      @ "" _ "" @ "\n</style>" @)))
         (css-inline
          :submode css-mode
          :face mmm-code-submode-face
@@ -147,7 +147,7 @@
                 :match-face (("<\\?r" . mmm-code-submode-face)
                              ("#{" . mmm-output-submode-face))
                 :insert ((?r etanni-code nil @ "<?r" @ " " _ " " @ "?>" @)
-                         (?{ etanni-expression nil @ "#{" @ " " _ " " @ "}" @)))))
+                         (?{ etanni-expression nil @ "#{" @ "" _ "" @ "}" @)))))
      (dolist (mode (list 'html-mode 'nxml-mode))
        (mmm-add-mode-ext-class mode "\\.\\(r\\|x\\)?html\\(\\.erb\\)?$" 'html-js)
        (mmm-add-mode-ext-class mode "\\.\\(r\\|x\\)?html\\(\\.erb\\)?$" 'html-css)
@@ -159,5 +159,7 @@
 (dolist (mode '(emacs-lisp clojure slime-repl sldb))
   (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
             (lambda () (setq autopair-dont-activate t))))
+
+(add-hook 'ruby-mode-hook 'ruby-electric-mode)
 
 (provide 'progmodes)

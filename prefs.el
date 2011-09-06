@@ -52,7 +52,8 @@
       yas/prompt-functions '(yas/dropdown-prompt)
       mmm-global-mode 'buffers-with-submode-classes
       mmm-submode-decoration-level 2
-      js-indent-level 2)
+      js-indent-level 2
+      ruby-electric-expand-delimiters-list '())
 
 (setq-default fill-column 80)
 
