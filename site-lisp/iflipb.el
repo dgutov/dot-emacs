@@ -262,8 +262,9 @@ invocations switch to more recent buffers in the buffer list."
     (setq iflipb-current-buffer-index 0)
     (setq iflipb-saved-buffers nil))
   (if (= iflipb-current-buffer-index 0)
-      (message "You are already looking at the top buffer.")
-    (iflipb-select-buffer (1- iflipb-current-buffer-index)))
+      (iflipb-select-buffer 1)
+      ;; (message "You are already looking at the top buffer.")
+      (iflipb-select-buffer (1- iflipb-current-buffer-index)))
   (setq last-command 'iflipb-previous-buffer))
 
 (provide 'iflipb)
