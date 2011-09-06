@@ -83,6 +83,10 @@
                              (equal eproject-root project-root))))
             collect buffer))))
 
+(defun anything-skip-project-buffers (buffers)
+  (let ((not-in-project-p t))
+    (anything-project-skip-buffers buffers)))
+
 (defun anything-project-files-transformer (files)
   (nreverse
    (mapcar (lambda (i)
@@ -103,15 +107,16 @@
   (require 'anything-config)
   (if eproject-mode
       (anything '(anything-c-project-buffers+
-                  anything-c-project-files))
+                  anything-c-project-files
+                  anything-c-nonproject-buffers+
+                  anything-c-nonproject-recentf))
     (anything-not-in-project)))
 
 (defun anything-not-in-project ()
   (interactive)
   (require 'anything-config)
-  (let ((not-in-project-p t))
-    (anything '(anything-c-nonproject-buffers+
-                anything-c-nonproject-recentf))))
+  (anything '(anything-c-nonproject-buffers+
+              anything-c-nonproject-recentf)))
 
 (defun anything-imenu-discard-bad-input ()
   "If the input has no matches, deletes the input and displays all candidates."
@@ -146,8 +151,9 @@
      (setcdr (assoc 'candidate-transformer anything-c-nonproject-buffers+)
              '(anything-c-skip-current-buffer
                anything-c-highlight-buffers
-               anything-project-skip-buffers
+               anything-skip-project-buffers
                anything-c-skip-boring-buffers))
+     (setcdr (assoc 'name anything-c-nonproject-buffers+) "Misc Buffers")
 
      (defvar anything-c-nonproject-recentf
        (cons '(candidate-transformer . anything-skip-project-recentf)
