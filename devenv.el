@@ -6,6 +6,7 @@
 (update-load-path-vc "anything-config/extensions")
 (update-load-path-vc "point-stack")
 (update-load-path-vc "magit" t)
+(update-load-path-vc "markdown-mode")
 
 (require 'eproject)
 (require 'eproject-extras)
@@ -22,11 +23,10 @@
 (define-project-type ant (generic) (look-for "build.xml"))
 (define-project-type haskell (generic) (look-for "Setup.hs"))
 (define-project-type emacs (generic) (look-for "init.el")
-  :irrelevant-files ("^[.]" "/elpa/" "/site-lisp/"
-                     "/url/cookies$" "tramp$" "^custom.el$"))
+  :irrelevant-files ("^[.]" "/elpa/" "/url/cookies$" "tramp$" "^custom.el$"))
 
 (add-auto-mode 'python-mode "SConstruct" "SConscript")
-(add-auto-mode 'markdown-mode "md")
+(add-auto-mode 'markdown-mode "\\.md$")
 
 (add-lambda 'scons-project-file-visit-hook
   (setq-local compile-command (format "cd %s && scons" (eproject-root))))
