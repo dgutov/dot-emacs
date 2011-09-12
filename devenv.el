@@ -108,6 +108,7 @@
 (defun anything-in-project ()
   (interactive)
   (require 'anything-config)
+  (require 'anything-match-plugin)
   (if eproject-mode
       (anything '(anything-c-project-buffers
                   anything-c-project-files
@@ -118,6 +119,7 @@
 (defun anything-not-in-project ()
   (interactive)
   (require 'anything-config)
+  (require 'anything-match-plugin)
   (anything '(anything-c-nonproject-buffers
               anything-c-nonproject-recentf)))
 
