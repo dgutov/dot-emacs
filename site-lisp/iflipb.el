@@ -258,12 +258,12 @@ are also ignored."
   "Flip to the previous buffer in the buffer list. Consecutive
 invocations switch to more recent buffers in the buffer list."
   (interactive)
-  (when (iflipb-first-iflipb-buffer-switch-command)
-    (setq iflipb-current-buffer-index 0)
-    (setq iflipb-saved-buffers nil))
+  ;; I found this behavior disruptive. -- dgutov
+  ;; (when (iflipb-first-iflipb-buffer-switch-command)
+  ;;   (setq iflipb-current-buffer-index 0)
+  ;;   (setq iflipb-saved-buffers nil))
   (if (= iflipb-current-buffer-index 0)
-      (iflipb-select-buffer 1)
-      ;; (message "You are already looking at the top buffer.")
+      (message "You are already looking at the top buffer.")
       (iflipb-select-buffer (1- iflipb-current-buffer-index)))
   (setq last-command 'iflipb-previous-buffer))
 
