@@ -47,6 +47,7 @@
 (global-set-key (kbd "C-;") 'anything-in-project)
 (global-set-key (kbd "C-:") 'anything-not-in-project)
 (global-set-key (kbd "C-x C-i") 'anything-imenu-thingatpt)
+(global-set-key (kbd "M-.") 'anything-etags-select-thingatpt)
 (global-set-key (kbd "C-M-,") 'point-stack-pop)
 (global-set-key (kbd "C-M-.") 'point-stack-forward-stack-pop)
 (global-set-key (kbd "C-M-/") 'point-stack-push)

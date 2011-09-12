@@ -136,6 +136,30 @@
                           (read-string "pattern: " nil))))))
       (anything 'anything-c-source-imenu input nil nil nil "*anything imenu*"))))
 
+(defun anything-etags-select-thingatpt (clear-cache)
+  (interactive "P")
+  (require 'anything-config)
+  (let* ((tag (anything-c-etags-get-tag-file))
+         (symbol (with-syntax-table (standard-syntax-table)
+                   (thing-at-point 'symbol)))
+         (init (when symbol (format "\\_<%s\\_>\\([?!(\\ ]\\|$\\)"
+                                    (regexp-quote symbol))))
+         (anything-quit-if-no-candidate
+          (lambda () (message "Tag '%s' not found." symbol)))
+         (anything-execute-action-at-once-if-one t))
+    (when (or clear-cache
+              (and anything-c-etags-mtime-alist
+                   (anything-c-etags-file-modified-p tag)))
+      (remhash tag anything-c-etags-cache))
+    (if (and tag (file-exists-p tag))
+        (anything :sources 'anything-c-source-etags-select
+                  :keymap anything-c-etags-map
+                  :input init
+                  :buffer "*anything etags*")
+        (message "Tags file not found."))))
+
+(autoload 'anything-etags-select-from-here "anything-etags.el" nil t)
+
 (eval-after-load 'anything-config
   '(progn
      (define-key anything-map (kbd "C-z") nil) ; hide from persistent help
@@ -159,7 +183,8 @@
        (cons '(candidate-transformer . anything-skip-project-recentf)
              anything-c-source-recentf))))
 
-(defadvice* point-stack-push before (imenu find-function isearch-mode)
+(defadvice* point-stack-push before (anything-c-etags-default-action
+                                     imenu find-function isearch-mode)
   (point-stack-push))
 
 (defun ecb-add-project-to-sources (&optional root)
