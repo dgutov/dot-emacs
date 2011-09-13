@@ -142,7 +142,7 @@
   (let* ((tag (anything-c-etags-get-tag-file))
          (symbol (with-syntax-table (standard-syntax-table)
                    (thing-at-point 'symbol)))
-         (init (when symbol (format "\\_<%s\\_>\\([?!(\\ ]\\|$\\)"
+         (init (when symbol (format "\\_<%s\\_>\\ *\\([?!(<]\\|$\\)"
                                     (regexp-quote symbol))))
          (anything-quit-if-no-candidate
           (lambda () (message "Tag '%s' not found." symbol)))
