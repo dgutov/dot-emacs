@@ -158,8 +158,6 @@
                   :buffer "*anything etags*")
         (message "Tags file not found."))))
 
-(autoload 'anything-etags-select-from-here "anything-etags.el" nil t)
-
 (eval-after-load 'anything-config
   '(progn
      (define-key anything-map (kbd "C-z") nil) ; hide from persistent help
