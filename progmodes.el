@@ -142,7 +142,9 @@
        (mmm-add-mode-ext-class mode "\\.\\(r\\|x\\)?html\\(\\.erb\\)?$" 'html-js)
        (mmm-add-mode-ext-class mode "\\.\\(r\\|x\\)?html\\(\\.erb\\)?$" 'html-css)
        (mmm-add-mode-ext-class mode "\\.r?html\\(\\.erb\\)?$" 'eruby)
-       (mmm-add-mode-ext-class mode "\\.xhtml$" 'etanni))))
+       (mmm-add-mode-ext-class mode "\\.xhtml$" 'etanni))
+     (set-face-attribute 'mmm-code-submode-face nil
+                         :background "ghost white")))
 
 (add-auto-mode 'html-mode "\.rhtml$" "\.html\.erb$" "\.xhtml$")
 
