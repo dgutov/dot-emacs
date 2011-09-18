@@ -38,8 +38,7 @@
 (setq ac-quick-help-delay 0.2
       ac-use-comphist nil
       ac-quick-help-prefer-x t
-      ac-auto-start nil
-      tab-always-indent 'complete)
+      ac-auto-start nil)
 
 (set-face-attribute 'popup-tip-face nil
                     :background pos-tip-background-color)
