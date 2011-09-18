@@ -110,12 +110,7 @@
          :front "<script[^>]*>[ \t]*\n?"
          :back "[ \t]*</script>"
          :insert ((?j js-tag nil @ "<script type=\"text/javascript\">\n"
-                      @ "" _ "" @ "\n</script>" @)))
-        (js-inline
-         :submode js-mode
-         :face mmm-code-submode-face
-         :front "on\w+=\""
-         :back "\"")))
+                      @ "" _ "" @ "\n</script>" @)))))
      (mmm-add-group
       'html-css
       '((css-cdata
@@ -129,12 +124,7 @@
          :front "<style[^>]*>[ \t]*\n?"
          :back "[ \t]*</style>"
          :insert ((?c css-tag nil @ "<style type=\"text/css\">\n"
-                      @ "" _ "" @ "\n</style>" @)))
-        (css-inline
-         :submode css-mode
-         :face mmm-code-submode-face
-         :front "style=\""
-         :back "\"")))
+                      @ "" _ "" @ "\n</style>" @)))))
      (mmm-add-classes
       '((eruby :submode ruby-mode :front "<%[#=]?" :back "-?%>"
                :match-face (("<%#" . mmm-comment-submode-face)
