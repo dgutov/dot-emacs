@@ -82,6 +82,9 @@
 (eval-after-load 'lisp-mode
   '(define-key emacs-lisp-mode-map (kbd "M-.") 'find-function-at-point-same-window))
 
+(eval-after-load 'ruby-mode
+  '(define-key ruby-mode-map (kbd "TAB") nil))
+
 (add-hook 'eshell-mode-hook
           (lambda ()
             (define-key eshell-mode-map [home] 'eshell-bol)))
