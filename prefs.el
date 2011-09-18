@@ -50,6 +50,7 @@
       ecb-layout-name "left15"
       ecb-tip-of-the-day nil
       yas/prompt-functions '(yas/dropdown-prompt)
+      yas/expand-only-for-last-commands '(self-insert-command undo)
       mmm-global-mode 'buffers-with-submode-classes
       mmm-submode-decoration-level 2
       js-indent-level 2

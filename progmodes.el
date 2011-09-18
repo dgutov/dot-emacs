@@ -162,4 +162,9 @@
 
 (add-hook 'ruby-mode-hook 'ruby-electric-mode)
 
+(defadvice* check-last-command around (ruby-electric-space-can-be-expanded-p
+                                       ruby-electric-return-can-be-expanded-p)
+  (when (memq last-command '(self-insert-command undo))
+    ad-do-it))
+
 (provide 'progmodes)
