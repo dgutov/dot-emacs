@@ -18,7 +18,6 @@
       auto-fill-mode nil
       default-major-mode 'text-mode
       initial-major-mode 'emacs-lisp-mode
-      scroll-conservatively most-positive-fixnum
       scroll-step 1
       scroll-margin 0
       scroll-preserve-screen-position t
