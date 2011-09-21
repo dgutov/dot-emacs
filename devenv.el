@@ -23,10 +23,8 @@
 (define-project-type ant (generic) (look-for "build.xml"))
 (define-project-type haskell (generic) (look-for "Setup.hs"))
 (define-project-type emacs (generic) (look-for "init.el")
-  :irrelevant-files ("^[.]" "/elpa/" "/url/cookies$" "tramp$" "^custom.el$"))
-
-(add-auto-mode 'python-mode "SConstruct" "SConscript")
-(add-auto-mode 'markdown-mode "\\.md$")
+  :irrelevant-files ("/elpa/" "/url/cookies$" "tramp$" "/server/"
+                     "^custom.el$" "^places$" "/backups/"))
 
 (add-lambda 'scons-project-file-visit-hook
   (setq-local compile-command (format "cd %s && scons" (eproject-root))))
@@ -181,7 +179,8 @@
              anything-c-source-recentf))))
 
 (defadvice* point-stack-push before (anything-c-etags-default-action
-                                     imenu find-function isearch-mode)
+                                     isearch-mode find-function find-library
+                                     find-variable find-face-definition imenu)
   (point-stack-push))
 
 (defun ecb-add-project-to-sources (&optional root)

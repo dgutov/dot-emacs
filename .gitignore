@@ -1,4 +1,3 @@
-.backups/*
 elpa/*
 auto-save-list
 custom.el
@@ -10,3 +9,6 @@ session*
 tramp
 .org-id-locations
 \#*
+server/
+places
+backups

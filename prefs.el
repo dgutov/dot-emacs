@@ -3,10 +3,8 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
 (setq autoload-file (expand-file-name "~/.emacs-loaddefs.el")
-      save-place-file (expand-file-name "~/.emacs-places.el")
       locals-file (expand-file-name "~/.emacs-locals.el")
       anything-c-adaptive-history-file "~/.anything-c-adaptive-history"
-      backup-directory-alist `(("." . ,(expand-file-name (concat dotfiles-dir ".backups"))))
       indent-tabs-mode nil
       make-backup-files t
       version-control t
@@ -78,5 +76,7 @@
   (let (write-file-functions
         (find-file-hook (remq 'recentf-track-opened-file find-file-hook)))
     ad-do-it))
+
+(remove-hook 'prog-mode-hook 'esk-turn-on-idle-highlight-mode)
 
 (provide 'prefs)

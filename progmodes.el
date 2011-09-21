@@ -8,7 +8,6 @@
 (update-load-path-vc "rinari" t)
 (update-load-path "~/ecb-snap")
 
-(require 'starter-kit-lisp)
 (or (require 'yasnippet-bundle nil t)
     (message "Yasnippet bundle not found!"))
 (require 'autopair)
@@ -61,7 +60,8 @@
 
 (defun load-user-clj ()
   (swank-eval (format "(load-file \"%s\")"
-                      (expand-file-name (concat dotfiles-dir "user.clj")))))
+                      (expand-file-name (concat user-emacs-directory
+                                                "user.clj")))))
 
 (add-hook 'slime-connected-hook
           'load-user-clj)
@@ -147,6 +147,10 @@
                          :background "ghost white")))
 
 (add-auto-mode 'html-mode "\.rhtml$" "\.html\.erb$" "\.xhtml$")
+(add-auto-mode 'ruby-mode "\\.rake$" "\\.gemspec$" "\\.ru$"
+               "Rakefile$" "Gemfile$" "Capfile$")
+(add-auto-mode 'python-mode "SConstruct" "SConscript")
+(add-auto-mode 'markdown-mode "\\.md$")
 
 (dolist (mode '(emacs-lisp clojure slime-repl sldb))
   (add-hook (intern (concat (symbol-name mode) "-mode-hook"))

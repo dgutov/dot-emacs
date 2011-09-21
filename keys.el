@@ -3,8 +3,8 @@
 (require 'iflipb)
 (update-load-path-vc "transpose-frame")
 (require 'transpose-frame)
+(require 'winring)
 
-(smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c M-x") 'execute-extended-command)
@@ -78,9 +78,6 @@
 
 (eval-after-load 'org
   '(define-key org-mode-map (kbd "<C-tab>") nil))
-
-(eval-after-load 'lisp-mode
-  '(define-key emacs-lisp-mode-map (kbd "M-.") 'find-function-at-point-same-window))
 
 (eval-after-load 'ruby-mode
   '(define-key ruby-mode-map (kbd "TAB") nil))

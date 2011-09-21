@@ -147,7 +147,8 @@ Returns the deleted character count."
   (interactive)
   (update-load-path-vc "yasnippet")
   (require 'yasnippet)
-  (let ((bundle-file (expand-file-name (concat dotfiles-dir "site-lisp/yasnippet-bundle.el"))))
+  (let ((bundle-file (expand-file-name (concat user-emacs-directory
+                                               "site-lisp/yasnippet-bundle.el"))))
     (yas/compile-bundle (get-vc-dir "yasnippet/yasnippet.el")
                         bundle-file
                         `(,(get-vc-dir "yasnippet/snippets")
@@ -169,13 +170,6 @@ Returns the deleted character count."
     (mapcar* (lambda (w b) (set-window-buffer w b))
              windows buffers)
     (other-window 1)))
-
-(defun find-function-at-point-same-window ()
-  "Finds directly the function at point in the current window."
-  (interactive)
-  (let ((symb (function-called-at-point))
-        (find-function-recenter-line nil))
-    (when symb (find-function symb))))
 
 (defmacro defadvice* (name type functions &rest body)
   `(mapc (lambda (func)
