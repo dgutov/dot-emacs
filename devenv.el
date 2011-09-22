@@ -202,4 +202,7 @@
 (add-hook 'ecb-before-activate-hook 'ecb-hook-eproject)
 (add-hook 'ecb-deactivate-hook 'ecb-unhook-eproject)
 
+(defadvice magit-read-rev (around original-completing-read (prompt def) activate)
+  (let ((ido-ubiquitous-enabled def)) ad-do-it))
+
 (provide 'devenv)
