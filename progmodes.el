@@ -144,7 +144,9 @@
        (mmm-add-mode-ext-class mode "\\.r?html\\(\\.erb\\)?$" 'eruby)
        (mmm-add-mode-ext-class mode "\\.xhtml$" 'etanni))
      (set-face-attribute 'mmm-code-submode-face nil
-                         :background "ghost white")))
+                         :background "ghost white")
+     (set-face-attribute 'mmm-output-submode-face nil
+                         :background "honeydew")))
 
 (add-auto-mode 'html-mode "\.rhtml$" "\.html\.erb$" "\.xhtml$")
 (add-auto-mode 'ruby-mode "\\.rake$" "\\.gemspec$" "\\.ru$"
