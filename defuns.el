@@ -5,7 +5,7 @@
 (defun xor (a b)
   (if a (not b) b))
 
-(defvar autoload-directory-list nil
+(defvar autoload-directory-list `(,user-emacs-directory)
   "List of directories to generate autoloads from.")
 
 (defun update-autoloads (&optional force-regen)
