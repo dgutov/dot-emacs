@@ -110,4 +110,22 @@
   (when (memq last-command '(self-insert-command undo))
     ad-do-it))
 
+(defadvice ruby-indent-line (after line-up-args activate)
+  (let (indent prev-indent arg-indent)
+    (save-excursion
+      (back-to-indentation)
+      (when (zerop (car (syntax-ppss)))
+        (setq indent (current-column))
+        (skip-chars-backward " \t\n")
+        (when (eq ?, (char-before))
+          (back-to-indentation)
+          (setq prev-indent (current-column))
+          (skip-syntax-forward "w.")
+          (skip-chars-forward " ")
+          (setq arg-indent (current-column)))))
+    (when (and prev-indent (<= indent prev-indent))
+      (let ((offset (- (current-column) indent)))
+        (indent-line-to arg-indent)
+        (when (> offset 0) (forward-char offset))))))
+
 (provide 'progmodes)
