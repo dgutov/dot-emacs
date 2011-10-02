@@ -120,12 +120,15 @@
         (when (eq ?, (char-before))
           (back-to-indentation)
           (setq prev-indent (current-column))
-          (skip-syntax-forward "w.")
+          (skip-syntax-forward "w_.")
           (skip-chars-forward " ")
           (setq arg-indent (current-column)))))
-    (when (and prev-indent (<= indent prev-indent))
+    (when prev-indent
       (let ((offset (- (current-column) indent)))
-        (indent-line-to arg-indent)
+        (cond ((< indent prev-indent)
+               (indent-line-to prev-indent))
+              ((= indent prev-indent)
+               (indent-line-to arg-indent)))
         (when (> offset 0) (forward-char offset))))))
 
 (provide 'progmodes)
