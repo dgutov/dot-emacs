@@ -80,7 +80,9 @@
   '(define-key org-mode-map (kbd "<C-tab>") nil))
 
 (eval-after-load 'ruby-mode
-  '(define-key ruby-mode-map (kbd "TAB") nil))
+  '(progn
+     (define-key ruby-mode-map (kbd "TAB") nil)
+     (define-key ruby-mode-map (kbd "C-c C-t") 'ruby-toggle-block-type)))
 
 (add-hook 'eshell-mode-hook
           (lambda ()
