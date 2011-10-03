@@ -118,6 +118,7 @@
         (setq indent (current-column))
         (skip-chars-backward " \t\n")
         (when (eq ?, (char-before))
+          (ruby-backward-sexp)
           (back-to-indentation)
           (setq prev-indent (current-column))
           (skip-syntax-forward "w_.")
