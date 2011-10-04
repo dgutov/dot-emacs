@@ -132,6 +132,16 @@
                (indent-line-to arg-indent)))
         (when (> offset 0) (forward-char offset))))))
 
+(defadvice ruby-deep-indent-paren-p (after deep-indent-p-dwim (c) activate)
+  (when (memq c '(?{ ?\())
+    (setq ad-return-value
+          (save-excursion
+            (let ((pos (cadr (syntax-ppss))))
+              (when pos (goto-char pos)))
+            (when (looking-at (concat (regexp-quote (char-to-string c))
+                                      " *[^ |\n]"))
+              (if (eq c ?{) t 'space))))))
+
 (defun ruby-containing-block ()
   (let ((pos (point))
         (block nil))
@@ -176,5 +186,8 @@
             (replace-match (cdr strings) t)
             (delete-trailing-whitespace (match-beginning 0) (match-end 0))
             (indent-region (match-beginning 0) (match-end 0))))))))
+
+(eval-after-load 'ruby-mode
+  '(push ?{ ruby-deep-indent-paren))
 
 (provide 'progmodes)
