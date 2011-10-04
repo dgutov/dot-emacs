@@ -136,11 +136,12 @@
   (when (memq c '(?{ ?\())
     (setq ad-return-value
           (save-excursion
-            (let ((pos (cadr (syntax-ppss))))
-              (when pos (goto-char pos)))
-            (when (looking-at (concat (regexp-quote (char-to-string c))
-                                      " *[^ |\n]"))
-              (if (eq c ?{) t 'space))))))
+            (let ((re (concat (regexp-quote (char-to-string c)) " ?*[^ |\n]")))
+              (when (if (eq c (char-after))
+                        (looking-at re)
+                      (let ((pos (cadr (syntax-ppss))))
+                        (when pos (goto-char pos) (looking-at re))))
+                (if (eq c ?{) 't 'space)))))))
 
 (defun ruby-containing-block ()
   (let ((pos (point))
