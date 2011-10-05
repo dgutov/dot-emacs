@@ -132,16 +132,28 @@
                (indent-line-to arg-indent)))
         (when (> offset 0) (forward-char offset))))))
 
-(defadvice ruby-deep-indent-paren-p (after deep-indent-p-dwim (c) activate)
-  (when (memq c '(?{ ?\())
-    (setq ad-return-value
-          (save-excursion
-            (let ((re (concat (regexp-quote (char-to-string c)) " ?*[^ |\n]")))
-              (when (if (eq c (char-after))
-                        (looking-at re)
-                      (let ((pos (cadr (syntax-ppss))))
-                        (when pos (goto-char pos) (looking-at re))))
-                (if (eq c ?{) 't 'space)))))))
+(defadvice ruby-indent-line (after deep-indent-dwim activate)
+  (let (c paren-column indent-column)
+    (save-excursion
+      (back-to-indentation)
+      (save-excursion
+        (let ((state (syntax-ppss)))
+          (unless (zerop (car state))
+            (goto-char (cadr state))
+            (setq c (char-after))
+            (setq paren-column (current-column))
+            (when (memq c '(?{ ?\())
+              (forward-char)
+              (skip-syntax-forward " ")
+              (unless (eolp)
+                (setq indent-column (current-column)))))))
+      (when (and indent-column
+                 (eq (char-after) (matching-paren c)))
+        (setq indent-column paren-column)))
+    (when indent-column
+      (let ((offset (- (current-column) (current-indentation))))
+        (indent-line-to indent-column)
+        (when (> offset 0) (forward-char offset))))))
 
 (defun ruby-containing-block ()
   (let ((pos (point))
@@ -189,6 +201,6 @@
             (indent-region (match-beginning 0) (match-end 0))))))))
 
 (eval-after-load 'ruby-mode
-  '(push ?{ ruby-deep-indent-paren))
+  '(remf ruby-deep-indent-paren ?\())
 
 (provide 'progmodes)
