@@ -3,7 +3,6 @@
 (update-load-path-vc "ac-slime")
 (update-load-path-vc "pos-tip")
 (update-load-path-vc "point-stack")
-(update-load-path-vc "magit" t)
 (update-load-path-vc "markdown-mode")
 
 (require 'eproject)
