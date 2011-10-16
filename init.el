@@ -1,5 +1,4 @@
-(setq custom-file (concat user-emacs-directory "custom.el"))
-(load custom-file 'noerror)
+(load (setq custom-file "~/.custom.el") 'noerror)
 
 (package-initialize)
 
