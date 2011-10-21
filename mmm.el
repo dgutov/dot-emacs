@@ -1,6 +1,8 @@
 (update-load-path-vc "mmm-mode")
+(update-load-path-vc "rhtml")
 
 (require 'mmm-auto)
+(require 'rhtml-sgml-hacks)
 
 (eval-after-load "mmm-vars"
   `(progn
@@ -56,5 +58,19 @@
                          :background "honeydew")))
 
 (add-auto-mode 'html-mode "\.rhtml$" "\.html\.erb$" "\.xhtml$")
+
+(dolist (cmd '("paste" "paste-pop"))
+  (eval
+   `(defun ,(intern (concat "mmm-" cmd)) (arg)
+      (interactive "P")
+      (,(intern (concat "cua-" cmd)) arg)
+      (mmm-parse-region (region-beginning) (region-end)))))
+
+(dolist (cmd '(undo redo))
+  (eval
+   `(defun ,(intern (concat "mmm-" (symbol-name cmd))) (arg)
+      (interactive "*p")
+      (,cmd arg)
+      (mmm-parse-buffer))))
 
 (provide 'mmm)

@@ -1,3 +1,5 @@
+(require 'misc)
+(require 'move-text)
 (require 'smex)
 (require 'redo+)
 (require 'iflipb)
@@ -31,6 +33,8 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<C-left>") 'backward-word)
 (global-set-key (kbd "<C-right>") 'forward-word)
+(global-set-key (kbd "<C-up>") 'backward-sentence)
+(global-set-key (kbd "<C-down>") 'forward-sentence)
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-x C-z") 'undo)
 (global-set-key (kbd "C-S-z") 'redo)
@@ -39,6 +43,9 @@
 (global-set-key (kbd "<C-delete>") 'kill-word-dwim)
 (global-set-key (kbd "<C-backspace>") 'backward-kill-word-dwim)
 (global-set-key (kbd "C-c =") 'align-to-equals)
+(global-set-key (kbd "C-c d") 'copy-from-above-command)
+(global-set-key (kbd "<M-S-up>") 'move-text-up)
+(global-set-key (kbd "<M-S-down>") 'move-text-down)
 
 (global-set-key (kbd "C-/") 'auto-complete)
 (global-set-key (kbd "C-x C-n") 'nav)
@@ -83,6 +90,18 @@
   '(progn
      (define-key ruby-mode-map (kbd "TAB") nil)
      (define-key ruby-mode-map (kbd "C-c C-t") 'ruby-toggle-block-type)))
+
+(eval-after-load 'sgml-mode
+  '(progn
+     (define-key sgml-mode-map (kbd "C-M-f") 'sgml-skip-tag-forward)
+     (define-key sgml-mode-map (kbd "C-M-b") 'sgml-skip-tag-backward)))
+
+(eval-after-load 'mmm-mode
+  '(progn
+     (define-key mmm-mode-map (kbd "C-y") 'mmm-paste)
+     (define-key mmm-mode-map (kbd "M-y") 'mmm-paste-pop)
+     (define-key mmm-mode-map (kbd "C-z") 'mmm-undo)
+     (define-key mmm-mode-map (kbd "C-S-z") 'mmm-redo)))
 
 (add-hook 'eshell-mode-hook
           (lambda ()
