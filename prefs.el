@@ -26,7 +26,7 @@
       mouse-wheel-follow-mouse t
       compilation-window-height 17
       recentf-max-saved-items 100
-      save-place-limit 100
+      save-place-limit 400
       read-quoted-char-radix 10
       eshell-cmpl-cycle-completions nil
       redisplay-dont-pause t
@@ -51,7 +51,7 @@
       mmm-global-mode 'buffers-with-submode-classes
       mmm-submode-decoration-level 2
       js-indent-level 2
-      ruby-electric-expand-delimiters-list '())
+      ruby-electric-expand-delimiters-list nil)
 
 (setq-default fill-column 80)
 
