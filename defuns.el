@@ -92,14 +92,18 @@ Returns the deleted character count."
   (interactive "p")
   (when (zerop (whack-whitespace t))
     (if (zerop (whack-nonchars))
-        (kill-word arg))
+        (call-remapped 'kill-word arg))
     (whack-whitespace nil)))
 
 (defun backward-kill-word-dwim (arg)
   (interactive "p")
   (when (zerop (whack-whitespace t t))
     (if (zerop (whack-nonchars t))
-        (backward-kill-word arg))))
+        (call-remapped 'backward-kill-word arg))))
+
+(defun call-remapped (command &rest arguments)
+  (let ((new (command-remapping command)))
+    (apply (or new command) arguments)))
 
 (if (fboundp 'w32-send-sys-command)
     (progn

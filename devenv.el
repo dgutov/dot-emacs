@@ -77,7 +77,8 @@
 (add-hook 'ecb-before-activate-hook 'ecb-hook-eproject)
 (add-hook 'ecb-deactivate-hook 'ecb-unhook-eproject)
 
-(defadvice magit-read-rev (around original-completing-read (prompt def) activate)
-  (let ((ido-ubiquitous-enabled def)) ad-do-it))
+(dolist (mode '(ruby js2 js python))
+  (add-lambda (intern (concat (symbol-name mode) "-mode-hook"))
+    (subword-mode 1)))
 
 (provide 'devenv)
