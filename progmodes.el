@@ -46,7 +46,7 @@
 (eval-after-load 'javadoc-help
   '(javadocs-refresh))
 
-(add-hook 'js2-mode-hook 'run-coding-hook)
+(add-hook 'js2-mode-hook 'esk-prog-mode-hook)
 
 (setq js2-basic-offset 2
       js2-auto-indent-p t
