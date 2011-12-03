@@ -1,5 +1,4 @@
 (require 'misc)
-(require 'move-text)
 (require 'smex)
 (require 'redo+)
 (require 'iflipb)
