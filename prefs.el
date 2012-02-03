@@ -25,8 +25,8 @@
       mouse-wheel-progressive-speed nil
       mouse-wheel-follow-mouse t
       compilation-window-height 17
-      recentf-max-saved-items 100
-      save-place-limit 400
+      recentf-max-saved-items 1000
+      save-place-limit 1000
       read-quoted-char-radix 10
       eshell-cmpl-cycle-completions nil
       redisplay-dont-pause t
@@ -51,7 +51,9 @@
       mmm-global-mode 'buffers-with-submode-classes
       mmm-submode-decoration-level 2
       js-indent-level 2
-      ruby-electric-expand-delimiters-list nil)
+      ruby-electric-expand-delimiters-list nil
+      gnus-select-method '(nntp "news.gmane.org")
+      echo-keystrokes 0.02)
 
 (setq-default fill-column 80)
 
