@@ -1,4 +1,6 @@
 (load (setq custom-file "~/.custom.el") 'noerror)
+(when (string-match "mingw-nt" system-configuration)
+  (set-face-attribute 'default nil :height 115 :family "Consolas"))
 
 (package-initialize)
 
