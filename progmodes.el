@@ -6,6 +6,9 @@
 (update-load-path-vc "clojure-mode" t)
 (update-load-path-vc "rinari" t)
 (update-load-path "~/ecb-snap")
+(update-load-path-vc "haml-mode" t)
+(update-load-path-vc "sass-mode" t)
+(update-load-path-vc "markdown-mode" t)
 
 (or (require 'yasnippet-bundle nil t)
     (message "Yasnippet bundle not found!"))
@@ -56,6 +59,12 @@
       js2-allow-keywords-as-property-names nil
       js2-move-point-on-right-click nil
       autopair-blink nil)
+
+(font-lock-add-keywords
+ 'js2-mode `(("\\(function *\\)("
+              (0 (progn (compose-region (match-beginning 1)
+                                        (match-end 1) "\u0192")
+                        nil)))))
 
 (defun load-user-clj ()
   (swank-eval (format "(load-file \"%s\")"
