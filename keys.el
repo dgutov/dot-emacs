@@ -34,6 +34,7 @@
 (global-set-key (kbd "<C-right>") 'forward-word)
 (global-set-key (kbd "<C-up>") 'backward-sentence)
 (global-set-key (kbd "<C-down>") 'forward-sentence)
+(global-set-key (kbd "M-l") 'move-to-window-line-top-bottom)
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-x C-z") 'undo)
 (global-set-key (kbd "C-S-z") 'redo)
