@@ -191,4 +191,22 @@ Returns the deleted character count."
   (declare (indent 1))
   `(add-hook ,hook (lambda () ,@body)))
 
+(defvar webjump-api-sites nil)
+
+(make-variable-buffer-local 'webjump-api-sites)
+
+(defun webjump-api ()
+  (interactive)
+  (require 'webjump)
+  (let* ((completion-ignore-case t)
+         (default (caar webjump-api-sites))
+         (url (cdr (assoc-string
+                    (completing-read "Search API: " webjump-api-sites nil t
+                                     nil nil default)
+                    webjump-api-sites t)))
+         (name (completing-read "Name: " nil nil nil (thing-at-point 'symbol))))
+    (browse-url (if (webjump-null-or-blank-string-p name)
+                    url
+                  (concat url (webjump-url-encode name))))))
+
 (provide 'defuns)

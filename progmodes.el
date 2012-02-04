@@ -27,6 +27,9 @@
   (turn-on-font-lock)
   (ghc-init))
 
+(eval-after-load 'haskell-mode
+  '(define-key haskell-mode-map (kbd "C-c h") 'haskell-hoogle))
+
 (setq *jdh-javadocs*
       (mapcar (lambda (url) `(,url nil t t))
               '("http://java.sun.com/javase/6/docs/api/"
@@ -43,11 +46,15 @@
               (jdh-refresh-url (car javadoc)))
             *jdh-javadocs*)))
 
-(eval-after-load 'haskell-mode
-  '(define-key haskell-mode-map (kbd "C-c h") 'haskell-hoogle))
-
 (eval-after-load 'javadoc-help
   '(javadocs-refresh))
+
+(add-lambda 'js2-mode-hook
+  (setq webjump-api-sites '(("jQuery" . "http://api.jquery.com/"))))
+
+(add-lambda 'ruby-mode-hook
+  (setq webjump-api-sites '(("Rails" . "http://apidock.com/rails/")
+                            ("Ruby"  . "http://apidock.com/ruby/"))))
 
 (add-hook 'js2-mode-hook 'esk-prog-mode-hook)
 
