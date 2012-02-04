@@ -161,7 +161,7 @@
             (when (memq c '(?{ ?\())
               (forward-char)
               (skip-syntax-forward " ")
-              (unless (eolp)
+              (unless (or (eolp) (eq (char-after) ?|))
                 (setq indent-column (current-column)))))))
       (when (and indent-column
                  (eq (char-after) (matching-paren c)))
