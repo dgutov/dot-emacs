@@ -216,7 +216,16 @@
             (delete-trailing-whitespace (match-beginning 0) (match-end 0))
             (indent-region (match-beginning 0) (match-end 0))))))))
 
+(defun ruby-electric-return-1 ()
+  (interactive)
+  (if (ruby-electric-return-can-be-expanded-p)
+      (save-excursion
+        (newline)
+        (ruby-insert-end)))
+  (newline-and-indent))
+
 (eval-after-load 'ruby-mode
-  '(remf ruby-deep-indent-paren ?\())
+  '(progn (remf ruby-deep-indent-paren ?\()
+          (define-key ruby-mode-map (kbd "RET") 'ruby-electric-return-1)))
 
 (provide 'progmodes)
