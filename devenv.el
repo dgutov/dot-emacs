@@ -11,6 +11,7 @@
 (require 'ac-slime)
 (require 'pos-tip)
 (require 'point-stack)
+(require 'switch-window)
 
 (define-project-type make (generic) (look-for "Makefile"))
 (define-project-type rake (generic) (look-for "Rakefile"))
