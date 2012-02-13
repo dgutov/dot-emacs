@@ -73,4 +73,6 @@
       (,cmd arg)
       (mmm-parse-buffer))))
 
+(add-hook 'mmm-mode-hook 'flyspell-mode-off)
+
 (provide 'mmm)
