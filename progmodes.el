@@ -20,6 +20,7 @@
   (setq-local c-basic-offset 2))
 
 (autoload 'ghc-init "ghc" nil t)
+(autoload 'yaml-mode "yaml-mode" nil t)
 
 (add-lambda 'haskell-mode-hook
   (turn-on-haskell-indentation)
@@ -114,6 +115,7 @@
                "Rakefile$" "Gemfile$" "Capfile$" "Guardfile$")
 (add-auto-mode 'python-mode "SConstruct" "SConscript")
 (add-auto-mode 'markdown-mode "\\.md$")
+(add-auto-mode 'yaml-mode "\\.yml$")
 
 (dolist (mode '(emacs-lisp clojure slime-repl sldb))
   (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
