@@ -53,6 +53,7 @@
       js-indent-level 2
       ruby-electric-expand-delimiters-list nil
       gnus-select-method '(nntp "news.gmane.org")
+      gnus-interactive-exit nil
       echo-keystrokes 0.02)
 
 (setq-default fill-column 80)
