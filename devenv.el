@@ -17,7 +17,6 @@
 (define-project-type rake (generic) (look-for "Rakefile"))
 (define-project-type lein (generic) (look-for "project.clj"))
 (define-project-type gae (generic) (look-for "app.yaml"))
-(define-project-type scons (generic) (look-for "SConstruct"))
 (define-project-type ant (generic) (look-for "build.xml"))
 (define-project-type haskell (generic) (look-for "Setup.hs"))
 (define-project-type emacs (generic) (look-for "init.el")
@@ -80,7 +79,7 @@
 
 (ido-ubiquitous-disable-in magit-read-rev)
 
-(dolist (mode '(ruby js2 js python))
+(dolist (mode '(ruby js2 js))
   (add-lambda (intern (concat (symbol-name mode) "-mode-hook"))
     (subword-mode 1)))
 

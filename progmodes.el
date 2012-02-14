@@ -104,7 +104,6 @@
 
 (add-auto-mode 'ruby-mode "\\.rake$" "\\.gemspec$" "\\.ru$"
                "Rakefile$" "Gemfile$" "Capfile$" "Guardfile$")
-(add-auto-mode 'python-mode "SConstruct" "SConscript")
 (add-auto-mode 'markdown-mode "\\.md$")
 (add-auto-mode 'yaml-mode "\\.yml$")
 
