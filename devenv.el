@@ -4,6 +4,7 @@
 (update-load-path-vc "pos-tip")
 (update-load-path-vc "point-stack")
 (update-load-path-vc "markdown-mode")
+(update-load-path-vc "ethan-wspace/lisp")
 
 (require 'eproject)
 (require 'eproject-extras)
@@ -12,6 +13,7 @@
 (require 'pos-tip)
 (require 'point-stack)
 (require 'switch-window)
+(require 'ethan-wspace)
 
 (define-project-type make (generic) (look-for "Makefile"))
 (define-project-type rake (generic) (look-for "Rakefile"))

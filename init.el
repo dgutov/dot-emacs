@@ -24,3 +24,4 @@
 (winring-initialize)
 (global-auto-revert-mode t)
 (ido-everywhere t)
+(global-ethan-wspace-mode t)
