@@ -57,7 +57,8 @@
 
 (defadvice* point-stack-push before (anything-c-etags-default-action
                                      isearch-mode find-function find-library
-                                     find-variable find-face-definition imenu)
+                                     find-variable find-face-definition imenu
+                                     fastnav-search-char-forward)
   (point-stack-push))
 
 (defun ecb-add-project-to-sources (&optional root)
