@@ -59,15 +59,6 @@
 
 (add-hook 'js2-mode-hook 'esk-prog-mode-hook)
 
-(setq js2-basic-offset 2
-      js2-auto-indent-p t
-      js2-consistent-level-indent-inner-bracket-p t
-      js2-use-ast-for-indentation-p t
-      js2-enter-indents-newline t
-      js2-allow-keywords-as-property-names nil
-      js2-move-point-on-right-click nil
-      autopair-blink nil)
-
 (font-lock-add-keywords
  'js2-mode `(("\\(function *\\)("
               (0 (progn (compose-region (match-beginning 1)

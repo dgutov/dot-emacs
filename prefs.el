@@ -51,6 +51,11 @@
       mmm-global-mode 'buffers-with-submode-classes
       mmm-submode-decoration-level 2
       js-indent-level 2
+      js2-basic-offset 2
+      js2-enter-indents-newline t
+      js2-allow-keywords-as-property-names nil
+      js2-move-point-on-right-click nil
+      autopair-blink nil
       ruby-electric-expand-delimiters-list nil
       gnus-select-method '(nntp "news.gmane.org")
       gnus-interactive-exit nil
