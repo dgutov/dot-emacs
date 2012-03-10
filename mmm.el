@@ -46,12 +46,20 @@
                 :match-face (("<\\?r" . mmm-code-submode-face)
                              ("#{" . mmm-output-submode-face))
                 :insert ((?r etanni-code nil @ "<?r" @ " " _ " " @ "?>" @)
-                         (?{ etanni-expression nil @ "#{" @ "" _ "" @ "}" @)))))
+                         (?{ etanni-expression nil @ "#{" @ "" _ "" @ "}" @)))
+        (ejs :submode js-mode :front "<%[#=]?" :back "-?%>"
+               :match-face (("<%#" . mmm-comment-submode-face)
+                            ("<%=" . mmm-output-submode-face)
+                            ("<%" . mmm-code-submode-face))
+               :insert ((?% ejs-code nil @ "<%" @ " " _ " " @ "%>" @)
+                        (?# ejs-comment nil @ "<%#" @ " " _ " " @ "%>" @)
+                        (?= ejs-expression nil @ "<%=" @ " " _ " " @ "%>" @)))))
      (dolist (mode (list 'html-mode 'nxml-mode))
        (mmm-add-mode-ext-class mode "\\.\\(r\\|x\\)?html\\(\\.erb\\)?$" 'html-js)
        (mmm-add-mode-ext-class mode "\\.\\(r\\|x\\)?html\\(\\.erb\\)?$" 'html-css)
        (mmm-add-mode-ext-class mode "\\.r?html\\(\\.erb\\)?$" 'eruby)
-       (mmm-add-mode-ext-class mode "\\.xhtml$" 'etanni))
+       (mmm-add-mode-ext-class mode "\\.xhtml$" 'etanni)
+       (mmm-add-mode-ext-class mode "\\.jst\\.ejs$" 'ejs))
      (set-face-attribute 'mmm-code-submode-face nil
                          :background "ghost white")
      (set-face-attribute 'mmm-output-submode-face nil
