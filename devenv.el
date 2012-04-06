@@ -82,7 +82,7 @@
 
 (ido-ubiquitous-disable-in magit-read-rev)
 
-(dolist (mode '(ruby js2 js))
+(dolist (mode '(ruby js2 js coffee html))
   (add-lambda (intern (concat (symbol-name mode) "-mode-hook"))
     (subword-mode 1)))
 

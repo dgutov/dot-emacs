@@ -55,6 +55,8 @@
       js2-enter-indents-newline t
       js2-allow-keywords-as-property-names nil
       js2-move-point-on-right-click nil
+      coffee-tab-width 2
+      coffee-cleanup-whitespace nil
       autopair-blink nil
       ruby-electric-expand-delimiters-list nil
       gnus-select-method '(nntp "news.gmane.org")

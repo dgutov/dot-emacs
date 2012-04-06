@@ -9,6 +9,7 @@
 (update-load-path-vc "haml-mode" t)
 (update-load-path-vc "sass-mode" t)
 (update-load-path-vc "markdown-mode" t)
+(update-load-path-vc "flymake-coffee" t)
 
 (or (require 'yasnippet-bundle nil t)
     (message "Yasnippet bundle not found!"))
@@ -58,6 +59,7 @@
                             ("Ruby"  . "http://apidock.com/ruby/"))))
 
 (add-hook 'js2-mode-hook 'esk-prog-mode-hook)
+(add-hook 'coffee-mode-hook 'flymake-coffee-load)
 
 (font-lock-add-keywords
  'js2-mode `(("\\(function *\\)("
