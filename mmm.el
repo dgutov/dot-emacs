@@ -65,7 +65,7 @@
      (set-face-attribute 'mmm-output-submode-face nil
                          :background "honeydew")))
 
-(add-auto-mode 'html-mode "\.rhtml$" "\.html\.erb$" "\.xhtml$")
+(add-auto-mode 'html-mode "\.rhtml$" "\.html\.erb$" "\.xhtml$" "\.jst\.ejs$")
 
 (dolist (cmd '("paste" "paste-pop"))
   (eval
