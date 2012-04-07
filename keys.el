@@ -5,6 +5,7 @@
 (update-load-path-vc "transpose-frame")
 (require 'transpose-frame)
 (require 'winring)
+(require 'dired)
 
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
@@ -84,6 +85,9 @@
 (global-set-key (kbd "C-c R") 'rename-current-file-or-buffer)
 (global-set-key (kbd "C-c N") 'cleanup-buffer)
 (global-set-key (kbd "C-c P") 'message-point)
+
+(define-key global-map (kbd "C-x C-j") 'dired-jump)
+(define-key global-map (kbd "C-x 4 C-j") 'dired-jump-other-window)
 
 (eval-after-load 'dired
   '(progn
