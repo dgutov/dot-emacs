@@ -86,6 +86,7 @@
 (global-set-key (kbd "C-c N") 'cleanup-buffer)
 (global-set-key (kbd "C-c P") 'message-point)
 
+(define-key global-map (kbd "C-x C-d") 'dired)
 (define-key global-map (kbd "C-x C-j") 'dired-jump)
 (define-key global-map (kbd "C-x 4 C-j") 'dired-jump-other-window)
 
