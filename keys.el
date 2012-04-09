@@ -64,8 +64,7 @@
 (global-set-key (kbd "M-P") 'fastnav-sprint-backward)
 
 (global-set-key (kbd "C-/") 'auto-complete)
-(global-set-key (kbd "C-x C-n") 'nav)
-(global-set-key (kbd "C-c C-g") 'eproject-grep)
+(global-set-key (kbd "C-c s") 'eproject-grep)
 (global-set-key (kbd "C-h j") 'javadoc-lookup)
 (global-set-key (kbd "C-c a") 'webjump-api)
 (global-set-key (kbd "C-;") 'anything-in-project)
