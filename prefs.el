@@ -4,7 +4,7 @@
 
 (setq autoload-file (expand-file-name "~/.emacs-loaddefs.el")
       locals-file (expand-file-name "~/.emacs-locals.el")
-      anything-c-adaptive-history-file "~/.anything-c-adaptive-history"
+      helm-c-adaptive-history-file "~/.helm-c-adaptive-history"
       indent-tabs-mode nil
       make-backup-files t
       version-control t
@@ -35,8 +35,7 @@
       cua-enable-cua-keys nil
       org-replace-disputed-keys t
       vc-handled-backends (delq 'Git vc-handled-backends) ;; vc-git is slow
-      anything-input-idle-delay 0.2
-      anything-samewindow t
+      helm-input-idle-delay 0.2
       css-indent-offset 2
       flyspell-auto-correct-binding [(control ?\')]
       flymake-start-syntax-check-on-find-file nil
