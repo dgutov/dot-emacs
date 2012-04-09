@@ -86,4 +86,17 @@
   (add-lambda (intern (concat (symbol-name mode) "-mode-hook"))
     (subword-mode 1)))
 
+(defun fold-grep-command ()
+  (if (> (length (match-string 1)) fill-column)
+      (let ((beg (match-beginning 1))
+            (end (match-end 1))
+            (beg-show (/ (- fill-column 5) 2)))
+        (let ((inhibit-read-only t))
+          (put-text-property (+ beg beg-show) (- end (- fill-column beg-show 5))
+                             'display " ... ")))))
+
+(font-lock-add-keywords
+ 'grep-mode '(("^\n\\(grep .*$\\)"
+               (1 (progn (fold-grep-command) 'bold)))))
+
 (provide 'devenv)
