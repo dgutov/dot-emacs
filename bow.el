@@ -65,7 +65,7 @@
 (defun helm-not-in-project ()
   (interactive)
   (helm '(helm-nonproject-buffers
-              helm-nonproject-recentf)))
+          helm-nonproject-recentf)))
 
 ;;;###autoload
 (defun helm-imenu-thingatpt ()
@@ -100,10 +100,10 @@
       (remhash tag helm-c-etags-cache))
     (if (and tag (file-exists-p tag))
         (helm :sources 'helm-c-source-etags-select
-                  :keymap helm-c-etags-map
-                  :input init
-                  :buffer "*helm etags*")
-        (message "Tags file not found."))))
+              :keymap helm-c-etags-map
+              :input init
+              :buffer "*helm etags*")
+      (message "Tags file not found."))))
 
 (eval-after-load 'helm-config
   '(progn
