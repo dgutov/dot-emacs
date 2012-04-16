@@ -36,6 +36,7 @@
       org-replace-disputed-keys t
       vc-handled-backends (delq 'Git vc-handled-backends) ;; vc-git is slow
       helm-input-idle-delay 0.2
+      helm-samewindow t
       css-indent-offset 2
       flyspell-auto-correct-binding [(control ?\')]
       flymake-start-syntax-check-on-find-file nil
