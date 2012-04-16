@@ -61,6 +61,8 @@
       ruby-electric-expand-delimiters-list nil
       gnus-select-method '(nntp "news.gmane.org")
       gnus-interactive-exit nil
+      gnus-check-new-newsgroup nil
+      gnus-always-read-dribble-file t
       echo-keystrokes 0.02)
 
 (setq-default fill-column 80)
