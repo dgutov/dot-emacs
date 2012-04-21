@@ -67,7 +67,7 @@
 
 (setq-default fill-column 80)
 
-(eval-after-load 'esh-opt
+(eval-after-load 'em-prompt
   '(set-face-attribute 'eshell-prompt nil
                        :foreground "SlateBlue4"))
 
