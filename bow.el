@@ -3,6 +3,7 @@
 (require 'helm-config)
 (require 'helm-match-plugin)
 (require 'helm-buffers)
+(provide 'helm-bookmark) ; never used that
 (require 'helm-files)
 
 (defvar helm-project-files
