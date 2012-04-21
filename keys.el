@@ -72,6 +72,7 @@
 (global-set-key (kbd "C-:") 'helm-not-in-project)
 (global-set-key (kbd "C-x C-i") 'helm-imenu-thingatpt)
 (global-set-key (kbd "M-.") 'helm-etags-select-thingatpt)
+(global-set-key [remap describe-bindings] 'helm-descbinds)
 (global-set-key (kbd "C-M-,") 'point-stack-pop)
 (global-set-key (kbd "C-M-.") 'point-stack-forward-stack-pop)
 (global-set-key (kbd "C-M-/") 'point-stack-push)

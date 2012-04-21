@@ -1,5 +1,3 @@
-(update-load-path-vc "helm")
-
 (require 'helm-config)
 (require 'helm-match-plugin)
 (require 'helm-buffers)

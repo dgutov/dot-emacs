@@ -5,6 +5,8 @@
 (update-load-path-vc "point-stack")
 (update-load-path-vc "markdown-mode")
 (update-load-path-vc "ethan-wspace/lisp")
+(update-load-path-vc "helm")
+(update-load-path-vc "helm-descbinds" t)
 
 (require 'eproject)
 (require 'eproject-extras)
