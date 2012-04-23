@@ -14,7 +14,6 @@
 (require 'ac-slime)
 (require 'pos-tip)
 (require 'point-stack)
-(require 'switch-window)
 (require 'ethan-wspace)
 
 (define-project-type make (generic) (look-for "Makefile"))
