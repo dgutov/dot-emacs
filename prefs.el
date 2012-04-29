@@ -48,6 +48,9 @@
       ecb-tip-of-the-day nil
       yas/prompt-functions '(yas/dropdown-prompt)
       yas/expand-only-for-last-commands '(self-insert-command undo)
+      yas/snippet-dirs (list (get-vc-dir "js-yasnippets")
+                             (get-vc-dir "yasnippet/snippets"))
+      yas/verbosity 1
       mmm-global-mode 'buffers-with-submode-classes
       mmm-submode-decoration-level 2
       js-indent-level 2

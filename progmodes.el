@@ -1,6 +1,7 @@
 (update-load-path "~/emacs-hs" t)
 (update-load-path-vc "js2-mode" t)
 (update-load-path-vc "autopair")
+(update-load-path-vc "yasnippet" t)
 (update-load-path-vc "slime" t)
 (update-load-path-vc "slime/contrib")
 (update-load-path-vc "clojure-mode" t)
@@ -11,11 +12,10 @@
 (update-load-path-vc "markdown-mode" t)
 (update-load-path-vc "flymake-coffee" t)
 
-(or (require 'yasnippet-bundle nil t)
-    (message "Yasnippet bundle not found!"))
 (require 'autopair)
 (require 'ecb-autoloads)
 (require 'mmm)
+(require 'dropdown-list)
 
 (add-lambda 'c-mode-hook
   (setq-local c-basic-offset 2))
@@ -111,7 +111,7 @@
 
 (dolist (mode '(emacs-lisp clojure slime-repl sldb))
   (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
-            (lambda () (setq autopair-dont-activate t))))
+            (lambda () (autopair-mode -1))))
 
 (add-hook 'ruby-mode-hook 'ruby-electric-mode)
 

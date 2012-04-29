@@ -153,20 +153,6 @@ Returns the deleted character count."
         (kill-buffer nil))))
   nil)
 
-(defun compile-snippets ()
-  (interactive)
-  (update-load-path-vc "yasnippet")
-  (require 'yasnippet)
-  (let ((bundle-file (expand-file-name (concat user-emacs-directory
-                                               "site-lisp/yasnippet-bundle.el"))))
-    (yas/compile-bundle (get-vc-dir "yasnippet/yasnippet.el")
-                        bundle-file
-                        `(,(get-vc-dir "yasnippet/snippets")
-                          ,(get-vc-dir "js-yasnippets"))
-                        nil
-                        (get-vc-dir "yasnippet/dropdown-list.el"))
-    (byte-compile-file bundle-file)))
-
 (defadvice yas/parse-template (before clear-newlines () activate)
   (goto-char (point-max))
   (skip-chars-backward "\n\r\t ")
