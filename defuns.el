@@ -140,7 +140,9 @@ Returns the deleted character count."
 
 (defun dired-up-directory-same-buffer ()
   (interactive)
-  (find-alternate-file ".."))
+  (let ((dir (dired-current-directory)))
+    (find-alternate-file "..")
+    (dired-goto-file dir)))
 
 (defun rename-current-file-or-buffer ()
   (interactive)
