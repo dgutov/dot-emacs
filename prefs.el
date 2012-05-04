@@ -66,7 +66,8 @@
       gnus-interactive-exit nil
       gnus-check-new-newsgroup nil
       gnus-always-read-dribble-file t
-      echo-keystrokes 0.02)
+      echo-keystrokes 0.02
+      smex-flex-matching nil)
 
 (setq-default fill-column 80)
 
@@ -82,10 +83,11 @@
           (lambda () (with-current-buffer "*scratch*"
                   (rename-buffer "-scratch-"))))
 
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives
-             '("elpa" . "http://tromey.com/elpa/") t)
+(setq package-archives
+      (append package-archives
+              '(("marmalade" . "http://marmalade-repo.org/packages/")
+                ("elpa"      . "http://tromey.com/elpa/")
+                ("melpa"     . "http://melpa.milkbox.net/packages/"))))
 
 (defadvice* hide-from-recentf around (ido-save-history update-autoloads)
   (let (write-file-functions

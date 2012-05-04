@@ -1,5 +1,4 @@
 (require 'misc)
-(require 'smex)
 (require 'redo+)
 (require 'iflipb)
 (update-load-path-vc "transpose-frame")
