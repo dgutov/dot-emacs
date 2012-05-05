@@ -109,18 +109,16 @@
      (define-key helm-map (kbd "C-z") nil) ; hide from persistent help
      (define-key helm-map (kbd "C-;") 'helm-execute-persistent-action)
 
-     (defvar helm-project-buffers (copy-alist helm-c-source-buffers-list))
-     (setcdr (assoc 'candidate-transformer helm-project-buffers)
-             '(helm-c-skip-current-buffer
-               helm-c-highlight-buffers
-               helm-project-skip-buffers))
+     (defvar helm-project-buffers
+       (append (copy-alist helm-c-source-buffers-list)
+               '((candidate-transformer helm-project-skip-buffers
+                                        helm-c-highlight-buffers))))
 
-     (defvar helm-nonproject-buffers (copy-alist helm-c-source-buffers-list))
-     (setcdr (assoc 'candidate-transformer helm-nonproject-buffers)
-             '(helm-c-skip-current-buffer
-               helm-c-highlight-buffers
-               helm-skip-project-buffers
-               helm-c-skip-boring-buffers))
+     (defvar helm-nonproject-buffers
+       (append (copy-alist helm-c-source-buffers-list)
+               '((candidate-transformer helm-skip-project-buffers
+                                        helm-c-skip-boring-buffers
+                                        helm-c-highlight-buffers))))
      (setcdr (assoc 'name helm-nonproject-buffers) "Misc Buffers")
 
      (defvar helm-nonproject-recentf
