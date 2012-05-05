@@ -67,7 +67,8 @@
       gnus-check-new-newsgroup nil
       gnus-always-read-dribble-file t
       echo-keystrokes 0.02
-      smex-flex-matching nil)
+      smex-flex-matching nil
+      undo-no-redo t)
 
 (setq-default fill-column 80)
 
