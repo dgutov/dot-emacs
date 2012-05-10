@@ -28,13 +28,6 @@
 (global-set-key (kbd "C-x C-o") 'switch-window)
 (global-set-key (kbd "<C-tab>") 'iflipb-next-buffer)
 (global-set-key (kbd "<C-S-tab>") 'iflipb-previous-buffer)
-(global-set-key (kbd "C-c n") 'winring-new-configuration)
-(global-set-key (kbd "C-c 2") 'winring-duplicate-configuration)
-(global-set-key (kbd "C-c 0") 'winring-delete-configuration)
-(global-set-key (kbd "C-c r") 'winring-rename-configuration)
-(global-set-key (kbd "C-c p") 'winring-prev-configuration)
-(global-set-key (kbd "C-c o") 'winring-next-configuration)
-(global-set-key (kbd "C-c j") 'winring-jump-to-configuration)
 
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<C-left>") 'backward-word)
@@ -90,9 +83,7 @@
 (global-unset-key (kbd "<C-insert>"))
 
 (global-set-key (kbd "M-<RET>") 'toggle-fs)
-(global-set-key (kbd "C-c R") 'rename-current-file-or-buffer)
-(global-set-key (kbd "C-c N") 'cleanup-buffer)
-(global-set-key (kbd "C-c P") 'message-point)
+(global-set-key (kbd "C-c C-r") 'rename-current-file-or-buffer)
 
 (define-key global-map (kbd "C-x C-d") 'dired)
 (define-key global-map (kbd "C-x C-j") 'dired-jump)

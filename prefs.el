@@ -67,7 +67,8 @@
       gnus-always-read-dribble-file t
       echo-keystrokes 0.02
       smex-flex-matching nil
-      undo-no-redo t)
+      undo-no-redo t
+      winring-keymap-prefix (kbd "C-x w"))
 
 (setq-default fill-column 80)
 
