@@ -16,8 +16,7 @@
       auto-fill-mode nil
       default-major-mode 'text-mode
       initial-major-mode 'emacs-lisp-mode
-      scroll-conservatively 101
-      scroll-margin 0
+      scroll-conservatively 5
       scroll-preserve-screen-position t
       truncate-lines t
       kill-whole-line t
