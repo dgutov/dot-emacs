@@ -26,3 +26,4 @@
 (ido-everywhere t)
 (global-ethan-wspace-mode t)
 (yas/global-mode t)
+(savehist-mode t)
