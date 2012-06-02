@@ -116,4 +116,6 @@
           (lambda ()
             (define-key eshell-mode-map [home] 'eshell-bol)))
 
+(reverse-input-method 'russian-computer)
+
 (provide 'keys)
