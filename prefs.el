@@ -57,6 +57,7 @@
       js2-enter-indents-newline t
       js2-allow-keywords-as-property-names nil
       js2-move-point-on-right-click nil
+      js2-include-rhino-externs nil
       coffee-tab-width 2
       coffee-cleanup-whitespace nil
       autopair-blink nil
