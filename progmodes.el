@@ -67,6 +67,9 @@
                                         (match-end 1) "\u0192")
                         nil)))))
 
+(eval-after-load 'js2-mode
+  '(js2-imenu-extras-setup))
+
 (defun load-user-clj ()
   (swank-eval (format "(load-file \"%s\")"
                       (expand-file-name (concat user-emacs-directory
@@ -104,10 +107,11 @@
 
 (eval-after-load 'scheme '(require 'quack))
 
-(add-auto-mode 'ruby-mode "\\.rake$" "\\.gemspec$" "\\.ru$"
-               "Rakefile$" "Gemfile$" "Capfile$" "Guardfile$")
-(add-auto-mode 'markdown-mode "\\.md$")
-(add-auto-mode 'yaml-mode "\\.yml$")
+(add-auto-mode 'js2-mode "\\.js\\'")
+(add-auto-mode 'ruby-mode "\\.rake\\'" "\\.gemspec\\'" "\\.ru\\'"
+               "Rakefile\\'" "Gemfile\\'" "Capfile\\'" "Guardfile\\'")
+(add-auto-mode 'markdown-mode "\\.md\\'")
+(add-auto-mode 'yaml-mode "\\.yml\\'")
 
 (dolist (mode '(emacs-lisp clojure slime-repl sldb))
   (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
