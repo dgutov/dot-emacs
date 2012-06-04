@@ -230,8 +230,8 @@ Returns the deleted character count."
     (when input-method
       (activate-input-method current))))
 
-(defadvice read-passwd (around my-read-passwd act)
-  (let ((local-function-key-map nil))
+(defadvice* ignore-reverse-input-method around (read-passwd quoted-insert)
+  (let ((local-function-key-map (make-keymap)))
     ad-do-it))
 
 (provide 'defuns)
