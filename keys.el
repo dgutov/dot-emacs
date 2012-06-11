@@ -105,13 +105,6 @@
      (define-key sgml-mode-map (kbd "C-M-f") 'sgml-skip-tag-forward)
      (define-key sgml-mode-map (kbd "C-M-b") 'sgml-skip-tag-backward)))
 
-(eval-after-load 'mmm-mode
-  '(progn
-     (define-key mmm-mode-map (kbd "C-y") 'mmm-paste)
-     (define-key mmm-mode-map (kbd "M-y") 'mmm-paste-pop)
-     (define-key mmm-mode-map (kbd "C-z") 'mmm-undo)
-     (define-key mmm-mode-map (kbd "C-S-z") 'mmm-redo)))
-
 (add-hook 'eshell-mode-hook
           (lambda ()
             (define-key eshell-mode-map [home] 'eshell-bol)))
