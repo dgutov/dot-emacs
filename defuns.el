@@ -206,6 +206,8 @@ Returns the deleted character count."
                     url
                   (concat url (webjump-url-encode name))))))
 
+(defvar normal-local-function-key-map nil)
+
 ;; http://ru-emacs.livejournal.com/82428.html
 (defun reverse-input-method (input-method)
   "Build the reverse mapping of single letters from INPUT-METHOD."
@@ -218,6 +220,7 @@ Returns the deleted character count."
     (when input-method
       (activate-input-method input-method))
     (when (and current-input-method quail-keyboard-layout)
+      (setq normal-local-function-key-map local-function-key-map)
       (dolist (map (cdr (quail-map)))
         (let* ((to (car map))
                (from (quail-get-translation
@@ -231,7 +234,7 @@ Returns the deleted character count."
       (activate-input-method current))))
 
 (defadvice* ignore-reverse-input-method around (read-passwd quoted-insert)
-  (let ((local-function-key-map (make-keymap)))
+  (let ((local-function-key-map normal-local-function-key-map))
     ad-do-it))
 
 (provide 'defuns)
