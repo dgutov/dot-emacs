@@ -237,4 +237,10 @@ Returns the deleted character count."
   (let ((local-function-key-map normal-local-function-key-map))
     ad-do-it))
 
+(defadvice vc-git-state (around shim (file) activate)
+  (setq ad-return-value 'up-to-date))
+
+(defadvice vc-git-working-revision (around shim (file) activate)
+  (setq ad-return-value "fzzzt"))
+
 (provide 'defuns)

@@ -33,7 +33,6 @@
       cua-paste-pop-rotate-temporarily t
       cua-enable-cua-keys nil
       org-replace-disputed-keys t
-      vc-handled-backends (delq 'Git vc-handled-backends) ;; vc-git is slow
       helm-input-idle-delay 0.2
       helm-samewindow t
       css-indent-offset 2
