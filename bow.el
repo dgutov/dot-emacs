@@ -81,15 +81,19 @@
       (helm :sources 'helm-c-source-imenu :buffer "*helm imenu*"
             :input input))))
 
+(defun helm-etags-init-with-syntax ()
+  (let ((table (syntax-table)))
+    (helm-c-etags-init)
+    (with-current-buffer (helm-candidate-buffer)
+      (set-syntax-table table))))
+
 ;;;###autoload
 (defun helm-etags-select-thingatpt (clear-cache)
   (interactive "P")
   (require 'helm-tags)
   (let* ((tag (helm-c-etags-get-tag-file))
-         (symbol (with-syntax-table (standard-syntax-table)
-                   (thing-at-point 'symbol)))
-         (init (when symbol (format "\\_<%s\\_>\\ *\\([?!(<]\\|$\\)"
-                                    (regexp-quote symbol))))
+         (symbol (thing-at-point 'symbol))
+         (input (when symbol (format "\\_<%s\\_>" (regexp-quote symbol))))
          (helm-quit-if-no-candidate
           (lambda () (message "Tag '%s' not found." symbol)))
          (helm-execute-action-at-once-if-one t))
@@ -98,9 +102,9 @@
                    (helm-c-etags-file-modified-p tag)))
       (remhash tag helm-c-etags-cache))
     (if (and tag (file-exists-p tag))
-        (helm :sources 'helm-c-source-etags-select
+        (helm :sources 'helm-etags-thingatpt
               :keymap helm-c-etags-map
-              :input init
+              :input input
               :buffer "*helm etags*")
       (message "Tags file not found."))))
 
@@ -123,6 +127,10 @@
 
      (defvar helm-nonproject-recentf
        (cons '(candidate-transformer . helm-skip-project-recentf)
-             helm-c-source-recentf))))
+             helm-c-source-recentf))
+
+     (defvar helm-etags-thingatpt
+       (copy-alist helm-c-source-etags-select))
+     (setcdr (assoc 'init helm-etags-thingatpt) 'helm-etags-init-with-syntax)))
 
 (provide 'bow)
