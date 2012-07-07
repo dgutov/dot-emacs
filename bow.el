@@ -115,14 +115,12 @@
 
      (defvar helm-project-buffers
        (append (copy-alist helm-c-source-buffers-list)
-               '((candidate-transformer helm-project-skip-buffers
-                                        helm-c-highlight-buffers))))
+               '((candidate-transformer helm-project-skip-buffers))))
 
      (defvar helm-nonproject-buffers
        (append (copy-alist helm-c-source-buffers-list)
                '((candidate-transformer helm-skip-project-buffers
-                                        helm-c-skip-boring-buffers
-                                        helm-c-highlight-buffers))))
+                                        helm-c-shadow-boring-buffers))))
      (setcdr (assoc 'name helm-nonproject-buffers) "Misc Buffers")
 
      (defvar helm-nonproject-recentf
