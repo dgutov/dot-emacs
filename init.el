@@ -27,3 +27,4 @@
 (global-ethan-wspace-mode t)
 (yas/global-mode t)
 (savehist-mode t)
+(global-diff-hl-mode)

@@ -2,18 +2,18 @@
 (update-load-path-vc "auto-complete")
 (update-load-path-vc "ac-slime")
 (update-load-path-vc "pos-tip")
-(update-load-path-vc "point-stack")
+(update-load-path-vc "point-stack" t)
 (update-load-path-vc "markdown-mode")
 (update-load-path-vc "ethan-wspace/lisp")
 (update-load-path-vc "helm")
 (update-load-path-vc "helm-descbinds" t)
+(update-load-path-vc "diff-hl" t)
 
 (require 'eproject)
 (require 'eproject-extras)
 (require 'auto-complete-config)
 (require 'ac-slime)
 (require 'pos-tip)
-(require 'point-stack)
 (require 'ethan-wspace)
 
 (define-project-type make (generic) (look-for "Makefile"))
@@ -56,11 +56,8 @@
 (add-lambda 'auto-complete-mode-hook
   (setq completion-at-point-functions '((lambda () #'auto-complete))))
 
-(defadvice* point-stack-push before (anything-c-etags-default-action
-                                     isearch-mode find-function find-library
-                                     find-variable find-face-definition imenu
-                                     fastnav-search-char-forward)
-  (point-stack-push))
+(eval-after-load '.emacs-loaddefs
+  '(point-stack-setup-advices))
 
 (defun ecb-add-project-to-sources (&optional root)
   (let ((root (or root eproject-root)))
