@@ -1,6 +1,7 @@
 (put 'set-goal-column 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
+(put 'scroll-left 'disabled nil)
 
 (setq autoload-file (expand-file-name "~/.emacs-loaddefs.el")
       locals-file (expand-file-name "~/.emacs-locals.el")
