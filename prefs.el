@@ -96,6 +96,6 @@
         (find-file-hook (remq 'recentf-track-opened-file find-file-hook)))
     ad-do-it))
 
-(remove-hook 'prog-mode-hook 'esk-turn-on-idle-highlight-mode)
+(remove-hook 'prog-mode-hook 'idle-highlight-mode)
 
 (provide 'prefs)
