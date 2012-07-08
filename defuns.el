@@ -220,7 +220,7 @@ Returns the deleted character count."
     (when input-method
       (activate-input-method input-method))
     (when (and current-input-method quail-keyboard-layout)
-      (setq normal-local-function-key-map local-function-key-map)
+      (setq normal-local-function-key-map (copy-keymap local-function-key-map))
       (dolist (map (cdr (quail-map)))
         (let* ((to (car map))
                (from (quail-get-translation
