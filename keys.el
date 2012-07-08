@@ -1,5 +1,4 @@
 (require 'misc)
-(require 'redo+)
 (require 'iflipb)
 (update-load-path-vc "transpose-frame")
 (require 'transpose-frame)
@@ -35,9 +34,6 @@
 (global-set-key (kbd "<C-up>") 'backward-sentence)
 (global-set-key (kbd "<C-down>") 'forward-sentence)
 (global-set-key (kbd "M-l") 'move-to-window-line-top-bottom)
-(global-set-key (kbd "C-z") 'undo)
-(global-set-key (kbd "C-x C-z") 'undo)
-(global-set-key (kbd "C-S-z") 'redo)
 (global-set-key (kbd "<M-S-backspace>") 'backward-kill-sexp)
 (global-set-key (kbd "<M-S-delete>") 'kill-sexp)
 (global-set-key (kbd "<C-delete>") 'kill-word-dwim)
@@ -104,6 +100,13 @@
   '(progn
      (define-key sgml-mode-map (kbd "C-M-f") 'sgml-skip-tag-forward)
      (define-key sgml-mode-map (kbd "C-M-b") 'sgml-skip-tag-backward)))
+
+(eval-after-load 'undo-tree
+  '(progn
+     (define-key undo-tree-map (kbd "C-z") 'undo-tree-undo)
+     (define-key undo-tree-map (kbd "C-x C-z") 'undo-tree-undo)
+     (define-key undo-tree-map (kbd "C-S-z") 'undo-tree-redo)
+     (define-key undo-tree-map (kbd "C-/") nil)))
 
 (add-hook 'eshell-mode-hook
           (lambda ()

@@ -28,3 +28,4 @@
 (yas/global-mode t)
 (savehist-mode t)
 (global-diff-hl-mode)
+(global-undo-tree-mode)
