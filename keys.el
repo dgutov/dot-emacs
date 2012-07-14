@@ -72,6 +72,8 @@
 (define-key global-map (kbd "C-x C-j") 'dired-jump)
 (define-key global-map (kbd "C-x 4 C-j") 'dired-jump-other-window)
 
+(define-key vc-prefix-map "d" 'vc-dir-quick)
+
 (eval-after-load 'dired
   '(progn
      (define-key dired-mode-map (kbd "RET") 'dired-find-file-same-buffer)

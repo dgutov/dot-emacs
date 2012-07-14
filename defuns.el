@@ -237,4 +237,15 @@ Returns the deleted character count."
   (let ((local-function-key-map normal-local-function-key-map))
     ad-do-it))
 
+(defun vc-dir-quick ()
+  (interactive)
+  (require 'vc-dir)
+  (let ((backend (vc-backend (buffer-file-name)))
+        (dir (vc-git-root (buffer-file-name))))
+    (let (pop-up-windows)
+      (pop-to-buffer (vc-dir-prepare-status-buffer "*vc-dir*" dir backend)))
+    (unless (derived-mode-p 'vc-dir-mode)
+      (let ((use-vc-backend backend))
+        (vc-dir-mode)))))
+
 (provide 'defuns)
