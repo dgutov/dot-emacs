@@ -50,8 +50,6 @@
       yas/snippet-dirs (list (get-vc-dir "js-yasnippets")
                              (get-vc-dir "yasnippet/snippets"))
       yas/verbosity 1
-      mmm-global-mode 'buffers-with-submode-classes
-      mmm-submode-decoration-level 2
       js-indent-level 2
       js2-basic-offset 2
       js2-enter-indents-newline t
