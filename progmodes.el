@@ -13,7 +13,6 @@
 (update-load-path-vc "flymake-coffee" t)
 
 (require 'autopair)
-(require 'ecb-autoloads)
 (require 'mmm)
 (require 'dropdown-list)
 

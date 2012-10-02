@@ -40,6 +40,7 @@
       flyspell-auto-correct-binding [(control ?\')]
       flymake-start-syntax-check-on-find-file nil
       eproject-completing-read-function 'eproject--ido-completing-read
+      ido-max-directory-size nil
       quack-remap-find-file-bindings-p nil
       ecb-windows-width 36
       ecb-fix-window-size 'auto
@@ -95,5 +96,6 @@
     ad-do-it))
 
 (remove-hook 'prog-mode-hook 'idle-highlight-mode)
+(remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
 
 (provide 'prefs)
