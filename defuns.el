@@ -105,15 +105,6 @@ Returns the deleted character count."
   (let ((new (command-remapping command)))
     (apply (or new command) arguments)))
 
-(defun kill-region-dwim (arg)
-  (interactive "p")
-  (cond ((use-region-p)
-         (kill-region (point) (mark)))
-        (cua--rectangle
-         (cua-cut-rectangle arg))
-        (t
-         (backward-kill-word arg))))
-
 (if (fboundp 'w32-send-sys-command)
     (progn
       (defsubst toggle-fs-on ()

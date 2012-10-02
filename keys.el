@@ -38,7 +38,6 @@
 (global-set-key (kbd "<M-S-delete>") 'kill-sexp)
 (global-set-key (kbd "<C-delete>") 'kill-word-dwim)
 (global-set-key (kbd "<C-backspace>") 'backward-kill-word-dwim)
-(global-set-key (kbd "C-w") 'kill-region-dwim)
 (global-set-key (kbd "C-c =") 'align-to-equals)
 (global-set-key (kbd "C-c d") 'copy-from-above-command)
 (global-set-key (kbd "<M-S-up>") 'move-text-up)
