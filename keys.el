@@ -104,8 +104,7 @@
 
 (eval-after-load 'undo-tree
   '(progn
-     (define-key undo-tree-map (kbd "C-z") 'undo-tree-undo)
-     (define-key undo-tree-map (kbd "C-x C-z") 'undo-tree-undo)
+     (global-set-key [remap suspend-frame] 'undo-tree-undo)
      (define-key undo-tree-map (kbd "C-S-z") 'undo-tree-redo)
      (define-key undo-tree-map (kbd "C-/") nil)))
 
