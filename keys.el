@@ -92,11 +92,6 @@
 (eval-after-load 'org
   '(define-key org-mode-map (kbd "<C-tab>") nil))
 
-(eval-after-load 'ruby-mode
-  '(progn
-     (define-key ruby-mode-map (kbd "TAB") nil)
-     (define-key ruby-mode-map (kbd "C-c C-t") 'ruby-toggle-block-type)))
-
 (eval-after-load 'sgml-mode
   '(progn
      (define-key sgml-mode-map (kbd "C-M-f") 'sgml-skip-tag-forward)
@@ -107,6 +102,11 @@
      (global-set-key [remap suspend-frame] 'undo-tree-undo)
      (define-key undo-tree-map (kbd "C-S-z") 'undo-tree-redo)
      (define-key undo-tree-map (kbd "C-/") nil)))
+
+(eval-after-load 'ruby-tools
+  '(progn
+     (define-key ruby-tools-mode-map (kbd "C-S-l") 'ruby-tools-clear-string)
+     (define-key ruby-tools-mode-map (kbd "C-;") nil)))
 
 (add-hook 'eshell-mode-hook
           (lambda ()
