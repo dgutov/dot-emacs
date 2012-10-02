@@ -1,3 +1,5 @@
+(require 'hippie-exp)
+
 (defvar he-undo-stack nil)
 
 (defun hippie-expand-undo ()
