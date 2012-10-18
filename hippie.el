@@ -28,14 +28,16 @@
       (push (cons he-tried-table he-num) he-undo-stack))
     ad-do-it))
 
+(defvar he-try-list-tail '(try-expand-dabbrev-all-buffers
+                           try-complete-file-name-partially
+                           try-complete-file-name))
+
 (setq hippie-expand-try-functions-list
-      '(try-expand-dabbrev
-        try-expand-dabbrev-all-buffers
-        try-complete-file-name-partially
-        try-complete-file-name))
+      (cons 'try-expand-dabbrev he-try-list-tail))
 
 (defun hippie-try-list-with-lisp ()
-  (append '(try-complete-lisp-symbol-partially
+  (append '(try-expand-dabbrev
+            try-complete-lisp-symbol-partially
             try-complete-lisp-symbol)
           hippie-expand-try-functions-list))
 
