@@ -73,7 +73,7 @@
       win-switch-idle-time 3
       win-switch-other-window-first (lambda () (null (nthcdr 3 (window-list))))
       win-switch-feedback-background-color "salmon"
-      )
+      package-enable-at-startup nil)
 
 (setq-default fill-column 80)
 
