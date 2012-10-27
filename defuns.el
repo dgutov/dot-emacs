@@ -40,6 +40,18 @@
         (require ;)
          (require require))))
 
+(defun fake-builtins ()
+  (push
+   (cons 'haml-mode
+         `[,(version-to-list
+             (save-excursion
+               (require 'lisp-mnt)
+               (with-temp-buffer
+                 (insert-file-contents (get-site-dir "haml-mode/haml-mode.el"))
+                 (lm-header "Version"))))
+           nil nil])
+   package--builtins))
+
 (defun add-auto-mode (mode &rest patterns)
   (dolist (pattern patterns)
     (add-to-list 'auto-mode-alist (cons pattern mode))))
