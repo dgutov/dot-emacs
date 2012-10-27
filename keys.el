@@ -5,7 +5,6 @@
 (require 'winring)
 (require 'dired)
 (require 'hippie)
-(require 'switch-window)
 
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
@@ -16,15 +15,6 @@
 (global-set-key (kbd "C-x 3") 'split-window-horizontally-1)
 (global-set-key (kbd "C-x 8") 'rotate-windows)
 (global-set-key (kbd "C-x t") 'transpose-frame)
-(global-change-key (kbd "C-x <up>") 'windmove-up)
-(global-set-key (kbd "C-x <C-up>") 'windmove-up)
-(global-change-key (kbd "C-x <down>") 'windmove-down)
-(global-set-key (kbd "C-x <C-down>") 'windmove-down)
-(global-change-key (kbd "C-x <left>") 'windmove-left)
-(global-set-key (kbd "C-x <C-left>") 'windmove-left)
-(global-change-key (kbd "C-x <right>") 'windmove-right)
-(global-set-key (kbd "C-x <C-right>") 'windmove-right)
-(global-set-key (kbd "C-x C-o") 'switch-window)
 (global-set-key (kbd "<C-tab>") 'iflipb-next-buffer)
 (global-set-key (kbd "<C-S-tab>") 'iflipb-previous-buffer)
 
@@ -44,6 +34,8 @@
 (global-set-key (kbd "<M-S-down>") 'move-text-down)
 (global-set-key (kbd "C-c f") 'iy-go-to-char)
 (global-set-key (kbd "C-c F") 'iy-go-to-char-backward)
+(global-set-key (kbd "C-x C-;") 'iedit-mode)
+(global-set-key (kbd "C-=") 'er/expand-region)
 
 (global-set-key (kbd "C-/") 'auto-complete)
 (global-set-key (kbd "M-?") 'hippie-expand-undo)
@@ -72,6 +64,17 @@
 (define-key global-map (kbd "C-x 4 C-j") 'dired-jump-other-window)
 
 (define-key vc-prefix-map "d" 'vc-dir-quick)
+
+(eval-after-load 'starter-kit-bindings-autoloads
+  '(progn
+     (global-change-key (kbd "C-x <up>") 'windmove-up)
+     (global-set-key (kbd "C-x <C-up>") 'windmove-up)
+     (global-change-key (kbd "C-x <down>") 'windmove-down)
+     (global-set-key (kbd "C-x <C-down>") 'windmove-down)
+     (global-change-key (kbd "C-x <left>") 'windmove-left)
+     (global-set-key (kbd "C-x <C-left>") 'windmove-left)
+     (global-change-key (kbd "C-x <right>") 'windmove-right)
+     (global-set-key (kbd "C-x <C-right>") 'windmove-right)))
 
 (eval-after-load 'dired
   '(progn

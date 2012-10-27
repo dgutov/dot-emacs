@@ -68,7 +68,12 @@
       echo-keystrokes 0.02
       smex-flex-matching nil
       undo-no-redo t
-      winring-keymap-prefix (kbd "C-x w"))
+      winring-keymap-prefix (kbd "C-x w")
+      iedit-toggle-key-default nil
+      win-switch-idle-time 3
+      win-switch-other-window-first (lambda () (null (nthcdr 3 (window-list))))
+      win-switch-feedback-background-color "salmon"
+      )
 
 (setq-default fill-column 80)
 
@@ -84,11 +89,12 @@
           (lambda () (with-current-buffer "*scratch*"
                   (rename-buffer "-scratch-"))))
 
-(setq package-archives
-      (append package-archives
-              '(("marmalade" . "http://marmalade-repo.org/packages/")
-                ("elpa"      . "http://tromey.com/elpa/")
-                ("melpa"     . "http://melpa.milkbox.net/packages/"))))
+(eval-after-load 'package
+  '(setq package-archives
+         (append package-archives
+                 '(("marmalade" . "http://marmalade-repo.org/packages/")
+                   ("elpa"      . "http://tromey.com/elpa/")
+                   ("melpa"     . "http://melpa.milkbox.net/packages/")))))
 
 (defadvice* hide-from-recentf around (ido-save-history update-autoloads)
   (let (write-file-functions

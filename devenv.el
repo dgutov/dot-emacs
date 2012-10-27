@@ -8,6 +8,7 @@
 (update-load-path-vc "helm")
 (update-load-path-vc "helm-descbinds" t)
 (update-load-path-vc "diff-hl" t)
+(update-load-path-vc "expand-region.el" t)
 
 (require 'eproject)
 (require 'eproject-extras)
@@ -78,7 +79,8 @@
 (add-hook 'ecb-before-activate-hook 'ecb-hook-eproject)
 (add-hook 'ecb-deactivate-hook 'ecb-unhook-eproject)
 
-(ido-ubiquitous-disable-in magit-read-rev)
+(eval-after-load 'ido-ubiquitous
+  '(ido-ubiquitous-disable-in magit-read-rev))
 
 (dolist (mode '(ruby js2 js coffee html))
   (add-lambda (intern (concat (symbol-name mode) "-mode-hook"))

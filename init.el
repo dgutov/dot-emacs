@@ -2,8 +2,6 @@
 (when (string-match "mingw-nt" system-configuration)
   (set-face-attribute 'default nil :height 115 :family "Consolas"))
 
-(package-initialize)
-
 (add-to-list 'load-path user-emacs-directory)
 (add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
 
@@ -12,6 +10,8 @@
     ((debug error) (message "%s" (error-message-string err)))))
 
 (mapc #'safe-require '(defuns prefs keys progmodes devenv))
+
+(package-initialize)
 
 (if (file-exists-p locals-file) (load locals-file))
 (update-autoloads)
@@ -29,3 +29,4 @@
 (savehist-mode t)
 (global-diff-hl-mode)
 (global-undo-tree-mode)
+(win-switch-setup-keys-ijkl "\C-xo")
