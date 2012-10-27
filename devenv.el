@@ -1,20 +1,15 @@
 (update-load-path-vc "eproject")
 (update-load-path-vc "auto-complete")
-(update-load-path-vc "ac-slime")
 (update-load-path-vc "pos-tip")
 (update-load-path-vc "point-stack" t)
-(update-load-path-vc "markdown-mode")
 (update-load-path-vc "ethan-wspace/lisp")
 (update-load-path-vc "helm")
 (update-load-path-vc "helm-descbinds" t)
 (update-load-path-vc "diff-hl" t)
-(update-load-path-vc "expand-region.el" t)
+(update-load-path "~/ecb-snap")
 
 (require 'eproject)
 (require 'eproject-extras)
-(require 'auto-complete-config)
-(require 'ac-slime)
-(require 'pos-tip)
 (require 'ethan-wspace)
 
 (define-project-type make (generic) (look-for "Makefile"))
@@ -30,25 +25,30 @@
 (add-lambda 'scons-project-file-visit-hook
   (setq-local compile-command (format "cd %s && scons" (eproject-root))))
 
-(add-to-list 'ac-dictionary-directories (get-vc-dir "auto-complete/dict"))
+(eval-after-load 'auto-complete-config
+  '(progn
+     (add-to-list 'ac-dictionary-directories (get-vc-dir "auto-complete/dict"))
+     (ac-config-default)
+     (setq ac-quick-help-delay 0.2
+           ac-use-comphist nil
+           ac-quick-help-prefer-x t
+           ac-auto-start nil)))
 
-(ac-config-default)
+(eval-after-load 'pos-tip
+  '(set-face-attribute 'popup-tip-face nil
+                       :background pos-tip-background-color))
 
-(setq ac-quick-help-delay 0.2
-      ac-use-comphist nil
-      ac-quick-help-prefer-x t
-      ac-auto-start nil)
+(eval-after-load 'dropdown-list
+  '(progn
+     (require 'pos-tip)
+     (put 'dropdown-list-face 'face-alias 'popup-menu-face)
+     (put 'dropdown-list-selection-face 'face-alias 'popup-menu-selection-face)))
 
-(set-face-attribute 'popup-tip-face nil
-                    :background pos-tip-background-color)
-
-(put 'dropdown-list-face 'face-alias 'popup-menu-face)
-(put 'dropdown-list-selection-face 'face-alias 'popup-menu-selection-face)
-
-(add-lambda 'slime-mode-hook
-  (setq-local ac-sources '(ac-source-slime-simple
-                           ac-source-words-in-same-mode-buffers
-                           ac-source-filename)))
+(eval-after-load 'yasnippet
+  '(setq yas-snippet-dirs
+         (cons (get-vc-dir "js-yasnippets")
+               (cl-delete-if-not (lambda (dir) (file-directory-p dir))
+                                 yas-snippet-dirs))))
 
 (add-lambda 'haskell-mode-hook
   (setq-local ac-sources '(ac-source-ghc-mod
@@ -83,7 +83,7 @@
   '(ido-ubiquitous-disable-in magit-read-rev))
 
 (dolist (mode '(ruby js2 js coffee html))
-  (add-lambda (intern (concat (symbol-name mode) "-mode-hook"))
+  (add-lambda (intern (format "%s-mode-hook" mode))
     (subword-mode 1)))
 
 (defun fold-grep-command ()

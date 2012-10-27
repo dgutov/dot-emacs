@@ -25,7 +25,7 @@
 (global-auto-revert-mode t)
 (ido-everywhere t)
 (global-ethan-wspace-mode t)
-(yas/global-mode t)
+(yas-global-mode)
 (savehist-mode t)
 (global-diff-hl-mode)
 (global-undo-tree-mode)

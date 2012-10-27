@@ -1,26 +1,14 @@
 (update-load-path "~/emacs-hs" t)
 (update-load-path-vc "js2-mode" t)
-(update-load-path-vc "autopair")
-(update-load-path-vc "yasnippet" t)
-(update-load-path-vc "slime" t)
-(update-load-path-vc "slime/contrib")
-(update-load-path-vc "clojure-mode" t)
-(update-load-path-vc "rinari" t)
-(update-load-path "~/ecb-snap")
 (update-load-path-vc "haml-mode" t)
 (update-load-path-vc "sass-mode" t)
-(update-load-path-vc "markdown-mode" t)
-(update-load-path-vc "flymake-coffee" t)
 
-(require 'autopair)
 (require 'mmm)
-(require 'dropdown-list)
 
 (add-lambda 'c-mode-hook
   (setq-local c-basic-offset 2))
 
 (autoload 'ghc-init "ghc" nil t)
-(autoload 'yaml-mode "yaml-mode" nil t)
 
 (add-lambda 'haskell-mode-hook
   (turn-on-haskell-indentation)
@@ -69,25 +57,11 @@
 (eval-after-load 'js2-mode
   '(js2-imenu-extras-setup))
 
-(defun load-user-clj ()
-  (swank-eval (format "(load-file \"%s\")"
-                      (expand-file-name (concat user-emacs-directory
-                                                "user.clj")))))
-
-(add-hook 'slime-connected-hook
-          'load-user-clj)
-
 (add-lambda 'slime-repl-mode-hook
   (set-syntax-table clojure-mode-syntax-table)
   (define-key slime-repl-mode-map (kbd "{") 'paredit-open-curly)
   (define-key slime-repl-mode-map (kbd "}") 'paredit-close-curly)
   (paredit-mode t))
-
-(eval-after-load 'slime
-  '(progn
-     (slime-setup '(slime-fancy slime-banner slime-repl))
-     (setq slime-startup-animation nil)
-     (setq slime-protocol-version 'ignore)))
 
 (eval-after-load 'clojure-mode
   '(progn
@@ -112,8 +86,8 @@
 (add-auto-mode 'markdown-mode "\\.md\\'")
 (add-auto-mode 'yaml-mode "\\.yml\\'")
 
-(dolist (mode '(emacs-lisp clojure slime-repl sldb))
-  (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
+(dolist (mode '(emacs-lisp clojure sldb))
+  (add-hook (intern (format "%s-mode-hook" mode))
             (lambda () (autopair-mode -1))))
 
 (add-hook 'ruby-mode-hook 'ruby-electric-mode)

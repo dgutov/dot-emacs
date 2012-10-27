@@ -46,11 +46,9 @@
       ecb-fix-window-size 'auto
       ecb-layout-name "left15"
       ecb-tip-of-the-day nil
-      yas/prompt-functions '(yas/dropdown-prompt)
-      yas/expand-only-for-last-commands '(self-insert-command undo)
-      yas/snippet-dirs (list (get-vc-dir "js-yasnippets")
-                             (get-vc-dir "yasnippet/snippets"))
-      yas/verbosity 1
+      yas-prompt-functions '(yas/dropdown-prompt)
+      yas-expand-only-for-last-commands '(self-insert-command undo)
+      yas-verbosity 1
       js-indent-level 2
       js2-basic-offset 2
       js2-enter-indents-newline t

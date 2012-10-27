@@ -239,4 +239,8 @@ Returns the deleted character count."
       (let ((use-vc-backend backend))
         (vc-dir-mode)))))
 
+(defadvice add-to-history (around grep-history (var _n &optional _m _k) activate)
+  (unless (memq var '(grep-history grep-find-history))
+    ad-do-it))
+
 (provide 'defuns)
