@@ -94,6 +94,18 @@
                    ("elpa"      . "http://tromey.com/elpa/")
                    ("melpa"     . "http://melpa.milkbox.net/packages/")))))
 
+(eval-after-load 'finder-inf
+  '(push
+    (cons 'haml-mode
+          `[,(version-to-list
+              (save-excursion
+                (require 'lisp-mnt)
+                (with-temp-buffer
+                  (insert-file-contents (get-site-dir "haml-mode/haml-mode.el"))
+                  (lm-header "Version"))))
+            nil nil])
+    package--builtins))
+
 (eval-after-load 'starter-kit-defuns
   '(progn
      (remove-hook 'prog-mode-hook 'idle-highlight-mode)

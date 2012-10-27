@@ -1,4 +1,4 @@
-(require 'helm-config)
+(ulp-site "helm" nil 'helm-config)
 (require 'helm-match-plugin)
 (require 'helm-buffers)
 (provide 'helm-bookmark) ; never used that

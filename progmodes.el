@@ -1,7 +1,6 @@
 (update-load-path "~/emacs-hs" t)
-(update-load-path-vc "js2-mode" t)
-(update-load-path-vc "haml-mode" t)
-(update-load-path-vc "sass-mode" t)
+(ulp-site "js2-mode" t)
+(ulp-site "haml-mode" t)
 
 (require 'mmm)
 

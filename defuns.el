@@ -30,8 +30,15 @@
 (defun get-vc-dir (dir-name)
   (expand-file-name (concat "~/vc/" dir-name)))
 
-(defun update-load-path-vc (dir-name &optional add-to-autoloads)
-  (update-load-path (get-vc-dir dir-name) add-to-autoloads))
+(defun get-site-dir (name)
+  (expand-file-name (concat user-emacs-directory "site-lisp/" name)))
+
+(defun ulp-site (name &optional add-to-autoloads require)
+  (update-load-path (get-site-dir name) add-to-autoloads)
+  (cond ((eq require t)
+         (require (intern name)))
+        (require ;)
+         (require require))))
 
 (defun add-auto-mode (mode &rest patterns)
   (dolist (pattern patterns)

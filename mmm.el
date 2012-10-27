@@ -1,4 +1,4 @@
-(update-load-path-vc "mmm-mode" t)
+(ulp-site "mmm-mode" t)
 
 (require 'mmm-auto)
 

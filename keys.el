@@ -1,7 +1,6 @@
 (require 'misc)
 (require 'iflipb)
-(update-load-path-vc "transpose-frame")
-(require 'transpose-frame)
+(ulp-site "transpose-frame" nil t)
 (require 'winring)
 (require 'dired)
 (require 'hippie)

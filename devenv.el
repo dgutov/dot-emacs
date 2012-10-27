@@ -1,16 +1,11 @@
-(update-load-path-vc "eproject")
-(update-load-path-vc "auto-complete")
-(update-load-path-vc "pos-tip")
-(update-load-path-vc "point-stack" t)
-(update-load-path-vc "ethan-wspace/lisp")
-(update-load-path-vc "helm")
-(update-load-path-vc "helm-descbinds" t)
-(update-load-path-vc "diff-hl" t)
+(ulp-site "eproject" nil t)
+(ulp-site "point-stack" t)
+(ulp-site "ethan-wspace/lisp" nil 'ethan-wspace)
+(ulp-site "diff-hl" t)
+(ulp-site "smartrep.el")
 (update-load-path "~/ecb-snap")
 
-(require 'eproject)
 (require 'eproject-extras)
-(require 'ethan-wspace)
 
 (define-project-type make (generic) (look-for "Makefile"))
 (define-project-type rake (generic) (look-for "Rakefile"))
@@ -19,8 +14,8 @@
 (define-project-type ant (generic) (look-for "build.xml"))
 (define-project-type haskell (generic) (look-for "Setup.hs"))
 (define-project-type emacs (generic) (look-for "init.el")
-  :irrelevant-files ("/elpa/" "/url/cookies$" "tramp$" "/server/"
-                     "^custom.el$" "^places$" "/backups/"))
+  :irrelevant-files ("/elpa/" "/url/cookies$" "tramp$" "/server/" "history$"
+                     "^custom.el$" "^places$" "/backups/" "/site-lisp/.*/"))
 
 (add-lambda 'scons-project-file-visit-hook
   (setq-local compile-command (format "cd %s && scons" (eproject-root))))
