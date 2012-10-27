@@ -41,7 +41,7 @@
 
 (eval-after-load 'yasnippet
   '(setq yas-snippet-dirs
-         (cons (get-vc-dir "js-yasnippets")
+         (cons (get-site-dir "js-yasnippets")
                (cl-delete-if-not (lambda (dir) (file-directory-p dir))
                                  yas-snippet-dirs))))
 
