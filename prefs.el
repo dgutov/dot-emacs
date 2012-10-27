@@ -96,12 +96,14 @@
                    ("elpa"      . "http://tromey.com/elpa/")
                    ("melpa"     . "http://melpa.milkbox.net/packages/")))))
 
+(eval-after-load 'starter-kit-defuns
+  '(progn
+     (remove-hook 'prog-mode-hook 'idle-highlight-mode)
+     (remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)))
+
 (defadvice* hide-from-recentf around (ido-save-history update-autoloads)
   (let (write-file-functions
         (find-file-hook (remq 'recentf-track-opened-file find-file-hook)))
     ad-do-it))
-
-(remove-hook 'prog-mode-hook 'idle-highlight-mode)
-(remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
 
 (provide 'prefs)
