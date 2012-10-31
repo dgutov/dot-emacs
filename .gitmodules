@@ -1,38 +1,30 @@
 [submodule "site-lisp/diff-hl"]
 	path = site-lisp/diff-hl
-	url = https://github.com/dgutov/diff-hl.git
-	pushurl = git@github.com:dgutov/diff-hl.git
+	url = git@github.com:dgutov/diff-hl.git
 [submodule "site-lisp/eproject"]
 	path = site-lisp/eproject
-	url = git://github.com/dgutov/eproject.git
-	pushurl = git@github.com:dgutov/eproject.git
+	url = git@github.com:dgutov/eproject.git
 [submodule "site-lisp/ethan-wspace"]
 	path = site-lisp/ethan-wspace
 	url = git://github.com/glasserc/ethan-wspace.git
 [submodule "site-lisp/haml-mode"]
 	path = site-lisp/haml-mode
-	url = https://github.com/dgutov/haml-mode.git
-	pushurl = git@github.com:dgutov/haml-mode.git
+	url = git@github.com:dgutov/haml-mode.git
 [submodule "site-lisp/js-yasnippets"]
 	path = site-lisp/js-yasnippets
-	url = https://github.com/dgutov/js-yasnippets.git
-	pushurl = git@github.com:dgutov/js-yasnippets.git
+	url = git@github.com:dgutov/js-yasnippets.git
 [submodule "site-lisp/js2-mode"]
 	path = site-lisp/js2-mode
-	url = https://github.com/mooz/js2-mode.git
-	pushurl = git@github.com:mooz/js2-mode.git
+	url = git@github.com:mooz/js2-mode.git
 [submodule "site-lisp/mmm-mode"]
 	path = site-lisp/mmm-mode
-	url = https://github.com/dgutov/mmm-mode.git
-	pushurl = git@github.com:dgutov/mmm-mode.git
+	url = git@github.com:dgutov/mmm-mode.git
 [submodule "site-lisp/point-stack"]
 	path = site-lisp/point-stack
-	url = https://github.com/dgutov/point-stack.git
-	pushurl = git@github.com:dgutov/point-stack.git
+	url = git@github.com:dgutov/point-stack.git
 [submodule "site-lisp/smartrep.el"]
 	path = site-lisp/smartrep.el
-	url = https://github.com/dgutov/smartrep.el.git
-	pushurl = git@github.com:dgutov/smartrep.el.git
+	url = git@github.com:dgutov/smartrep.el.git
 [submodule "site-lisp/sass-mode"]
 	path = site-lisp/sass-mode
 	url = git://github.com/nex3/sass-mode.git
