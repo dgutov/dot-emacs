@@ -4,6 +4,7 @@
 (require 'prefs)
 
 (package-initialize)
+(package-refresh-contents)
 
 (defvar packages-list
   '(auto-complete autopair clojure-mode coffee-mode elisp-slime-nav

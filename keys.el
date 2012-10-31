@@ -41,7 +41,6 @@
 (global-set-key (kbd "C-c a") 'webjump-api)
 (global-set-key (kbd "C-;") 'helm-in-project)
 (global-set-key (kbd "C-:") 'helm-not-in-project)
-(global-set-key (kbd "C-x C-i") 'helm-imenu-thingatpt)
 (global-set-key (kbd "M-.") 'helm-etags-select-thingatpt)
 (global-set-key [remap describe-bindings] 'helm-descbinds)
 (global-set-key (kbd "C-M-,") 'point-stack-pop)
@@ -64,6 +63,7 @@
 
 (eval-after-load 'starter-kit-bindings-autoloads
   '(progn
+     (global-set-key (kbd "C-x C-i") 'helm-imenu-thingatpt)
      (global-set-key (kbd "C-c f") 'iy-go-to-char)
      (global-set-key (kbd "C-c F") 'iy-go-to-char-backward)
      (global-change-key (kbd "C-x <up>") 'windmove-up)
