@@ -46,6 +46,7 @@
 
 (add-hook 'js2-mode-hook 'esk-prog-mode-hook)
 (add-hook 'coffee-mode-hook 'flymake-coffee-load)
+(add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
 (font-lock-add-keywords
  'js2-mode `(("\\(function *\\)("
