@@ -75,6 +75,10 @@
 
 (setq-default fill-column 80)
 
+(custom-set-variables
+ '(help-at-pt-timer-delay 0.1)
+ '(help-at-pt-display-when-idle '(flymake-overlay)))
+
 (eval-after-load 'em-prompt
   '(set-face-attribute 'eshell-prompt nil
                        :foreground "SlateBlue4"))
