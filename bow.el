@@ -129,6 +129,9 @@
 
      (defvar helm-etags-thingatpt
        (copy-alist helm-c-source-etags-select))
-     (setcdr (assoc 'init helm-etags-thingatpt) 'helm-etags-init-with-syntax)))
+     (setcdr (assoc 'init helm-etags-thingatpt) 'helm-etags-init-with-syntax)
+
+     (set-face-attribute 'helm-selection nil
+                         :background "cornsilk" :underline nil)))
 
 (provide 'bow)
