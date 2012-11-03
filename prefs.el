@@ -68,8 +68,9 @@
       undo-no-redo t
       winring-keymap-prefix (kbd "C-x w")
       iedit-toggle-key-default nil
-      win-switch-idle-time 3
-      win-switch-other-window-first (lambda () (null (nthcdr 3 (window-list))))
+      win-switch-idle-time 10
+      win-switch-split-horizontally-keys '("3")
+      win-switch-split-vertically-keys '("2")
       win-switch-feedback-background-color "salmon"
       package-enable-at-startup nil)
 

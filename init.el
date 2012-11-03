@@ -32,4 +32,3 @@
 (savehist-mode t)
 (global-diff-hl-mode)
 (global-undo-tree-mode)
-(win-switch-setup-keys-ijkl "\C-xo")
