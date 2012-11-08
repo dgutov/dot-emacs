@@ -262,4 +262,10 @@ Returns the deleted character count."
   (unless (memq var '(grep-history grep-find-history))
     ad-do-it))
 
+(defun split-window-prefer-side-by-side (&optional window)
+  (let ((split-height-threshold (and (< (window-width window)
+                                        split-width-threshold)
+                                     split-height-threshold)))
+    (split-window-sensibly window)))
+
 (provide 'defuns)

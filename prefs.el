@@ -63,8 +63,10 @@
       gnus-interactive-exit nil
       gnus-check-new-newsgroup nil
       gnus-always-read-dribble-file t
+      message-send-mail-function 'smtpmail-send-it
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
       echo-keystrokes 0.02
-      smex-flex-matching nil
       undo-no-redo t
       winring-keymap-prefix (kbd "C-x w")
       iedit-toggle-key-default nil
@@ -72,7 +74,8 @@
       win-switch-split-horizontally-keys '("3")
       win-switch-split-vertically-keys '("2")
       win-switch-feedback-background-color "salmon"
-      package-enable-at-startup nil)
+      package-enable-at-startup nil
+      split-window-preferred-function 'split-window-prefer-side-by-side)
 
 (setq-default fill-column 80)
 

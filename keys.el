@@ -77,6 +77,9 @@
      (global-set-key (kbd "C-x p") (win-switch-dispatch-with
                                     (lambda (_) (other-window -1))))))
 
+(eval-after-load 'windmove
+  '(defun windmove-default-keybindings ()))
+
 (eval-after-load 'dired
   '(progn
      (define-key dired-mode-map (kbd "RET") 'dired-find-file-same-buffer)
