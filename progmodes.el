@@ -143,6 +143,12 @@
         (indent-line-to indent-column)
         (when (> offset 0) (forward-char offset))))))
 
+(defadvice flymake-parse-residual (after clear-ruby-warnings () activate)
+  (setq flymake-new-err-info
+        (delete-if (lambda (item) (string-match "ambiguous first argument; put"
+                                           (flymake-ler-text (caadr item))))
+                   flymake-new-err-info)))
+
 (eval-after-load 'ruby-mode
   '(remf ruby-deep-indent-paren ?\())
 

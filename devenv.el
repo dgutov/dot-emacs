@@ -30,8 +30,10 @@
            ac-auto-start nil)))
 
 (eval-after-load 'pos-tip
-  '(set-face-attribute 'popup-tip-face nil
-                       :background pos-tip-background-color))
+  '(progn
+     (require 'popup)
+     (set-face-attribute 'popup-tip-face nil
+                         :background pos-tip-background-color)))
 
 (eval-after-load 'dropdown-list
   '(progn

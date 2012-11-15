@@ -74,6 +74,8 @@
       win-switch-split-horizontally-keys '("3")
       win-switch-split-vertically-keys '("2")
       win-switch-feedback-background-color "salmon"
+      win-switch-on-feedback-function 'ignore
+      win-switch-off-feedback-function 'ignore
       package-enable-at-startup nil
       split-window-preferred-function 'split-window-prefer-side-by-side)
 

@@ -16,6 +16,7 @@
 (global-set-key (kbd "C-x t") 'transpose-frame)
 (global-set-key (kbd "<C-tab>") 'iflipb-next-buffer)
 (global-set-key (kbd "<C-S-tab>") 'iflipb-previous-buffer)
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<C-left>") 'backward-word)
@@ -120,5 +121,7 @@
             (define-key eshell-mode-map [home] 'eshell-bol)))
 
 (reverse-input-method 'russian-computer)
+
+(find-function-setup-keys)
 
 (provide 'keys)
