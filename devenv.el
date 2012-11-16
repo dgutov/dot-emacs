@@ -1,8 +1,9 @@
 (ulp-site "eproject" nil t)
-(ulp-site "point-stack" t)
+(ulp-site "point-stack" nil t)
 (ulp-site "ethan-wspace/lisp" nil 'ethan-wspace)
 (ulp-site "diff-hl" t)
 (ulp-site "smartrep.el")
+(ulp-site "zossima" t)
 (update-load-path "~/ecb-snap")
 
 (require 'eproject-extras)
@@ -55,7 +56,9 @@
   (setq completion-at-point-functions '((lambda () #'auto-complete))))
 
 (eval-after-load '.emacs-loaddefs
-  '(point-stack-setup-advices))
+  '(progn
+     (push 'zossima-jump point-stack-advised-functions)
+     (point-stack-setup-advices)))
 
 (defun ecb-add-project-to-sources (&optional root)
   (let ((root (or root eproject-root)))

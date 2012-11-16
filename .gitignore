@@ -10,6 +10,7 @@ tramp
 .org-id-locations
 \#*
 server/
+eshell/
 places
 backups
 .smex-items

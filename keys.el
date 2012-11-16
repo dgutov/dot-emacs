@@ -16,6 +16,7 @@
 (global-set-key (kbd "C-x t") 'transpose-frame)
 (global-set-key (kbd "<C-tab>") 'iflipb-next-buffer)
 (global-set-key (kbd "<C-S-tab>") 'iflipb-previous-buffer)
+(global-set-key (kbd "<C-S-iso-lefttab>") 'iflipb-previous-buffer)
 (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 
 (global-set-key (kbd "RET") 'newline-and-indent)
