@@ -1,6 +1,5 @@
 (update-load-path "~/emacs-hs" t)
 (ulp-site "js2-mode" t)
-(ulp-site "haml-mode" t)
 
 (require 'mmm)
 

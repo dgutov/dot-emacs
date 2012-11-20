@@ -7,9 +7,6 @@
 [submodule "site-lisp/ethan-wspace"]
 	path = site-lisp/ethan-wspace
 	url = git://github.com/glasserc/ethan-wspace.git
-[submodule "site-lisp/haml-mode"]
-	path = site-lisp/haml-mode
-	url = git@github.com:dgutov/haml-mode.git
 [submodule "site-lisp/js-yasnippets"]
 	path = site-lisp/js-yasnippets
 	url = git@github.com:dgutov/js-yasnippets.git
