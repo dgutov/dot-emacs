@@ -57,7 +57,8 @@
 
 (eval-after-load '.emacs-loaddefs
   '(progn
-     (push 'zossima-jump point-stack-advised-functions)
+     (push 'zossima-jump-to point-stack-advised-functions)
+     (push 'zossima-jump-to-module point-stack-advised-functions)
      (point-stack-setup-advices)))
 
 (defun ecb-add-project-to-sources (&optional root)
