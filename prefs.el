@@ -57,6 +57,7 @@
       js2-include-rhino-externs nil
       coffee-tab-width 2
       coffee-cleanup-whitespace nil
+      whitespace-style '(face lines-tail)
       autopair-blink nil
       ruby-electric-expand-delimiters-list nil
       gnus-select-method '(nntp "news.gmane.org")
@@ -96,6 +97,8 @@
 (add-hook 'emacs-startup-hook
           (lambda () (with-current-buffer "*scratch*"
                   (rename-buffer "-scratch-"))))
+
+(add-hook 'prog-mode-hook 'whitespace-mode)
 
 (eval-after-load 'package
   '(setq package-archives
