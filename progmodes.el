@@ -150,6 +150,8 @@
                    flymake-new-err-info)))
 
 (eval-after-load 'ruby-mode
-  '(remf ruby-deep-indent-paren ?\())
+  '(progn
+     (remf ruby-deep-indent-paren ?\()
+     (rvm-use-default)))
 
 (provide 'progmodes)
