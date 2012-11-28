@@ -112,25 +112,18 @@ Returns the deleted character count."
   (let ((new (command-remapping command)))
     (apply (or new command) arguments)))
 
-(if (fboundp 'w32-send-sys-command)
-    (progn
-      (defsubst toggle-fs-on ()
-        (w32-send-sys-command 61488))
-      (defsubst toggle-fs-off ()
-        (w32-send-sys-command 61728)))
-  (progn
-    (defsubst toggle-fs-on ()
-      (set-frame-parameter nil 'fullscreen 'fullboth))
-    (defsubst toggle-fs-off ()
-      (set-frame-parameter nil 'fullscreen nil))))
-
 (defun toggle-fs ()
   (interactive)
-  (if (frame-parameter nil 'fs)
-      (progn (set-frame-parameter nil 'fs nil)
-             (toggle-fs-off))
-    (progn (set-frame-parameter nil 'fs t)
-           (toggle-fs-on))))
+  (if (fboundp 'w32-send-sys-command)
+      (if (frame-parameter nil 'fs)
+          (progn (set-frame-parameter nil 'fs nil)
+                 (w32-send-sys-command 61728))
+        (set-frame-parameter nil 'fs t)
+        (w32-send-sys-command 61488))
+    (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                           '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
+    (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                           '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))))
 
 (defun dired-find-file-same-buffer ()
   (interactive)
