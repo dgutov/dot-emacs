@@ -68,16 +68,15 @@
      (global-set-key (kbd "C-x C-i") 'helm-imenu-thingatpt)
      (global-set-key (kbd "C-c f") 'iy-go-to-char)
      (global-set-key (kbd "C-c F") 'iy-go-to-char-backward)
-     (dolist (d '(up down left right))
-       (win-switch-set-keys `(,(kbd (format "C-<%s>" d))) d)
-       (let ((action (eval `(win-switch-dispatch-with
-                             ',(intern (format "win-switch-%s" d))))))
-         (global-set-key (kbd (format "C-x C-<%s>" d)) action)
-         (global-set-key (kbd (format "C-x <%s>" d)) action)))
-     (global-set-key (kbd "C-x o") (win-switch-dispatch-with
-                                    (lambda (_) (other-window 1))))
-     (global-set-key (kbd "C-x p") (win-switch-dispatch-with
-                                    (lambda (_) (other-window -1))))))
+     (global-change-key (kbd "C-x <up>") 'windmove-up)
+     (global-set-key (kbd "C-x <C-up>") 'windmove-up)
+     (global-change-key (kbd "C-x <down>") 'windmove-down)
+     (global-set-key (kbd "C-x <C-down>") 'windmove-down)
+     (global-change-key (kbd "C-x <left>") 'windmove-left)
+     (global-set-key (kbd "C-x <C-left>") 'windmove-left)
+     (global-change-key (kbd "C-x <right>") 'windmove-right)
+     (global-set-key (kbd "C-x <C-right>") 'windmove-right)
+     (require 'switch-window)))
 
 (eval-after-load 'windmove
   '(defun windmove-default-keybindings ()))
