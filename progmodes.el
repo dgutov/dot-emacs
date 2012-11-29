@@ -91,7 +91,7 @@
 
 (add-hook 'ruby-mode-hook 'ruby-electric-mode)
 (add-hook 'ruby-mode-hook 'ruby-tools-mode)
-(add-hook 'ruby-mode-hook 'zossima-mode)
+(add-hook 'ruby-mode-hook 'beet-mode)
 
 (defadvice* check-last-command around (ruby-electric-space-can-be-expanded-p
                                        ruby-electric-return-can-be-expanded-p)
