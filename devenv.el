@@ -3,7 +3,7 @@
 (ulp-site "ethan-wspace/lisp" nil 'ethan-wspace)
 (ulp-site "diff-hl" t)
 (ulp-site "smartrep.el")
-(ulp-site "beet" t)
+(ulp-site "robe" t)
 (update-load-path "~/ecb-snap")
 
 (require 'eproject-extras)
@@ -57,8 +57,8 @@
 
 (eval-after-load '.emacs-loaddefs
   '(progn
-     (push 'beet-jump-to point-stack-advised-functions)
-     (push 'beet-jump-to-module point-stack-advised-functions)
+     (push 'robe-jump-to point-stack-advised-functions)
+     (push 'robe-jump-to-module point-stack-advised-functions)
      (point-stack-setup-advices)))
 
 (defun ecb-add-project-to-sources (&optional root)

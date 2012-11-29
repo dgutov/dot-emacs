@@ -31,6 +31,6 @@
 [submodule "site-lisp/helm"]
 	path = site-lisp/helm
 	url = git://github.com/emacs-helm/helm.git
-[submodule "site-lisp/beet"]
-	path = site-lisp/beet
-	url = git@github.com:dgutov/beet.git
+[submodule "site-lisp/robe"]
+	path = site-lisp/robe
+	url = git@github.com:dgutov/robe.git
