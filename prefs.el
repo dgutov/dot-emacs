@@ -17,7 +17,7 @@
       auto-fill-mode nil
       default-major-mode 'text-mode
       initial-major-mode 'emacs-lisp-mode
-      scroll-conservatively 5
+      scroll-conservatively 101
       scroll-preserve-screen-position t
       truncate-lines t
       kill-whole-line t
@@ -72,6 +72,7 @@
       winring-keymap-prefix (kbd "C-x w")
       iedit-toggle-key-default nil
       package-enable-at-startup nil
+      comint-input-ignoredups t
       split-window-preferred-function 'split-window-prefer-side-by-side)
 
 (setq-default fill-column 80)
