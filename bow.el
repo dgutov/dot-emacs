@@ -75,9 +75,9 @@
            (and input (lambda ()
                         (setq helm-quit nil
                               helm-pattern "")
-                        (helm-update)
-                        (let ((helm-reading-pattern t))
-                          (read-from-minibuffer "pattern: " nil helm-map))))))
+                        (helm-read-pattern-maybe
+                         any-prompt any-input any-preselect any-resume
+                         any-keymap any-default any-history)))))
       (helm :sources 'helm-c-source-imenu :buffer "*helm imenu*"
             :input input))))
 
