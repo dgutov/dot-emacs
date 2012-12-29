@@ -1,4 +1,3 @@
-(ulp-site "helm" nil 'helm-config)
 (require 'helm-match-plugin)
 (require 'helm-buffers)
 (provide 'helm-bookmark) ; never used that
@@ -8,6 +7,7 @@
   '((name . "Project Files")
     (candidates . helm-project-files-candidates)
     (candidate-transformer . helm-project-files-transformer)
+    (no-delay-on-input)
     (type . file)))
 
 (defvar not-in-project-p nil)
@@ -65,21 +65,6 @@
   (interactive)
   (helm '(helm-nonproject-buffers
           helm-nonproject-recentf)))
-
-;;;###autoload
-(defun helm-imenu-thingatpt ()
-  (interactive)
-  (require 'helm-imenu)
-  (let ((input (thing-at-point 'symbol)))
-    (let ((helm-quit-if-no-candidate
-           (and input (lambda ()
-                        (setq helm-quit nil
-                              helm-pattern "")
-                        (helm-read-pattern-maybe
-                         any-prompt any-input any-preselect any-resume
-                         any-keymap any-default any-history)))))
-      (helm :sources 'helm-c-source-imenu :buffer "*helm imenu*"
-            :input input))))
 
 (defun helm-etags-init-with-syntax ()
   (let ((table (syntax-table)))

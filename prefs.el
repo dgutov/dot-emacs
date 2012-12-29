@@ -13,11 +13,12 @@
       auto-save-default nil
       auto-save-list-file-prefix nil
       initial-scratch-message nil
+      report-emacs-bug-no-explanations t
       shift-select-mode t
       auto-fill-mode nil
       default-major-mode 'text-mode
       initial-major-mode 'emacs-lisp-mode
-      scroll-conservatively 101
+      scroll-conservatively 5
       scroll-preserve-screen-position t
       truncate-lines t
       kill-whole-line t
@@ -35,7 +36,7 @@
       cua-enable-cua-keys nil
       org-replace-disputed-keys t
       helm-input-idle-delay 0.2
-      helm-samewindow t
+      helm-split-window-default-side 'same
       css-indent-offset 2
       flyspell-auto-correct-binding [(control ?\')]
       flymake-start-syntax-check-on-find-file nil
@@ -73,6 +74,7 @@
       iedit-toggle-key-default nil
       package-enable-at-startup nil
       comint-input-ignoredups t
+      iflipb-permissive-flip-back t
       split-window-preferred-function 'split-window-prefer-side-by-side)
 
 (setq-default fill-column 80)

@@ -1,7 +1,6 @@
 (update-load-path "~/emacs-hs" t)
 (ulp-site "js2-mode" t)
-
-(require 'mmm)
+(ulp-site "rspec-mode" t)
 
 (add-lambda 'c-mode-hook
   (setq-local c-basic-offset 2))
@@ -16,25 +15,6 @@
 
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map (kbd "C-c h") 'haskell-hoogle))
-
-(setq *jdh-javadocs*
-      (mapcar (lambda (url) `(,url nil t t))
-              '("http://java.sun.com/javase/6/docs/api/"
-                "http://tomcat.apache.org/tomcat-5.5-doc/servletapi/"
-                "http://commons.apache.org/codec/api-release/"
-                "http://commons.apache.org/io/api-release/"
-                "http://commons.apache.org/lang/api-release/")))
-
-(defun javadocs-refresh (&optional force)
-  (interactive "p")
-  (if (or force
-          (not (file-exists-p javadoc-help-cache-dir)))
-      (mapc (lambda (javadoc)
-              (jdh-refresh-url (car javadoc)))
-            *jdh-javadocs*)))
-
-(eval-after-load 'javadoc-help
-  '(javadocs-refresh))
 
 (add-lambda 'js2-mode-hook
   (setq webjump-api-sites '(("jQuery" . "http://api.jquery.com/"))))
@@ -90,7 +70,6 @@
             (lambda () (autopair-mode -1))))
 
 (add-hook 'ruby-mode-hook 'ruby-electric-mode)
-(add-hook 'ruby-mode-hook 'ruby-tools-mode)
 (add-hook 'ruby-mode-hook 'robe-mode)
 
 (defadvice* check-last-command around (ruby-electric-space-can-be-expanded-p
@@ -153,5 +132,8 @@
   '(progn
      (remf ruby-deep-indent-paren ?\()
      (rvm-use-default)))
+
+(eval-after-load 'rspec-mode
+  '(rspec-install-snippets))
 
 (provide 'progmodes)

@@ -1,9 +1,9 @@
 (require 'misc)
-(require 'iflipb)
 (ulp-site "transpose-frame" nil t)
 (require 'winring)
 (require 'dired)
 (require 'hippie)
+(ulp-site "helm" nil 'helm-config)
 
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
@@ -24,7 +24,6 @@
 (global-set-key (kbd "<C-right>") 'forward-word)
 (global-set-key (kbd "<C-up>") 'backward-sentence)
 (global-set-key (kbd "<C-down>") 'forward-sentence)
-(global-set-key (kbd "M-l") 'move-to-window-line-top-bottom)
 (global-set-key (kbd "<M-S-backspace>") 'backward-kill-sexp)
 (global-set-key (kbd "<M-S-delete>") 'kill-sexp)
 (global-set-key (kbd "<C-delete>") 'kill-word-dwim)
@@ -36,7 +35,7 @@
 (global-set-key (kbd "C-x C-;") 'iedit-mode)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
-(global-set-key (kbd "C-/") 'auto-complete)
+(global-set-key (kbd "C-/") 'company-complete)
 (global-set-key (kbd "M-?") 'hippie-expand-undo)
 (global-set-key (kbd "C-c s") 'eproject-grep)
 (global-set-key (kbd "C-h j") 'javadoc-lookup)
@@ -65,9 +64,10 @@
 
 (eval-after-load 'starter-kit-bindings-autoloads
   '(progn
-     (global-set-key (kbd "C-x C-i") 'helm-imenu-thingatpt)
+     (global-set-key (kbd "C-x C-i") 'helm-imenu)
      (global-set-key (kbd "C-c f") 'iy-go-to-char)
      (global-set-key (kbd "C-c F") 'iy-go-to-char-backward)
+     (global-set-key (kbd "M-Z") 'zap-up-to-char)
      (global-change-key (kbd "C-x <up>") 'windmove-up)
      (global-set-key (kbd "C-x <C-up>") 'windmove-up)
      (global-change-key (kbd "C-x <down>") 'windmove-down)
@@ -111,10 +111,14 @@
      (define-key undo-tree-map (kbd "C-S-z") 'undo-tree-redo)
      (define-key undo-tree-map (kbd "C-/") nil)))
 
-(eval-after-load 'ruby-tools
+(eval-after-load 'company
   '(progn
-     (define-key ruby-tools-mode-map (kbd "C-S-l") 'ruby-tools-clear-string)
-     (define-key ruby-tools-mode-map (kbd "C-;") nil)))
+     (define-key company-active-map (kbd "C-d") 'company-show-doc-buffer)
+     (define-key company-active-map (kbd "C-o") 'ignore)
+     (define-key company-active-map (kbd "C-n") 'company-select-next)
+     (define-key company-active-map (kbd "C-p") 'company-select-previous)
+     (define-key company-active-map (kbd "C-/") 'company-select-next)
+     (define-key company-active-map (kbd "C-?") 'company-select-previous)))
 
 (add-hook 'eshell-mode-hook
           (lambda ()

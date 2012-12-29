@@ -4,81 +4,55 @@
 (ulp-site "diff-hl" t)
 (ulp-site "smartrep.el")
 (ulp-site "robe" t)
-(update-load-path "~/ecb-snap")
+(ulp-site "company")
 
 (require 'eproject-extras)
+(require 'company)
 
-(define-project-type make (generic) (look-for "Makefile"))
-(define-project-type rake (generic) (look-for "Rakefile"))
-(define-project-type lein (generic) (look-for "project.clj"))
-(define-project-type gae (generic) (look-for "app.yaml"))
-(define-project-type ant (generic) (look-for "build.xml"))
-(define-project-type haskell (generic) (look-for "Setup.hs"))
 (define-project-type emacs (generic) (look-for "init.el")
   :irrelevant-files ("/elpa/" "/url/cookies$" "tramp$" "/server/" "history$"
                      "^custom.el$" "^places$" "/backups/" "/site-lisp/.*/"))
 
-(add-lambda 'scons-project-file-visit-hook
-  (setq-local compile-command (format "cd %s && scons" (eproject-root))))
-
-(eval-after-load 'auto-complete-config
+(eval-after-load 'company
   '(progn
-     (add-to-list 'ac-dictionary-directories (get-vc-dir "auto-complete/dict"))
-     (ac-config-default)
-     (setq ac-quick-help-delay 0.2
-           ac-use-comphist nil
-           ac-quick-help-prefer-x t
-           ac-auto-start nil)))
+     (set-face-attribute 'company-tooltip nil
+                         :background "cornsilk")
+     (set-face-attribute 'company-tooltip-common nil
+                         :foreground "darkred")
+     (set-face-attribute 'company-tooltip-common-selection nil
+                         :foreground "darkred")
+     (set-face-attribute 'company-tooltip-selection nil
+                         :background "light blue")))
 
-(eval-after-load 'pos-tip
-  '(progn
-     (require 'popup)
-     (set-face-attribute 'popup-tip-face nil
-                         :background pos-tip-background-color)))
+(setq company-begin-commands '(self-insert-command)
+      company-backends '(company-elisp company-robe company-css company-semantic
+                         (company-etags company-dabbrev-code company-keywords)
+                         company-files company-dabbrev))
 
-(eval-after-load 'dropdown-list
-  '(progn
-     (require 'pos-tip)
-     (put 'dropdown-list-face 'face-alias 'popup-menu-face)
-     (put 'dropdown-list-selection-face 'face-alias 'popup-menu-selection-face)))
+(add-lambda 'minibuffer-setup-hook
+  (set (make-local-variable 'company-backends) nil))
 
 (eval-after-load 'yasnippet
-  '(setq yas-snippet-dirs
-         (cons (get-site-dir "js-yasnippets")
-               (cl-delete-if-not (lambda (dir) (file-directory-p dir))
-                                 yas-snippet-dirs))))
+  '(progn
+     (setq yas-snippet-dirs
+           (cons (get-site-dir "js-yasnippets")
+                 (delete-if-not (lambda (dir) (file-directory-p dir))
+                                   yas-snippet-dirs)))
+     (let ((color (face-attribute 'region :background)))
+       (defface yas-field-highlight-box
+         `((t :box (:line-width -1 :color ,color)))
+         "Box the color of region."))
+     (put 'yas-field-highlight-face 'face-alias 'yas-field-highlight-box)))
 
 (add-lambda 'haskell-mode-hook
   (setq-local ac-sources '(ac-source-ghc-mod
                            ac-source-words-in-same-mode-buffers)))
-
-(add-lambda 'auto-complete-mode-hook
-  (setq completion-at-point-functions '((lambda () #'auto-complete))))
 
 (eval-after-load '.emacs-loaddefs
   '(progn
      (push 'robe-jump-to point-stack-advised-functions)
      (push 'robe-jump-to-module point-stack-advised-functions)
      (point-stack-setup-advices)))
-
-(defun ecb-add-project-to-sources (&optional root)
-  (let ((root (or root eproject-root)))
-    (ecb-add-source-path root
-                         (car (last (split-string root "/" t)))
-                         t)))
-
-(defun ecb-hook-eproject ()
-  (let ((known-paths (mapcar 'car (ecb-normed-source-paths))))
-    (dolist (root (eproject--known-project-roots))
-      (unless (member (directory-file-name root) known-paths)
-        (ecb-add-project-to-sources root))))
-  (add-hook 'eproject-first-buffer-hook 'ecb-add-project-to-sources))
-
-(defun ecb-unhook-eproject ()
-  (remove-hook 'eproject-first-buffer-hook 'add-project-to-ecb-sources))
-
-(add-hook 'ecb-before-activate-hook 'ecb-hook-eproject)
-(add-hook 'ecb-deactivate-hook 'ecb-unhook-eproject)
 
 (eval-after-load 'ido-ubiquitous
   '(ido-ubiquitous-disable-in magit-read-rev))
@@ -99,5 +73,18 @@
 (font-lock-add-keywords
  'grep-mode '(("^\n\\(grep .*$\\)"
                (1 (progn (fold-grep-command) 'bold)))))
+
+(defun compile-scroll-eob (buffer _status)
+  (let ((win (get-buffer-window buffer))
+        (current (selected-window)))
+    (when win
+      (select-window win)
+      (with-current-buffer buffer
+        (when (> (line-number-at-pos (point-max)) (window-height))
+          (goto-char (point-max))
+          (recenter (window-height))))
+      (select-window current))))
+
+(add-to-list 'compilation-finish-functions 'compile-scroll-eob)
 
 (provide 'devenv)

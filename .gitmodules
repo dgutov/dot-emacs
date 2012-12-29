@@ -34,3 +34,9 @@
 [submodule "site-lisp/robe"]
 	path = site-lisp/robe
 	url = git@github.com:dgutov/robe.git
+[submodule "site-lisp/company"]
+	path = site-lisp/company
+	url = git@github.com:dgutov/company.git
+[submodule "site-lisp/rspec-mode"]
+	path = site-lisp/rspec-mode
+	url = git@github.com:dgutov/rspec-mode.git
