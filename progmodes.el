@@ -57,8 +57,6 @@
        (DELETE 2)
        (ANY 2))))
 
-(eval-after-load 'scheme '(require 'quack))
-
 (add-auto-mode 'js2-mode "\\.js\\'")
 (add-auto-mode 'ruby-mode "\\.rake\\'" "\\.gemspec\\'" "\\.ru\\'" "\\.prawn\\'"
                "Rakefile\\'" "Gemfile\\'" "Capfile\\'" "Guardfile\\'")

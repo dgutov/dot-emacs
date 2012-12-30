@@ -42,11 +42,6 @@
       flymake-start-syntax-check-on-find-file nil
       eproject-completing-read-function 'eproject--ido-completing-read
       ido-max-directory-size nil
-      quack-remap-find-file-bindings-p nil
-      ecb-windows-width 36
-      ecb-fix-window-size 'auto
-      ecb-layout-name "left15"
-      ecb-tip-of-the-day nil
       yas-prompt-functions '(yas/dropdown-prompt)
       yas-expand-only-for-last-commands '(self-insert-command undo)
       yas-verbosity 1
