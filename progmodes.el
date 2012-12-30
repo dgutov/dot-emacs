@@ -129,7 +129,8 @@
 (eval-after-load 'ruby-mode
   '(progn
      (remf ruby-deep-indent-paren ?\()
-     (rvm-use-default)))
+     (when (fboundp 'rvm-use-default)
+       (rvm-use-default))))
 
 (eval-after-load 'rspec-mode
   '(rspec-install-snippets))
