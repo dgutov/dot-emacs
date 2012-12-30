@@ -7,9 +7,6 @@
 [submodule "site-lisp/ethan-wspace"]
 	path = site-lisp/ethan-wspace
 	url = git://github.com/glasserc/ethan-wspace.git
-[submodule "site-lisp/js-yasnippets"]
-	path = site-lisp/js-yasnippets
-	url = git@github.com:dgutov/js-yasnippets.git
 [submodule "site-lisp/js2-mode"]
 	path = site-lisp/js2-mode
 	url = git@github.com:mooz/js2-mode.git
@@ -40,3 +37,6 @@
 [submodule "site-lisp/rspec-mode"]
 	path = site-lisp/rspec-mode
 	url = git@github.com:dgutov/rspec-mode.git
+[submodule "site-lisp/js-snippets"]
+	path = site-lisp/js-snippets
+	url = git@github.com:dgutov/js-snippets.git

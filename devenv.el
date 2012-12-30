@@ -35,7 +35,7 @@
 (eval-after-load 'yasnippet
   '(progn
      (setq yas-snippet-dirs
-           (cons (get-site-dir "js-yasnippets")
+           (cons (get-site-dir "js-snippets")
                  (delete-if-not (lambda (dir) (file-directory-p dir))
                                    yas-snippet-dirs)))
      (let ((color (face-attribute 'region :background)))
