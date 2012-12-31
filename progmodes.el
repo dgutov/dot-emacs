@@ -21,7 +21,9 @@
 
 (add-lambda 'ruby-mode-hook
   (setq webjump-api-sites '(("Rails" . "http://apidock.com/rails/")
-                            ("Ruby"  . "http://apidock.com/ruby/"))))
+                            ("Ruby"  . "http://apidock.com/ruby/")))
+  (when (and (fboundp 'rvm-use-default) (not (featurep 'rvm))) ; just once
+    (rvm-use-default)))
 
 (add-hook 'js2-mode-hook 'esk-prog-mode-hook)
 (add-hook 'coffee-mode-hook 'flymake-coffee-load)
@@ -127,10 +129,7 @@
                    flymake-new-err-info)))
 
 (eval-after-load 'ruby-mode
-  '(progn
-     (remf ruby-deep-indent-paren ?\()
-     (when (fboundp 'rvm-use-default)
-       (rvm-use-default))))
+  '(remf ruby-deep-indent-paren ?\())
 
 (eval-after-load 'rspec-mode
   '(rspec-install-snippets))

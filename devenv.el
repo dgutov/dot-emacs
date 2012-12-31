@@ -25,12 +25,15 @@
                          :background "light blue")))
 
 (setq company-begin-commands '(self-insert-command)
-      company-backends '(company-elisp company-robe company-css company-semantic
+      company-backends '(company-elisp company-robe company-css
                          (company-etags company-dabbrev-code company-keywords)
                          company-files company-dabbrev))
 
 (add-lambda 'minibuffer-setup-hook
   (set (make-local-variable 'company-backends) nil))
+
+(eval-after-load 'semantic
+  '(push 'company-semantic company-backends))
 
 (eval-after-load 'yasnippet
   '(progn
