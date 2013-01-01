@@ -65,6 +65,10 @@
 
 (define-key vc-prefix-map "d" 'vc-dir-quick)
 
+(global-set-key (kbd "C-x <up>") 'windmove-up)
+(global-set-key (kbd "C-x <down>") 'windmove-down)
+(global-set-key (kbd "C-x <left>") 'windmove-left)
+(global-set-key (kbd "C-x <right>") 'windmove-right)
 (global-set-key (kbd "C-x <C-up>") 'windmove-up)
 (global-set-key (kbd "C-x <C-down>") 'windmove-down)
 (global-set-key (kbd "C-x <C-left>") 'windmove-left)
