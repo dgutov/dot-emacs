@@ -3,6 +3,7 @@
 (require 'winring)
 (require 'dired)
 (require 'hippie)
+(require 'switch-window)
 (ulp-site "helm" nil 'helm-config)
 
 (global-set-key (kbd "M-x") 'smex)
@@ -28,6 +29,9 @@
 (global-set-key (kbd "<M-S-delete>") 'kill-sexp)
 (global-set-key (kbd "<C-delete>") 'kill-word-dwim)
 (global-set-key (kbd "<C-backspace>") 'backward-kill-word-dwim)
+(global-set-key (kbd "C-c f") 'iy-go-to-char)
+(global-set-key (kbd "C-c F") 'iy-go-to-char-backward)
+(global-set-key (kbd "M-Z") 'zap-up-to-char)
 (global-set-key (kbd "C-c =") 'align-to-equals)
 (global-set-key (kbd "C-c d") 'copy-from-above-command)
 (global-set-key (kbd "<M-S-up>") 'move-text-up)
@@ -36,13 +40,13 @@
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 (global-set-key (kbd "C-/") 'company-complete)
-(global-set-key (kbd "M-?") 'hippie-expand-undo)
 (global-set-key (kbd "C-c s") 'eproject-grep)
 (global-set-key (kbd "C-h j") 'javadoc-lookup)
 (global-set-key (kbd "C-c a") 'webjump-api)
 (global-set-key (kbd "C-;") 'helm-in-project)
 (global-set-key (kbd "C-:") 'helm-not-in-project)
 (global-set-key (kbd "M-.") 'helm-etags-select-thingatpt)
+(global-set-key (kbd "C-x C-i") 'helm-imenu)
 (global-set-key [remap describe-bindings] 'helm-descbinds)
 (global-set-key (kbd "C-M-,") 'point-stack-pop)
 (global-set-key (kbd "C-M-.") 'point-stack-forward-stack-pop)
@@ -62,24 +66,10 @@
 
 (define-key vc-prefix-map "d" 'vc-dir-quick)
 
-(eval-after-load 'starter-kit-bindings-autoloads
-  '(progn
-     (global-set-key (kbd "C-x C-i") 'helm-imenu)
-     (global-set-key (kbd "C-c f") 'iy-go-to-char)
-     (global-set-key (kbd "C-c F") 'iy-go-to-char-backward)
-     (global-set-key (kbd "M-Z") 'zap-up-to-char)
-     (global-change-key (kbd "C-x <up>") 'windmove-up)
-     (global-set-key (kbd "C-x <C-up>") 'windmove-up)
-     (global-change-key (kbd "C-x <down>") 'windmove-down)
-     (global-set-key (kbd "C-x <C-down>") 'windmove-down)
-     (global-change-key (kbd "C-x <left>") 'windmove-left)
-     (global-set-key (kbd "C-x <C-left>") 'windmove-left)
-     (global-change-key (kbd "C-x <right>") 'windmove-right)
-     (global-set-key (kbd "C-x <C-right>") 'windmove-right)
-     (require 'switch-window)))
-
-(eval-after-load 'windmove
-  '(defun windmove-default-keybindings ()))
+(global-set-key (kbd "C-x <C-up>") 'windmove-up)
+(global-set-key (kbd "C-x <C-down>") 'windmove-down)
+(global-set-key (kbd "C-x <C-left>") 'windmove-left)
+(global-set-key (kbd "C-x <C-right>") 'windmove-right)
 
 (eval-after-load 'dired
   '(progn
@@ -120,9 +110,8 @@
      (define-key company-active-map (kbd "C-/") 'company-select-next)
      (define-key company-active-map (kbd "C-?") 'company-select-previous)))
 
-(add-hook 'eshell-mode-hook
-          (lambda ()
-            (define-key eshell-mode-map [home] 'eshell-bol)))
+(add-lambda 'eshell-mode-hook
+  (define-key eshell-mode-map [home] 'eshell-bol))
 
 (reverse-input-method 'russian-computer)
 

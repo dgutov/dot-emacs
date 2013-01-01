@@ -60,8 +60,8 @@
        (ANY 2))))
 
 (add-auto-mode 'js2-mode "\\.js\\'")
-(add-auto-mode 'ruby-mode "\\.rake\\'" "\\.gemspec\\'" "\\.ru\\'" "\\.prawn\\'"
-               "Rakefile\\'" "Gemfile\\'" "Capfile\\'" "Guardfile\\'")
+(add-auto-mode 'ruby-mode "\\.rake\\'" "\\.ru\\'" "\\.prawn\\'"
+               "Gemfile\\'" "Capfile\\'" "Guardfile\\'")
 (add-auto-mode 'markdown-mode "\\.md\\'")
 (add-auto-mode 'yaml-mode "\\.yml\\'")
 

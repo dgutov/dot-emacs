@@ -32,8 +32,8 @@
 (add-lambda 'minibuffer-setup-hook
   (set (make-local-variable 'company-backends) nil))
 
-(eval-after-load 'semantic
-  '(push 'company-semantic company-backends))
+;; (eval-after-load 'semantic
+;;   '(push 'company-semantic company-backends))
 
 (eval-after-load 'yasnippet
   '(progn

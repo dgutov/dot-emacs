@@ -3,7 +3,8 @@
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'scroll-left 'disabled nil)
 
-(setq autoload-file (expand-file-name "~/.emacs-loaddefs.el")
+(setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups")))
+      autoload-file (expand-file-name "~/.emacs-loaddefs.el")
       locals-file (expand-file-name "~/.emacs-locals.el")
       helm-c-adaptive-history-file "~/.helm-c-adaptive-history"
       indent-tabs-mode nil
@@ -53,7 +54,6 @@
       js2-include-rhino-externs nil
       coffee-tab-width 2
       coffee-cleanup-whitespace nil
-      whitespace-style '(face lines-tail)
       autopair-blink nil
       ruby-electric-expand-delimiters-list nil
       gnus-select-method '(nntp "news.gmane.org")

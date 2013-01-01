@@ -1,3 +1,7 @@
+(setq frame-title-format '(buffer-file-name "%f" ("%b")))
+(dolist (feature '(menu tool scroll))
+  (funcall (intern (format "%s-bar-mode" feature)) -1))
+
 (load (setq custom-file "~/.custom.el") 'noerror)
 
 (if (string-match "mingw-nt" system-configuration)
@@ -12,7 +16,7 @@
   (condition-case err (require package)
     ((debug error) (message "%s" (error-message-string err)))))
 
-(mapc #'safe-require '(defuns prefs keys progmodes mmm devenv))
+(mapc #'safe-require '(defuns prefs keys progmodes mmm devenv esk))
 
 (package-initialize)
 
@@ -26,7 +30,10 @@
 (autopair-global-mode)
 (winring-initialize)
 (global-auto-revert-mode)
+(show-paren-mode)
+(ido-mode)
 (ido-everywhere)
+(ido-ubiquitous)
 (global-ethan-wspace-mode)
 (yas-global-mode)
 (savehist-mode)
