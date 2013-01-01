@@ -3,7 +3,6 @@
 (require 'winring)
 (require 'dired)
 (require 'hippie)
-(require 'switch-window)
 (ulp-site "helm" nil 'helm-config)
 
 (global-set-key (kbd "M-x") 'smex)
@@ -70,6 +69,7 @@
 (global-set-key (kbd "C-x <C-down>") 'windmove-down)
 (global-set-key (kbd "C-x <C-left>") 'windmove-left)
 (global-set-key (kbd "C-x <C-right>") 'windmove-right)
+(global-set-key (kbd "C-x o") 'switch-window)
 
 (eval-after-load 'dired
   '(progn
@@ -112,6 +112,8 @@
 
 (add-lambda 'eshell-mode-hook
   (define-key eshell-mode-map [home] 'eshell-bol))
+
+(autoload 'switch-window "switch-window")
 
 (reverse-input-method 'russian-computer)
 
