@@ -108,5 +108,7 @@
 (global-set-key (kbd "C-x O") (lambda () (interactive) (other-window -1)))
 (global-set-key (kbd "C-x C-o") (lambda () (interactive) (other-window 2)))
 (global-set-key (kbd "C-c x") 'execute-extended-command)
+(global-set-key (kbd "C-x m") 'eshell)
+(global-set-key (kbd "C-x M") (lambda () (interactive) (eshell t)))
 
 (provide 'esk)
