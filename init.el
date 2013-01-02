@@ -32,7 +32,6 @@
 (global-auto-revert-mode)
 (show-paren-mode)
 (ido-mode)
-(ido-everywhere)
 (ido-ubiquitous)
 (global-ethan-wspace-mode)
 (yas-global-mode)
