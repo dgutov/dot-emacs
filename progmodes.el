@@ -25,7 +25,6 @@
   (when (and (fboundp 'rvm-use-default) (not (featurep 'rvm))) ; just once
     (rvm-use-default)))
 
-(add-hook 'js2-mode-hook 'esk-prog-mode-hook)
 (add-hook 'coffee-mode-hook 'flymake-coffee-load)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
