@@ -72,12 +72,12 @@
 (add-hook 'prog-mode-hook 'esk-pretty-lambdas)
 (add-hook 'prog-mode-hook 'esk-add-watchwords)
 
-(eval-after-load 'js
-  '(font-lock-add-keywords 'js-mode
-                           `(("\\(function *\\)("
-                              (0 (progn (compose-region (match-beginning 1)
-                                                        (match-end 1) "\u0192")
-                                        nil))))))
+(dolist (mode '(js js2))
+  (font-lock-add-keywords (intern (format "%s-mode" mode))
+                          `(("\\(function\\) *("
+                             (0 (progn (compose-region (match-beginning 1)
+                                                       (match-end 1) "\u0192")
+                                       nil))))))
 
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'emacs-lisp-mode-hook 'esk-remove-elc-on-save)

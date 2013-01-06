@@ -28,12 +28,6 @@
 (add-hook 'coffee-mode-hook 'flymake-coffee-load)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
-(font-lock-add-keywords
- 'js2-mode `(("\\(function *\\)("
-              (0 (progn (compose-region (match-beginning 1)
-                                        (match-end 1) "\u0192")
-                        nil)))))
-
 (eval-after-load 'js2-mode
   '(js2-imenu-extras-setup))
 
