@@ -5,7 +5,7 @@
       sentence-end-double-space nil
       mouse-yank-at-point t
       uniquify-buffer-name-style 'forward
-      whitespace-style '(face trailing lines-tail tabs)
+      whitespace-style '(face lines-tail tabs)
       whitespace-line-column 80
       ediff-window-setup-function 'ediff-setup-windows-plain
       diff-switches "-u")
