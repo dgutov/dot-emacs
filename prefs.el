@@ -7,7 +7,6 @@
       autoload-file (expand-file-name "~/.emacs-loaddefs.el")
       locals-file (expand-file-name "~/.emacs-locals.el")
       helm-c-adaptive-history-file "~/.helm-c-adaptive-history"
-      indent-tabs-mode nil
       make-backup-files t
       version-control t
       delete-old-versions t
@@ -72,7 +71,8 @@
       iflipb-permissive-flip-back t
       split-window-preferred-function 'split-window-prefer-side-by-side)
 
-(setq-default fill-column 80)
+(setq-default fill-column 80
+              indent-tabs-mode nil)
 
 (custom-set-variables
  '(help-at-pt-timer-delay 0.1)
