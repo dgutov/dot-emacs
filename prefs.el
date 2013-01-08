@@ -42,7 +42,7 @@
       flymake-start-syntax-check-on-find-file nil
       eproject-completing-read-function 'eproject--ido-completing-read
       ido-max-directory-size nil
-      yas-prompt-functions '(yas/dropdown-prompt)
+      yas-prompt-functions '(yas-ido-prompt)
       yas-expand-only-for-last-commands '(self-insert-command undo)
       yas-verbosity 1
       js-indent-level 2
