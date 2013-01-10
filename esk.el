@@ -19,7 +19,8 @@
       ido-use-virtual-buffers t
       ido-max-prospects 10)
 
-(setq-default imenu-auto-rescan t)
+(setq-default imenu-auto-rescan t
+              indicate-empty-lines t)
 
 (eval-after-load "ispell"
   '(when (executable-find ispell-program-name)
