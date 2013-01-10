@@ -27,6 +27,7 @@
       mouse-wheel-follow-mouse t
       compilation-window-height 17
       recentf-max-saved-items 1000
+      recentf-exclude '(file-remote-p)
       save-place-limit 1000
       read-quoted-char-radix 10
       eshell-cmpl-cycle-completions nil
