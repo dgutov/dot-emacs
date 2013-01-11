@@ -95,7 +95,7 @@
               (push 'composition font-lock-extra-managed-props))))
 
 (dolist (mode '(js2 js ruby))
-  (add-hook (intern (format "%s-mode" mode)) 'esk-paredit-nonlisp))
+  (add-hook (intern (format "%s-mode-hook" mode)) 'esk-paredit-nonlisp))
 
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'emacs-lisp-mode-hook 'esk-remove-elc-on-save)
