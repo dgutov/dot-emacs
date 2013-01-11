@@ -39,3 +39,4 @@
 (global-diff-hl-mode)
 (global-undo-tree-mode)
 (global-company-mode)
+(global-rinari-mode)

@@ -97,7 +97,6 @@
   '(setq package-archives
          (append package-archives
                  '(("marmalade" . "http://marmalade-repo.org/packages/")
-                   ("elpa"      . "http://tromey.com/elpa/")
                    ("melpa"     . "http://melpa.milkbox.net/packages/")))))
 
 (defadvice* hide-from-recentf around (ido-save-history update-autoloads)
