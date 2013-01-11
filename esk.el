@@ -88,7 +88,11 @@
                           `(("\\(function\\) *("
                              (0 (progn (compose-region (match-beginning 1)
                                                        (match-end 1) "\u0192")
-                                       nil))))))
+                                       nil)))))
+  (add-hook (intern (format "%s-mode-hook" mode))
+            (lambda ()
+              (make-local-variable 'font-lock-extra-managed-props)
+              (push 'composition font-lock-extra-managed-props))))
 
 (dolist (mode '(js2 js ruby))
   (add-hook (intern (format "%s-mode" mode)) 'esk-paredit-nonlisp))
