@@ -1,5 +1,8 @@
 ;;; Pillaged from emacs-starter-kit.
 
+(tooltip-mode -1)
+(blink-cursor-mode -1)
+
 (setq visible-bell t
       inhibit-startup-message t
       sentence-end-double-space nil
