@@ -70,10 +70,14 @@
       package-enable-at-startup nil
       comint-input-ignoredups t
       iflipb-permissive-flip-back t
-      split-window-preferred-function 'split-window-prefer-side-by-side)
+      split-window-preferred-function 'split-window-prefer-side-by-side
+      dired-dwim-target t
+      )
 
 (setq-default fill-column 80
-              indent-tabs-mode nil)
+              indent-tabs-mode nil
+              dired-listing-switches "-AlGhv"
+              dired-recursive-copies 'always)
 
 (custom-set-variables
  '(help-at-pt-timer-delay 0.1)
