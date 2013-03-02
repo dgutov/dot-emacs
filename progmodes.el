@@ -127,4 +127,7 @@
 (eval-after-load 'rspec-mode
   '(rspec-install-snippets))
 
+(add-hook 'prog-mode-hook 'whitespace-mode)
+(add-hook 'html-mode-hook 'whitespace-mode)
+
 (provide 'progmodes)
