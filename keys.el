@@ -69,10 +69,9 @@
 (global-set-key (kbd "C-x <down>") 'windmove-down)
 (global-set-key (kbd "C-x <left>") 'windmove-left)
 (global-set-key (kbd "C-x <right>") 'windmove-right)
-(global-set-key (kbd "C-x <C-up>") 'windmove-up)
-(global-set-key (kbd "C-x <C-down>") 'windmove-down)
-(global-set-key (kbd "C-x <C-left>") 'windmove-left)
-(global-set-key (kbd "C-x <C-right>") 'windmove-right)
+(windmove-default-keybindings 'meta)
+(global-set-key (kbd "M-]") 'other-window)
+(global-set-key (kbd "M-[") (lambda () (interactive) (other-window -1)))
 (global-set-key (kbd "C-x o") 'switch-window)
 
 (eval-after-load 'dired
@@ -86,8 +85,9 @@
      (define-key paredit-mode-map (kbd "<C-right>") nil)
      (define-key paredit-mode-map (kbd "M-s") nil)
      (define-key paredit-mode-map (kbd "M-S") nil)
-     (define-key paredit-mode-map (kbd "<M-left>") 'paredit-forward-barf-sexp)
-     (define-key paredit-mode-map (kbd "<M-right>") 'paredit-forward-slurp-sexp)
+     (define-key paredit-mode-map (kbd "<M-up>") nil)
+     (define-key paredit-mode-map (kbd "<M-down>") nil)
+     (define-key paredit-mode-map (kbd "M-i") 'paredit-splice-sexp)
      (define-key paredit-mode-map (kbd "<M-backspace>") 'paredit-backward-kill-word)
      (define-key paredit-mode-map (kbd "<M-DEL>") 'paredit-forward-kill-word)))
 
