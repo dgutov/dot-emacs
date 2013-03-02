@@ -94,8 +94,16 @@
               (make-local-variable 'font-lock-extra-managed-props)
               (push 'composition font-lock-extra-managed-props))))
 
-(dolist (mode '(js2 js ruby))
-  (add-hook (intern (format "%s-mode-hook" mode)) 'esk-paredit-nonlisp))
+(dolist (mode '(js2 js))
+  (add-hook (intern (format "%s-mode-hook" mode)) 'esk-paredit-nonlisp-no-mmm))
+
+(defun esk-paredit-nonlisp-no-mmm ()
+  (unless (and (boundp 'mmm-mode)
+               (let ((base (buffer-base-buffer (current-buffer))))
+                 (and base
+                      (with-current-buffer base
+                        mmm-mode))))
+    (esk-paredit-nonlisp)))
 
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'emacs-lisp-mode-hook 'esk-remove-elc-on-save)
