@@ -98,7 +98,7 @@
       (back-to-indentation)
       (save-excursion
         (let ((state (syntax-ppss)))
-          (unless (zerop (car state))
+          (when (plusp (car state))
             (goto-char (cadr state))
             (setq c (char-after))
             (setq paren-column (current-column))
