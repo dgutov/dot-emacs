@@ -4,10 +4,9 @@
 (ulp-site "diff-hl" t)
 (ulp-site "smartrep.el")
 (ulp-site "robe" t)
-(ulp-site "company")
+(ulp-site "company" t)
 
 (require 'eproject-extras)
-(require 'company)
 
 (define-project-type emacs (generic) (look-for "init.el")
   :irrelevant-files ("/elpa/" "/url/cookies$" "tramp$" "/server/" "history$"
@@ -24,16 +23,10 @@
      (set-face-attribute 'company-tooltip-selection nil
                          :background "light blue")))
 
-(setq company-begin-commands '(self-insert-command)
-      company-backends '(company-elisp company-robe company-css
-                         (company-etags company-dabbrev-code company-keywords)
-                         company-files company-dabbrev))
+(setq company-begin-commands '(self-insert-command))
 
-(add-lambda 'minibuffer-setup-hook
-  (set (make-local-variable 'company-backends) nil))
-
-;; (eval-after-load 'semantic
-;;   '(push 'company-semantic company-backends))
+(eval-after-load 'company
+  '(push 'company-robe company-backends))
 
 (eval-after-load 'yasnippet
   '(progn
