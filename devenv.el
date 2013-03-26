@@ -12,17 +12,6 @@
   :irrelevant-files ("/elpa/" "/url/cookies$" "tramp$" "/server/" "history$"
                      "^custom.el$" "^places$" "/backups/" "/site-lisp/.*/"))
 
-(eval-after-load 'company
-  '(progn
-     (set-face-attribute 'company-tooltip nil
-                         :background "cornsilk")
-     (set-face-attribute 'company-tooltip-common nil
-                         :foreground "darkred")
-     (set-face-attribute 'company-tooltip-common-selection nil
-                         :foreground "darkred")
-     (set-face-attribute 'company-tooltip-selection nil
-                         :background "light blue")))
-
 (setq company-begin-commands '(self-insert-command))
 
 (eval-after-load 'company
