@@ -122,7 +122,9 @@
                    flymake-new-err-info)))
 
 (eval-after-load 'ruby-mode
-  '(remf ruby-deep-indent-paren ?\())
+  '(progn
+     (remf ruby-deep-indent-paren ?\()
+     (define-key ruby-mode-map (kbd "C-c :") 'ruby-toggle-hash-syntax)))
 
 (eval-after-load 'rspec-mode
   '(rspec-install-snippets))

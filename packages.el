@@ -11,7 +11,7 @@
     expand-region flymake-coffee flymake-ruby helm-descbinds ido-ubiquitous
     iflipb inf-ruby iy-go-to-char markdown-mode move-text multiple-cursors
     paredit rainbow-mode ruby-electric rinari haml-mode sass-mode smex
-    switch-window typing undo-tree wgrep win-switch
+    switch-window typing undo-tree wgrep win-switch ruby-hash-syntax
     yaml-mode yasnippet))
 
 (dolist (p packages-list)
