@@ -74,8 +74,7 @@
       dired-dwim-target t
       )
 
-(setq-default fill-column 80
-              indent-tabs-mode nil
+(setq-default indent-tabs-mode nil
               dired-listing-switches "-AlGhv"
               dired-recursive-copies 'always)
 
