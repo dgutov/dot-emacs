@@ -109,10 +109,12 @@
   '(progn
      (define-key company-active-map (kbd "C-d") 'company-show-doc-buffer)
      (define-key company-active-map (kbd "C-o") 'ignore)
-     (define-key company-active-map (kbd "C-n") 'company-select-next)
-     (define-key company-active-map (kbd "C-p") 'company-select-previous)
-     (define-key company-active-map (kbd "C-/") 'company-select-next)
-     (define-key company-active-map (kbd "C-?") 'company-select-previous)))
+     (define-key company-active-map (kbd "C-/") 'company-complete-common)))
+
+(eval-after-load 'gnus-sum
+  '(progn
+     (define-key gnus-summary-mode-map [(meta down)] nil)
+     (define-key gnus-summary-mode-map [(meta up)] nil)))
 
 (add-lambda 'eshell-mode-hook
   (define-key eshell-mode-map [home] 'eshell-bol))
