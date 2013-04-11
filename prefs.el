@@ -2,6 +2,7 @@
 (put 'upcase-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'scroll-left 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
 
 (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups")))
       autoload-file (expand-file-name "~/.emacs-loaddefs.el")
