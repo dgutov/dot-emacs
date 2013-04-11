@@ -126,8 +126,9 @@
      (remf ruby-deep-indent-paren ?\()
      (define-key ruby-mode-map (kbd "C-c :") 'ruby-toggle-hash-syntax)))
 
-(eval-after-load 'rspec-mode
-  '(rspec-install-snippets))
+(when (string-lessp "24.3.50" emacs-version)
+  (eval-after-load 'rspec-mode
+    '(rspec-install-snippets)))
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'html-mode-hook 'whitespace-mode)
