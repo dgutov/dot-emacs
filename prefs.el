@@ -72,6 +72,7 @@
       iflipb-permissive-flip-back t
       split-window-preferred-function 'split-window-prefer-side-by-side
       dired-dwim-target t
+      occur-read-regexp-defaults-function 'find-tag-default-as-regexp
       )
 
 (setq-default indent-tabs-mode nil
