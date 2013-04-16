@@ -35,8 +35,10 @@
 (global-set-key (kbd "C-c d") 'copy-from-above-command)
 (global-set-key (kbd "<M-S-up>") 'move-text-up)
 (global-set-key (kbd "<M-S-down>") 'move-text-down)
-(global-set-key (kbd "C-x C-;") 'iedit-mode)
 (global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C-.") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-,") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-x C-;") 'mc/mark-all-like-this-dwim)
 
 (global-set-key (kbd "C-/") 'company-complete)
 (global-set-key (kbd "C-c s") 'eproject-grep)
