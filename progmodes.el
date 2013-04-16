@@ -130,4 +130,9 @@
 (add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'html-mode-hook 'whitespace-mode)
 
+(dolist (mode '(emacs-lisp clojure js2 js))
+  (add-hook (intern (format "%s-mode-hook" mode))
+            (lambda ()
+              (add-hook 'after-save-hook 'check-parens))))
+
 (provide 'progmodes)
