@@ -249,4 +249,10 @@ Returns the deleted character count."
                                      split-height-threshold)))
     (split-window-sensibly window)))
 
+(defun isearch-yank-symbol-at-point ()
+  "Pull the symbol at point into search string."
+  (interactive)
+  (goto-char (beginning-of-thing 'symbol))
+  (isearch-yank-internal (lambda () (end-of-thing 'symbol))))
+
 (provide 'defuns)

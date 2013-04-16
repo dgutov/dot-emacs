@@ -74,6 +74,8 @@
 (global-set-key (kbd "M-[") (lambda () (interactive) (other-window -1)))
 (global-set-key (kbd "C-x o") 'switch-window)
 
+(define-key isearch-mode-map (kbd "M-w") 'isearch-yank-symbol-at-point)
+
 (eval-after-load 'dired
   '(progn
      (define-key dired-mode-map (kbd "RET") 'dired-find-file-same-buffer)
