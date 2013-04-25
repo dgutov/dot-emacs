@@ -1,8 +1,5 @@
 (add-to-list 'load-path user-emacs-directory)
 
-(require 'defuns)
-(require 'prefs)
-
 (package-initialize)
 (package-refresh-contents)
 
