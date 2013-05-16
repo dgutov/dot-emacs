@@ -4,7 +4,7 @@
 
 (load (setq custom-file "~/.custom.el") 'noerror)
 
-(if (string-match "mingw-nt" system-configuration)
+(if (string-match "mingw" system-configuration)
     (set-face-attribute 'default nil :height 115 :family "Consolas")
   (set-face-attribute 'default nil :height 105 :family "Source Code Pro")
   (set-fontset-font "fontset-default" 'cyrillic "Dejavu Sans Mono 10"))
