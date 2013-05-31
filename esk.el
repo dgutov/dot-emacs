@@ -3,6 +3,8 @@
 (tooltip-mode -1)
 (blink-cursor-mode -1)
 
+(require 'uniquify)
+
 (setq visible-bell t
       inhibit-startup-message t
       sentence-end-double-space nil
