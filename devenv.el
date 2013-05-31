@@ -15,7 +15,7 @@
 (setq company-begin-commands '(self-insert-command))
 
 (eval-after-load 'company
-  '(push 'company-robe company-backends))
+  '(pushnew 'company-robe company-backends))
 
 (eval-after-load 'yasnippet
   '(progn
@@ -71,5 +71,7 @@
       (select-window current))))
 
 (add-to-list 'compilation-finish-functions 'compile-scroll-eob)
+
+(setenv "PAGER" (executable-find "cat"))
 
 (provide 'devenv)
