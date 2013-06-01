@@ -74,4 +74,7 @@
 
 (setenv "PAGER" (executable-find "cat"))
 
+(put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
+(put 'font-lock-regexp-grouping-construct 'face-alias 'font-lock-builtin-face)
+
 (provide 'devenv)
