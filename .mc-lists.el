@@ -8,10 +8,12 @@
         backward-kill-word-dwim
         paredit-backward
         paredit-forward
+        paredit-forward-delete
         paredit-splice-sexp
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        eval-buffer
         smex
         ))
