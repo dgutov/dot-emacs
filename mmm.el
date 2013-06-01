@@ -4,14 +4,15 @@
 
 (eval-after-load "mmm-vars"
   `(progn
-     (mmm-add-mode-ext-class 'html-erb-mode "\\.html\\.erb\\'" 'erb)
+     (mmm-add-mode-ext-class 'html-erb-mode "\\.erb\\'" 'erb)
      (mmm-add-mode-ext-class 'html-erb-mode "\\.jst\\.ejs\\'" 'ejs)
      (mmm-add-mode-ext-class 'html-erb-mode nil 'html-js)
      (mmm-add-mode-ext-class 'html-erb-mode nil 'html-css)
      (set-face-attribute 'mmm-code-submode-face nil :background "ghost white")
      (set-face-attribute 'mmm-output-submode-face nil :background "honeydew")))
 
-(add-auto-mode 'html-erb-mode "\\.html\\.erb\\'" "\\.jst\\.ejs\\'")
+(add-auto-mode 'html-erb-mode "\\.html\\.erb\\'" "/[^.]+\\.erb\\'"
+               "\\.jst\\.ejs\\'")
 
 (setq mmm-global-mode 'auto
       mmm-submode-decoration-level 2
