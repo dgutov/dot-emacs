@@ -136,6 +136,6 @@
 (dolist (mode '(emacs-lisp clojure js2 js))
   (add-hook (intern (format "%s-mode-hook" mode))
             (lambda ()
-              (add-hook 'after-save-hook 'check-parens))))
+              (add-hook 'after-save-hook 'check-parens nil t))))
 
 (provide 'progmodes)
