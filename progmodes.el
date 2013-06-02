@@ -138,4 +138,7 @@
             (lambda ()
               (add-hook 'after-save-hook 'check-parens nil t))))
 
+(dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
+  (add-hook hook 'elisp-slime-nav-mode))
+
 (provide 'progmodes)
