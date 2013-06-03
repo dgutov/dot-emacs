@@ -12,7 +12,7 @@
 	url = git@github.com:mooz/js2-mode.git
 [submodule "site-lisp/mmm-mode"]
 	path = site-lisp/mmm-mode
-	url = git@github.com:dgutov/mmm-mode.git
+	url = git@github.com:purcell/mmm-mode.git
 [submodule "site-lisp/point-stack"]
 	path = site-lisp/point-stack
 	url = git@github.com:dgutov/point-stack.git
