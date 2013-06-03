@@ -33,7 +33,7 @@
 	url = git@github.com:dgutov/robe.git
 [submodule "site-lisp/company"]
 	path = site-lisp/company
-	url = git@github.com:dgutov/company.git
+	url = git@github.com:company-mode/company-mode.git
 [submodule "site-lisp/rspec-mode"]
 	path = site-lisp/rspec-mode
 	url = git@github.com:dgutov/rspec-mode.git
