@@ -29,10 +29,6 @@
          "Box the color of region."))
      (put 'yas-field-highlight-face 'face-alias 'yas-field-highlight-box)))
 
-(add-lambda 'haskell-mode-hook
-  (setq-local ac-sources '(ac-source-ghc-mod
-                           ac-source-words-in-same-mode-buffers)))
-
 (eval-after-load '.emacs-loaddefs
   '(progn
      (push 'robe-jump-to point-stack-advised-functions)
