@@ -22,6 +22,7 @@
 
 (if (file-exists-p locals-file) (load locals-file))
 (update-autoloads)
+(add-to-list 'load-path (expand-file-name ".." autoload-file))
 
 (line-number-mode)
 (column-number-mode)
