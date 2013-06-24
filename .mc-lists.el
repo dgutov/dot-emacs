@@ -9,6 +9,7 @@
         paredit-backward
         paredit-forward
         paredit-forward-delete
+        paredit-forward-kill-word
         paredit-splice-sexp
         ))
 
