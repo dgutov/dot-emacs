@@ -69,6 +69,8 @@
   (when (memq last-command '(self-insert-command undo))
     ad-do-it))
 
+(add-hook 'after-init-hook 'inf-ruby-switch-setup)
+
 (defadvice ruby-indent-line (after line-up-args activate)
   (let (indent prev-indent arg-indent)
     (save-excursion
