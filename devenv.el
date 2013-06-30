@@ -5,6 +5,7 @@
 (ulp-site "smartrep.el")
 (ulp-site "robe" t)
 (ulp-site "company" t)
+(ulp-site "company-inf-ruby")
 
 (require 'eproject-extras)
 
@@ -15,7 +16,9 @@
 (setq company-begin-commands '(self-insert-command))
 
 (eval-after-load 'company
-  '(pushnew 'company-robe company-backends))
+  '(progn
+     (pushnew 'company-robe company-backends)
+     (pushnew 'company-inf-ruby company-backends)))
 
 (eval-after-load 'yasnippet
   '(progn

@@ -40,3 +40,6 @@
 [submodule "site-lisp/js-snippets"]
 	path = site-lisp/js-snippets
 	url = git@github.com:dgutov/js-snippets.git
+[submodule "site-lisp/company-inf-ruby"]
+	path = site-lisp/company-inf-ruby
+	url = git@github.com:company-mode/company-inf-ruby.git
