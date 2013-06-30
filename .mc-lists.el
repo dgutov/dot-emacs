@@ -16,5 +16,6 @@
 (setq mc/cmds-to-run-once
       '(
         eval-buffer
+        rspec-verify
         smex
         ))
