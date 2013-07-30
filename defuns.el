@@ -1,7 +1,3 @@
-(defmacro setq-local (var value)
-  "Makes VAR buffer-local and sets its value."
-  `(set (make-local-variable ',var) ,value))
-
 (defun xor (a b)
   (if a (not b) b))
 
