@@ -124,7 +124,7 @@
 
 (eval-after-load 'ruby-mode
   '(progn
-     (remf ruby-deep-indent-paren ?\()
+     (setq ruby-deep-indent-paren (delete ?\( ruby-deep-indent-paren))
      (define-key ruby-mode-map (kbd "C-c :") 'ruby-toggle-hash-syntax)))
 
 (when (string-lessp "24.3.50" emacs-version)
