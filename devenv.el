@@ -76,4 +76,7 @@
 (put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
 (put 'font-lock-regexp-grouping-construct 'face-alias 'font-lock-builtin-face)
 
+(add-hook 'dired-mode-hook 'diff-hl-dired-mode)
+(add-hook 'diff-mode-hook (lambda () (ethan-wspace-mode -1)))
+
 (provide 'devenv)
