@@ -15,6 +15,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+        cua-delete-region
         eval-buffer
         rspec-verify
         smex
