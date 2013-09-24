@@ -96,7 +96,11 @@
      (define-key paredit-mode-map (kbd "<M-DEL>") 'paredit-forward-kill-word)))
 
 (eval-after-load 'org
-  '(define-key org-mode-map (kbd "<C-tab>") nil))
+  '(progn (define-key org-mode-map (kbd "<C-tab>") nil)
+          (define-key org-mode-map (kbd "<M-up>") nil)
+          (define-key org-mode-map (kbd "<M-down>") nil)
+          (define-key org-mode-map (kbd "<M-left>") nil)
+          (define-key org-mode-map (kbd "<M-right>") nil)))
 
 (eval-after-load 'sgml-mode
   '(progn
