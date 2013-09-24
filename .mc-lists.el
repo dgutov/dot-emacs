@@ -17,6 +17,8 @@
       '(
         cua-delete-region
         eval-buffer
+        isearch-forward-regexp
+        isearch-other-control-char
         rspec-verify
         smex
         ))

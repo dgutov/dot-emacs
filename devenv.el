@@ -39,7 +39,7 @@
      (point-stack-setup-advices)))
 
 (eval-after-load 'ido-ubiquitous
-  '(ido-ubiquitous-disable-in magit-read-rev))
+  '(push '(disable exact "magit-read-rev") ido-ubiquitous-command-overrides))
 
 (dolist (mode '(ruby js2 js coffee html))
   (add-lambda (intern (format "%s-mode-hook" mode))
@@ -77,6 +77,7 @@
 (put 'font-lock-regexp-grouping-construct 'face-alias 'font-lock-builtin-face)
 
 (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
+(add-hook 'dired-mode-hook 'rspec-dired-mode)
 (add-hook 'diff-mode-hook (lambda () (ethan-wspace-mode -1)))
 
 (provide 'devenv)

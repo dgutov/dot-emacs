@@ -10,7 +10,8 @@
   (turn-on-haskell-indentation)
   (turn-on-haskell-doc-mode)
   (turn-on-font-lock)
-  (ghc-init))
+  ;; (ghc-init)
+  )
 
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map (kbd "C-c h") 'haskell-hoogle))
