@@ -102,6 +102,12 @@
           (define-key org-mode-map (kbd "<M-left>") nil)
           (define-key org-mode-map (kbd "<M-right>") nil)))
 
+(eval-after-load 'markdown-mode
+  '(progn (define-key markdown-mode-map (kbd "<M-up>") nil)
+          (define-key markdown-mode-map (kbd "<M-down>") nil)
+          (define-key markdown-mode-map (kbd "<M-left>") nil)
+          (define-key markdown-mode-map (kbd "<M-right>") nil)))
+
 (eval-after-load 'sgml-mode
   '(progn
      (define-key sgml-mode-map (kbd "C-M-f") 'sgml-skip-tag-forward)
