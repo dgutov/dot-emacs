@@ -1,4 +1,3 @@
-(ulp-site "eproject" nil t)
 (ulp-site "point-stack" nil t)
 (ulp-site "ethan-wspace/lisp" nil 'ethan-wspace)
 (ulp-site "diff-hl" t)
@@ -6,12 +5,6 @@
 (ulp-site "robe" t)
 (ulp-site "company" t)
 (ulp-site "company-inf-ruby")
-
-(require 'eproject-extras)
-
-(define-project-type emacs (generic) (look-for "init.el")
-  :irrelevant-files ("/elpa/" "/url/cookies$" "tramp$" "/server/" "history$"
-                     "^custom.el$" "^places$" "/backups/" "/site-lisp/.*/"))
 
 (setq company-begin-commands '(self-insert-command))
 

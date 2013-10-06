@@ -43,3 +43,4 @@
 (global-undo-tree-mode)
 (global-company-mode)
 (hes-mode)
+(projectile-global-mode)

@@ -41,7 +41,6 @@
 (global-set-key (kbd "C-x C-;") 'mc/mark-all-like-this-dwim)
 
 (global-set-key (kbd "C-/") 'company-complete)
-(global-set-key (kbd "C-c s") 'eproject-grep)
 (global-set-key (kbd "C-h j") 'javadoc-lookup)
 (global-set-key (kbd "C-c a") 'webjump-api)
 (global-set-key (kbd "C-;") 'helm-in-project)

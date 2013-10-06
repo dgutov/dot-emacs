@@ -42,7 +42,7 @@
       css-indent-offset 2
       flyspell-auto-correct-binding [(control ?\')]
       flymake-start-syntax-check-on-find-file nil
-      eproject-completing-read-function 'eproject--ido-completing-read
+      projectile-completion-system 'grizzl
       ido-max-directory-size nil
       yas-prompt-functions '(yas-ido-prompt)
       yas-expand-only-for-last-commands '(self-insert-command undo)
