@@ -6,8 +6,10 @@
 
 (if (string-match "mingw" system-configuration)
     (set-face-attribute 'default nil :height 115 :family "Consolas")
-  (set-face-attribute 'default nil :height 105 :family "Source Code Pro")
-  (set-fontset-font "fontset-default" 'cyrillic "Dejavu Sans Mono 10"))
+  ;; (set-face-attribute 'default nil :height 105 :family "Source Code Pro")
+  (set-face-attribute 'default nil :height 105 :family "Fira Mono")
+  ;; (set-face-attribute 'default nil :height 105 :family "Droid Sans Mono")
+  )
 
 (add-to-list 'load-path user-emacs-directory)
 (add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
