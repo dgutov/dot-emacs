@@ -111,7 +111,6 @@
 (add-hook 'emacs-lisp-mode-hook 'esk-remove-elc-on-save)
 
 (define-key emacs-lisp-mode-map (kbd "C-c v") 'eval-buffer)
-(define-key read-expression-map (kbd "TAB") 'lisp-complete-symbol)
 
 (defface esk-paren-face
   '((((class color) (background light))
