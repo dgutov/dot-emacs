@@ -43,6 +43,7 @@
       flyspell-auto-correct-binding [(control ?\')]
       flymake-start-syntax-check-on-find-file nil
       projectile-completion-system 'grizzl
+      projectile-keymap-prefix (kbd "C-c j")
       ido-max-directory-size nil
       yas-prompt-functions '(yas-ido-prompt)
       yas-expand-only-for-last-commands '(self-insert-command undo)

@@ -131,6 +131,9 @@
      (define-key gnus-summary-mode-map [(meta down)] nil)
      (define-key gnus-summary-mode-map [(meta up)] nil)))
 
+(eval-after-load 'projectile
+  '(define-key projectile-mode-map (kbd "C-c C-j") 'projectile-find-file))
+
 (add-lambda 'eshell-mode-hook
   (define-key eshell-mode-map [home] 'eshell-bol))
 
