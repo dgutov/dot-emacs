@@ -74,6 +74,7 @@
       split-window-preferred-function 'split-window-prefer-side-by-side
       dired-dwim-target t
       occur-read-regexp-defaults-function 'find-tag-default-as-regexp
+      byte-compile--use-old-handlers nil
       )
 
 (setq-default indent-tabs-mode nil
