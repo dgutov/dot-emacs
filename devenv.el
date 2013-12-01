@@ -5,6 +5,8 @@
 (ulp-site "robe" t)
 (ulp-site "company" t)
 (ulp-site "company-inf-ruby")
+(update-load-path (expand-file-name "~/vc/commit-patch"))
+(require 'commit-patch-buffer)
 
 (setq company-begin-commands '(self-insert-command))
 

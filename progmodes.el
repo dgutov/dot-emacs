@@ -16,15 +16,6 @@
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map (kbd "C-c h") 'haskell-hoogle))
 
-(add-lambda 'js2-mode-hook
-  (setq webjump-api-sites '(("jQuery" . "http://api.jquery.com/"))))
-
-(add-lambda 'ruby-mode-hook
-  (setq webjump-api-sites '(("Rails" . "http://apidock.com/rails/")
-                            ("Ruby"  . "http://apidock.com/ruby/")))
-  (when (and (fboundp 'rvm-use-default) (not (featurep 'rvm))) ; just once
-    (rvm-use-default)))
-
 (add-hook 'coffee-mode-hook 'flymake-coffee-load)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
@@ -62,7 +53,6 @@
   (add-hook (intern (format "%s-mode-hook" mode))
             (lambda () (autopair-mode -1))))
 
-(add-hook 'ruby-mode-hook 'ruby-electric-mode)
 (add-hook 'ruby-mode-hook 'robe-mode)
 
 (defadvice* check-last-command around (ruby-electric-space-can-be-expanded-p
@@ -70,52 +60,7 @@
   (when (memq last-command '(self-insert-command undo))
     ad-do-it))
 
-(add-hook 'after-init-hook 'inf-ruby-switch-setup)
-
-(defadvice ruby-indent-line (after line-up-args activate)
-  (let (indent prev-indent arg-indent)
-    (save-excursion
-      (back-to-indentation)
-      (when (zerop (car (syntax-ppss)))
-        (setq indent (current-column))
-        (skip-chars-backward " \t\n")
-        (when (eq ?, (char-before))
-          (ruby-backward-sexp)
-          (back-to-indentation)
-          (setq prev-indent (current-column))
-          (skip-syntax-forward "w_.")
-          (skip-chars-forward " ")
-          (setq arg-indent (current-column)))))
-    (when prev-indent
-      (let ((offset (- (current-column) indent)))
-        (cond ((< indent prev-indent)
-               (indent-line-to prev-indent))
-              ((= indent prev-indent)
-               (indent-line-to arg-indent)))
-        (when (> offset 0) (forward-char offset))))))
-
-(defadvice ruby-indent-line (after deep-indent-dwim activate)
-  (let (c paren-column indent-column)
-    (save-excursion
-      (back-to-indentation)
-      (save-excursion
-        (let ((state (syntax-ppss)))
-          (when (plusp (car state))
-            (goto-char (cadr state))
-            (setq c (char-after))
-            (setq paren-column (current-column))
-            (when (memq c '(?{ ?\())
-              (forward-char)
-              (skip-syntax-forward " ")
-              (unless (or (eolp) (eq (char-after) ?|))
-                (setq indent-column (current-column)))))))
-      (when (and indent-column
-                 (eq (char-after) (matching-paren c)))
-        (setq indent-column paren-column)))
-    (when indent-column
-      (let ((offset (- (current-column) (current-indentation))))
-        (indent-line-to indent-column)
-        (when (> offset 0) (forward-char offset))))))
+(eval-after-load 'inf-ruby '(inf-ruby-switch-setup))
 
 (defadvice flymake-parse-residual (after clear-ruby-warnings () activate)
   (setq flymake-new-err-info
@@ -126,13 +71,16 @@
 (eval-after-load 'ruby-mode
   '(progn
      (setq ruby-deep-indent-paren (delete ?\( ruby-deep-indent-paren))
-     (define-key ruby-mode-map (kbd "C-c :") 'ruby-toggle-hash-syntax)))
+     (define-key ruby-mode-map (kbd "C-c :") 'ruby-toggle-hash-syntax)
+     (require 'ruby-end)))
 
 (when (string-lessp "24.3.50" emacs-version)
   (eval-after-load 'rspec-mode
     '(rspec-install-snippets)))
 
-(add-hook 'prog-mode-hook 'whitespace-mode)
+(add-lambda 'prog-mode-hook
+  (when buffer-file-name (hack-local-variables))
+  (whitespace-mode 1))
 (add-hook 'html-mode-hook 'whitespace-mode)
 
 (dolist (mode '(emacs-lisp clojure js2 js))

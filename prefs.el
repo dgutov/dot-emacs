@@ -42,7 +42,7 @@
       css-indent-offset 2
       flyspell-auto-correct-binding [(control ?\')]
       flymake-start-syntax-check-on-find-file nil
-      projectile-completion-system 'grizzl
+      projectile-completion-system 'ido
       projectile-keymap-prefix (kbd "C-c j")
       ido-max-directory-size nil
       yas-prompt-functions '(yas-ido-prompt)
@@ -50,14 +50,12 @@
       yas-verbosity 1
       js-indent-level 2
       js2-basic-offset 2
-      js2-enter-indents-newline t
-      js2-allow-keywords-as-property-names nil
       js2-move-point-on-right-click nil
       js2-include-rhino-externs nil
       coffee-tab-width 2
       coffee-cleanup-whitespace nil
       autopair-blink nil
-      ruby-electric-expand-delimiters-list nil
+      ruby-end-insert-newline nil
       gnus-select-method '(nntp "news.gmane.org")
       gnus-interactive-exit nil
       gnus-check-new-newsgroup nil
@@ -76,11 +74,14 @@
       dired-dwim-target t
       occur-read-regexp-defaults-function 'find-tag-default-as-regexp
       byte-compile--use-old-handlers nil
+      easy-kill-try-things '(url email sexp line)
       )
 
 (setq-default indent-tabs-mode nil
               dired-listing-switches "-AlGhv"
-              dired-recursive-copies 'always)
+              dired-recursive-copies 'always
+              bidi-display-reordering nil
+              )
 
 (custom-set-variables
  '(help-at-pt-timer-delay 0.1)

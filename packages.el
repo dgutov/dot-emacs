@@ -8,7 +8,7 @@
     expand-region flymake-coffee flymake-ruby helm-descbinds
     highlight-escape-sequences ido-ubiquitous
     iflipb inf-ruby iy-go-to-char markdown-mode move-text multiple-cursors
-    paredit rainbow-mode ruby-electric rinari haml-mode sass-mode smex
+    paredit rainbow-mode ruby-end rinari haml-mode sass-mode smex
     switch-window typing undo-tree wgrep win-switch ruby-hash-syntax
     yaml-mode yasnippet bbdb))
 
