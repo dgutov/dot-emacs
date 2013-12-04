@@ -75,6 +75,7 @@
       occur-read-regexp-defaults-function 'find-tag-default-as-regexp
       byte-compile--use-old-handlers nil
       easy-kill-try-things '(url email sexp line)
+      ffap-url-regexp nil
       )
 
 (setq-default indent-tabs-mode nil
