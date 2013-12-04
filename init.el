@@ -11,7 +11,6 @@
   ;; (set-face-attribute 'default nil :height 105 :family "Droid Sans Mono")
   )
 
-(add-to-list 'load-path user-emacs-directory)
 (add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
 
 (defun safe-require (package)
