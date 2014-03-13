@@ -16,6 +16,8 @@
 (setq mc/cmds-to-run-once
       '(
         cua-delete-region
+        electric-pair-backward-delete-char
+        electric-pair-backward-delete-char-untabify
         eval-buffer
         isearch-forward-regexp
         isearch-other-control-char

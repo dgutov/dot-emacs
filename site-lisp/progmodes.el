@@ -49,10 +49,6 @@
 (add-auto-mode 'markdown-mode "\\.md\\'")
 (add-auto-mode 'yaml-mode "\\.yml\\'")
 
-(dolist (mode '(emacs-lisp clojure sldb))
-  (add-hook (intern (format "%s-mode-hook" mode))
-            (lambda () (autopair-mode -1))))
-
 (add-hook 'ruby-mode-hook 'robe-mode)
 
 (defadvice* check-last-command around (ruby-electric-space-can-be-expanded-p
@@ -90,5 +86,11 @@
 
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
   (add-hook hook 'elisp-slime-nav-mode))
+
+(eval-after-load 'eldoc
+  '(eldoc-add-command 'ruby-end-space 'paredit-backward-delete
+                      'electric-pair-backward-delete-char))
+
+(add-hook 'eval-expression-minibuffer-setup-hook 'eldoc-mode)
 
 (provide 'progmodes)

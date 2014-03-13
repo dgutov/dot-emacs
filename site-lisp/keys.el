@@ -27,6 +27,7 @@
 (global-set-key (kbd "<M-S-delete>") 'kill-sexp)
 (global-set-key (kbd "<C-delete>") 'kill-word-dwim)
 (global-set-key (kbd "<C-backspace>") 'backward-kill-word-dwim)
+(global-set-key (kbd "C-d") 'delete-forward-char)
 (global-set-key (kbd "C-c f") 'iy-go-to-char)
 (global-set-key (kbd "C-c F") 'iy-go-to-char-backward)
 (global-set-key (kbd "M-Z") 'zap-up-to-char)
@@ -121,8 +122,6 @@
   '(progn
      (define-key company-active-map (kbd "C-c C-d") 'company-show-doc-buffer)
      (define-key company-active-map (kbd "C-o") 'ignore)
-     (define-key company-active-map (kbd "C-p") 'company-select-previous)
-     (define-key company-active-map (kbd "C-n") 'company-select-next)
      (define-key company-active-map (kbd "C-/") 'company-complete-common)))
 
 (eval-after-load 'gnus-sum
@@ -132,6 +131,9 @@
 
 (eval-after-load 'projectile
   '(define-key projectile-mode-map (kbd "C-c C-j") 'projectile-find-file))
+
+(eval-after-load 'inf-ruby
+  '(define-key inf-ruby-mode-map (kbd "TAB") 'company-complete))
 
 (add-lambda 'eshell-mode-hook
   (define-key eshell-mode-map [home] 'eshell-bol))

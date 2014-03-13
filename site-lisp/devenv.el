@@ -7,9 +7,6 @@
 (ulp-site "company-inf-ruby")
 (update-load-path (expand-file-name "~/vc/commit-patch"))
 (require 'commit-patch-buffer)
-
-(setq company-begin-commands '(self-insert-command))
-
 (eval-after-load 'company
   '(progn
      (pushnew 'company-robe company-backends)
@@ -67,6 +64,11 @@
 (add-to-list 'compilation-finish-functions 'compile-scroll-eob)
 
 (setenv "PAGER" (executable-find "cat"))
+
+(eval-after-load 'ansi-color
+  '(progn
+     (aset ansi-color-names-vector 2 "dark green")
+     (setq ansi-color-map (ansi-color-make-color-map))))
 
 (put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
 (put 'font-lock-regexp-grouping-construct 'face-alias 'font-lock-builtin-face)

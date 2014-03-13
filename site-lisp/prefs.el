@@ -45,6 +45,7 @@
       projectile-completion-system 'ido
       projectile-keymap-prefix (kbd "C-c j")
       ido-max-directory-size nil
+      ido-save-directory-list-file "~/.ido.last"
       yas-prompt-functions '(yas-ido-prompt)
       yas-expand-only-for-last-commands '(self-insert-command undo)
       yas-verbosity 1
@@ -54,7 +55,6 @@
       js2-include-rhino-externs nil
       coffee-tab-width 2
       coffee-cleanup-whitespace nil
-      autopair-blink nil
       ruby-end-insert-newline nil
       gnus-select-method '(nntp "news.gmane.org")
       gnus-interactive-exit nil
@@ -76,12 +76,19 @@
       byte-compile--use-old-handlers nil
       easy-kill-try-things '(url email sexp line)
       ffap-url-regexp nil
+      mm-discouraged-alternatives '("text/html")
+      highlight-tail-steps 8
+      highlight-tail-timer 0.05
+      company-idle-delay 0.3
+      company-minimum-prefix-length 2
+      company-transformers '(company-sort-by-occurrence)
       )
 
 (setq-default indent-tabs-mode nil
               dired-listing-switches "-AlGhv"
               dired-recursive-copies 'always
               bidi-display-reordering nil
+              ;; !! electric-indent-inhibit t
               )
 
 (custom-set-variables
@@ -112,5 +119,13 @@
   (let (write-file-functions
         (find-file-hook (remq 'recentf-track-opened-file find-file-hook)))
     ad-do-it))
+
+(add-lambda 'after-init-hook
+  (load-theme 'tango-plus t)
+
+  (custom-theme-set-faces
+   'tango-plus
+   '(font-lock-comment-face ((t (:foreground "dim gray"))))
+   '(markdown-comment-face ((t (:foreground "dim gray"))))))
 
 (provide 'prefs)
