@@ -4,13 +4,14 @@
 (package-refresh-contents)
 
 (defvar packages-list
-  '(clojure-mode coffee-mode discover elisp-slime-nav
+  '(ace-link ace-window
+    clojure-mode coffee-mode discover
     flymake-coffee flymake-ruby helm-descbinds
     highlight-escape-sequences highlight-tail ido-ubiquitous
     iflipb inf-ruby iy-go-to-char markdown-mode move-text multiple-cursors
-    paredit rainbow-mode ruby-end rinari haml-mode sass-mode smart-newline
+    paredit rainbow-mode ruby-end smart-newline morlock
     smex switch-window typing undo-tree wgrep win-switch ruby-hash-syntax
-    yaml-mode yasnippet bbdb))
+    yaml-mode yasnippet bbdb whitespace-cleanup-mode))
 
 (dolist (p packages-list)
   (unless (or (member p package-activated-list)

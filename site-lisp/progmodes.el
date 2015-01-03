@@ -84,8 +84,7 @@
             (lambda ()
               (add-hook 'after-save-hook 'check-parens nil t))))
 
-(dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
-  (add-hook hook 'elisp-slime-nav-mode))
+(add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
 
 (eval-after-load 'eldoc
   '(eldoc-add-command 'ruby-end-space 'paredit-backward-delete

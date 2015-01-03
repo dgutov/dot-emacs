@@ -6,18 +6,23 @@
 (setq mc/cmds-to-run-for-all
       '(
         backward-kill-word-dwim
+        isearch-abort
+        isearch-printing-char
         paredit-backward
+        paredit-doublequote
         paredit-forward
         paredit-forward-delete
         paredit-forward-kill-word
+        paredit-forward-slurp-sexp
+        paredit-meta-doublequote
+        paredit-open-round
         paredit-splice-sexp
+        prelude-move-beginning-of-line
         ))
 
 (setq mc/cmds-to-run-once
       '(
         cua-delete-region
-        electric-pair-backward-delete-char
-        electric-pair-backward-delete-char-untabify
         eval-buffer
         isearch-forward-regexp
         isearch-other-control-char

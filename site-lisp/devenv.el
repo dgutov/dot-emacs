@@ -1,5 +1,4 @@
 (ulp-site "point-stack" nil t)
-(ulp-site "ethan-wspace/lisp" nil 'ethan-wspace)
 (ulp-site "diff-hl" t)
 (ulp-site "smartrep.el")
 (ulp-site "robe" t)
@@ -9,14 +8,16 @@
 (require 'commit-patch-buffer)
 (eval-after-load 'company
   '(progn
-     (pushnew 'company-robe company-backends)
-     (pushnew 'company-inf-ruby company-backends)))
+     (push 'company-robe company-backends)))
 
 (eval-after-load 'yasnippet
   '(progn
      (setq yas-snippet-dirs
            (cons (get-site-dir "js-snippets")
-                 (delete-if-not (lambda (dir) (file-directory-p dir))
+                 (delete-if-not (lambda (dir)
+                                  (when (symbolp dir)
+                                    (setq dir (symbol-value dir)))
+                                  (file-directory-p dir))
                                    yas-snippet-dirs)))
      (let ((color (face-attribute 'region :background)))
        (defface yas-field-highlight-box
@@ -75,6 +76,8 @@
 
 (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
 (add-hook 'dired-mode-hook 'rspec-dired-mode)
-(add-hook 'diff-mode-hook (lambda () (ethan-wspace-mode -1)))
+
+(eval-after-load 'projectile
+  '(delete "lib" projectile-ruby-rspec))
 
 (provide 'devenv)

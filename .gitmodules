@@ -1,9 +1,6 @@
 [submodule "site-lisp/diff-hl"]
 	path = site-lisp/diff-hl
 	url = git@github.com:dgutov/diff-hl.git
-[submodule "site-lisp/ethan-wspace"]
-	path = site-lisp/ethan-wspace
-	url = git://github.com/glasserc/ethan-wspace.git
 [submodule "site-lisp/js2-mode"]
 	path = site-lisp/js2-mode
 	url = git@github.com:mooz/js2-mode.git
@@ -19,12 +16,6 @@
 [submodule "site-lisp/sass-mode"]
 	path = site-lisp/sass-mode
 	url = git://github.com/nex3/sass-mode.git
-[submodule "site-lisp/transpose-frame"]
-	path = site-lisp/transpose-frame
-	url = git://github.com/emacsmirror/transpose-frame.git
-[submodule "site-lisp/helm"]
-	path = site-lisp/helm
-	url = git://github.com/emacs-helm/helm.git
 [submodule "site-lisp/robe"]
 	path = site-lisp/robe
 	url = git@github.com:dgutov/robe.git

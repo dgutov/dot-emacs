@@ -10,7 +10,7 @@
       sentence-end-double-space nil
       mouse-yank-at-point t
       uniquify-buffer-name-style 'forward
-      whitespace-style '(face lines-tail tabs)
+      whitespace-style '(face lines-tail tabs trailing)
       whitespace-line-column 80
       ediff-window-setup-function 'ediff-setup-windows-plain
       diff-switches "-u")
@@ -66,12 +66,12 @@
           1 font-lock-warning-face t))))
 
 (defun esk-remove-elc-on-save ()
+  (if (file-exists-p (concat buffer-file-name "c"))
+      (delete-file (concat buffer-file-name "c"))))
+
+(defun esk-hook-remove-elc-on-save ()
   "If you're saving an elisp file, likely the .elc is no longer valid."
-  (make-local-variable 'after-save-hook)
-  (add-hook 'after-save-hook
-            (lambda ()
-              (if (file-exists-p (concat buffer-file-name "c"))
-                  (delete-file (concat buffer-file-name "c"))))))
+  (add-hook 'after-save-hook #'esk-remove-elc-on-save nil t))
 
 (defun esk-paredit-nonlisp ()
   "Turn on paredit mode for non-lisps."

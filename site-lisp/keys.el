@@ -1,5 +1,5 @@
 (require 'misc)
-(ulp-site "transpose-frame" nil t)
+(autoload 'transpose-frame "transpose-frame")
 (require 'winring)
 (require 'dired)
 (require 'hippie)
@@ -18,7 +18,7 @@
 (global-set-key (kbd "<C-S-iso-lefttab>") 'iflipb-previous-buffer)
 (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 
-(global-set-key (kbd "RET") 'newline-and-indent)
+;; (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<C-left>") 'backward-word)
 (global-set-key (kbd "<C-right>") 'forward-word)
 (global-set-key (kbd "<C-up>") 'backward-sentence)
@@ -45,7 +45,6 @@
 (global-set-key (kbd "C-h j") 'javadoc-lookup)
 (global-set-key (kbd "C-c a") 'zeal-at-point)
 (global-set-key (kbd "C-;") 'helm-projectile)
-(global-set-key (kbd "M-.") 'helm-etags-select-thingatpt)
 (global-set-key (kbd "C-x C-i") 'helm-imenu)
 (global-set-key [remap describe-bindings] 'helm-descbinds)
 (global-set-key (kbd "C-M-,") 'point-stack-pop)
@@ -71,9 +70,9 @@
 (global-set-key (kbd "C-x <left>") 'windmove-left)
 (global-set-key (kbd "C-x <right>") 'windmove-right)
 (windmove-default-keybindings 'meta)
-(global-set-key (kbd "M-]") 'other-window)
-(global-set-key (kbd "M-[") (lambda () (interactive) (other-window -1)))
-(global-set-key (kbd "C-x o") 'switch-window)
+(global-set-key (kbd "M-[") 'other-window)
+(global-set-key (kbd "M-]") (lambda () (interactive) (other-window -1)))
+(global-set-key (kbd "C-x o") 'ace-window)
 
 (define-key isearch-mode-map (kbd "M-w") 'isearch-yank-symbol-at-point)
 
@@ -137,8 +136,6 @@
 
 (add-lambda 'eshell-mode-hook
   (define-key eshell-mode-map [home] 'eshell-bol))
-
-(autoload 'switch-window "switch-window")
 
 (reverse-input-method 'russian-computer)
 

@@ -234,4 +234,17 @@ Returns the deleted character count."
   (goto-char (beginning-of-thing 'symbol))
   (isearch-yank-internal (lambda () (end-of-thing 'symbol))))
 
+(defmacro dg-time (form)
+  "Evaluate FORM, discard result, and return elapsed time in sec."
+  (declare (debug t))
+  (let ((beg (make-symbol "--js2-time-beg--"))
+        (delta (make-symbol "--js2-time-end--")))
+    `(let ((,beg (current-time))
+           ,delta)
+       ,form
+       (/ (truncate (* (- (float-time (current-time))
+                          (float-time ,beg))
+                       10000))
+          10000.0))))
+
 (provide 'defuns)

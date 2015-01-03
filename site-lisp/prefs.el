@@ -31,8 +31,7 @@
       recentf-exclude '(file-remote-p)
       save-place-limit 1000
       read-quoted-char-radix 10
-      eshell-cmpl-cycle-completions nil
-      redisplay-dont-pause t
+      ;; eshell-cmpl-cycle-completions nil
       help-window-select t
       cua-paste-pop-rotate-temporarily t
       cua-enable-cua-keys nil
@@ -80,8 +79,13 @@
       highlight-tail-steps 8
       highlight-tail-timer 0.05
       company-idle-delay 0.3
-      company-minimum-prefix-length 2
       company-transformers '(company-sort-by-occurrence)
+      flycheck-rubylintrc "ruby-lint.yml"
+      flycheck-emacs-lisp-initialize-packages nil
+      flycheck-emacs-lisp-load-path 'inherit
+      aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?\;)
+      sml/theme 'light
+      whitespace-cleanup-mode-preserve-point t
       )
 
 (setq-default indent-tabs-mode nil
@@ -125,7 +129,23 @@
 
   (custom-theme-set-faces
    'tango-plus
-   '(font-lock-comment-face ((t (:foreground "dim gray"))))
-   '(markdown-comment-face ((t (:foreground "dim gray"))))))
+   '(font-lock-comment-face ((t (:foreground "#75507b"))))
+   '(font-lock-builtin-face ((t (:foreground "#5c3566"))))
+   '(markdown-comment-face ((t (:foreground "dim gray"))))
+   '(sml/filename ((t :foreground "#204a87")))))
+
+(eval-after-load 'flycheck
+  '(delq 'emacs-lisp-checkdoc flycheck-checkers))
+
+(defun scale-default-face ()
+  (setq-local face-remapping-alist '((default :height 1.05))))
+
+(add-hook 'minibuffer-setup-hook 'scale-default-face)
+
+(with-current-buffer (get-buffer " *Echo Area 0*")
+  (scale-default-face))
+
+(with-current-buffer (get-buffer " *Echo Area 1*")
+  (scale-default-face))
 
 (provide 'prefs)
