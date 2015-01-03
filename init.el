@@ -17,7 +17,7 @@
   (condition-case err (require package)
     ((debug error) (message "%s" (error-message-string err)))))
 
-(mapc #'safe-require '(defuns prefs keys progmodes mmm devenv esk prelude bow))
+(mapc #'safe-require '(defuns prefs keys progmodes mmm devenv esk prelude))
 
 (package-initialize)
 
