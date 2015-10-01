@@ -16,8 +16,7 @@
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map (kbd "C-c h") 'haskell-hoogle))
 
-(add-hook 'coffee-mode-hook 'flymake-coffee-load)
-(add-hook 'ruby-mode-hook 'flymake-ruby-load)
+(add-hook 'ruby-mode-hook 'flycheck-mode)
 
 (eval-after-load 'js2-mode
   '(js2-imenu-extras-setup))
@@ -75,8 +74,8 @@
     '(rspec-install-snippets)))
 
 (add-lambda 'prog-mode-hook
-  (when buffer-file-name (hack-local-variables))
-  (whitespace-mode 1))
+  (add-hook 'hack-local-variables-hook #'whitespace-mode t t))
+
 (add-hook 'html-mode-hook 'whitespace-mode)
 
 (dolist (mode '(emacs-lisp clojure js2 js))

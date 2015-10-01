@@ -65,14 +65,6 @@
    nil '(("\\<\\(FIX\\(ME\\)?\\|TODO\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
           1 font-lock-warning-face t))))
 
-(defun esk-remove-elc-on-save ()
-  (if (file-exists-p (concat buffer-file-name "c"))
-      (delete-file (concat buffer-file-name "c"))))
-
-(defun esk-hook-remove-elc-on-save ()
-  "If you're saving an elisp file, likely the .elc is no longer valid."
-  (add-hook 'after-save-hook #'esk-remove-elc-on-save nil t))
-
 (defun esk-paredit-nonlisp ()
   "Turn on paredit mode for non-lisps."
   (interactive)
@@ -108,7 +100,6 @@
     (esk-paredit-nonlisp)))
 
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'emacs-lisp-mode-hook 'esk-remove-elc-on-save)
 
 (define-key emacs-lisp-mode-map (kbd "C-c v") 'eval-buffer)
 

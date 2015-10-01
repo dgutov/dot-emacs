@@ -5,7 +5,9 @@
 (put 'narrow-to-region 'disabled nil)
 
 (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups")))
-      autoload-file (expand-file-name "~/.emacs-loaddefs.el")
+      autoload-file (expand-file-name ".emacs-loaddefs.el"
+                                      (concat user-emacs-directory
+                                              "site-lisp"))
       locals-file (expand-file-name "~/.emacs-locals.el")
       helm-c-adaptive-history-file "~/.helm-c-adaptive-history"
       make-backup-files t
@@ -37,7 +39,10 @@
       cua-enable-cua-keys nil
       org-replace-disputed-keys t
       helm-input-idle-delay 0.2
-      helm-split-window-default-side 'same
+      helm-split-window-default-side 'below
+      helm-autoresize-max-height 45
+      helm-autoresize-min-height 25
+      helm-split-window-in-side-p t
       css-indent-offset 2
       flyspell-auto-correct-binding [(control ?\')]
       flymake-start-syntax-check-on-find-file nil
@@ -81,11 +86,20 @@
       company-idle-delay 0.3
       company-transformers '(company-sort-by-occurrence)
       flycheck-rubylintrc "ruby-lint.yml"
+      flycheck-disabled-checkers '(ruby-rubylint emacs-lisp-checkdoc ruby-rubocop)
       flycheck-emacs-lisp-initialize-packages nil
       flycheck-emacs-lisp-load-path 'inherit
       aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?\;)
       sml/theme 'light
       whitespace-cleanup-mode-preserve-point t
+      async-bytecomp-allowed-packages nil
+      load-prefer-newer t
+      history-window-local-history t
+      compilation-scroll-output 'first-error
+      undo-tree-enable-undo-in-region nil
+      ycmd-server-command '("python" "/home/gutov/vc/ycmd/ycmd")
+      markdown-command "kramdown"
+      inferior-lisp-program "sbcl"
       )
 
 (setq-default indent-tabs-mode nil
@@ -111,12 +125,10 @@
           (lambda () (with-current-buffer "*scratch*"
                   (rename-buffer "-scratch-"))))
 
-(add-hook 'prog-mode-hook 'whitespace-mode)
-
 (eval-after-load 'package
   '(setq package-archives
          (append package-archives
-                 '(("marmalade" . "http://marmalade-repo.org/packages/")
+                 '(;; ("marmalade" . "http://marmalade-repo.org/packages/")
                    ("melpa"     . "http://melpa.milkbox.net/packages/")))))
 
 (defadvice* hide-from-recentf around (ido-save-history update-autoloads)
@@ -134,8 +146,31 @@
    '(markdown-comment-face ((t (:foreground "dim gray"))))
    '(sml/filename ((t :foreground "#204a87")))))
 
-(eval-after-load 'flycheck
-  '(delq 'emacs-lisp-checkdoc flycheck-checkers))
+(eval-after-load 'helm
+  '(progn
+     (set-face-attribute 'helm-source-header nil :height 1.0 :background nil)
+     (helm-autoresize-mode)
+     (defvar helm-source-header-default-background (face-attribute 'helm-source-header :background))
+     (defvar helm-source-header-default-foreground (face-attribute 'helm-source-header :foreground))
+     (defvar helm-source-header-default-box (face-attribute 'helm-source-header :box))
+     (defun helm-toggle-header-line ()
+       (if (> (length helm-sources) 1)
+           (set-face-attribute 'helm-source-header
+                               nil
+                               :foreground helm-source-header-default-foreground
+                               :background helm-source-header-default-background
+                               :box helm-source-header-default-box
+                               :height 1.0)
+         (set-face-attribute 'helm-source-header
+                             nil
+                             :foreground (face-attribute 'helm-selection :background)
+                             :background (face-attribute 'helm-selection :background)
+                             :box nil
+                             :height 0.1)))
+     (add-hook 'helm-before-initialize-hook 'helm-toggle-header-line)))
+
+(eval-after-load 'ido-ubiquitous
+  '(delete '(enable prefix "xref-") ido-ubiquitous-default-command-overrides))
 
 (defun scale-default-face ()
   (setq-local face-remapping-alist '((default :height 1.05))))

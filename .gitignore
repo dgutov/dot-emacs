@@ -18,3 +18,4 @@ history
 var/pcache
 projectile-bookmarks.eld
 network-security.data
+site-lisp/.emacs-loaddefs.el

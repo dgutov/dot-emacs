@@ -17,6 +17,8 @@
 (global-set-key (kbd "<C-S-tab>") 'iflipb-previous-buffer)
 (global-set-key (kbd "<C-S-iso-lefttab>") 'iflipb-previous-buffer)
 (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+(global-set-key (kbd "M-n") 'next-error)
+(global-set-key (kbd "M-p") 'previous-error)
 
 ;; (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<C-left>") 'backward-word)
@@ -28,8 +30,7 @@
 (global-set-key (kbd "<C-delete>") 'kill-word-dwim)
 (global-set-key (kbd "<C-backspace>") 'backward-kill-word-dwim)
 (global-set-key (kbd "C-d") 'delete-forward-char)
-(global-set-key (kbd "C-c f") 'iy-go-to-char)
-(global-set-key (kbd "C-c F") 'iy-go-to-char-backward)
+(global-set-key (kbd "C-c f") 'avy-goto-char)
 (global-set-key (kbd "M-Z") 'zap-up-to-char)
 (global-set-key (kbd "C-c =") 'align-to-equals)
 (global-set-key (kbd "C-c d") 'copy-from-above-command)
@@ -47,9 +48,9 @@
 (global-set-key (kbd "C-;") 'helm-projectile)
 (global-set-key (kbd "C-x C-i") 'helm-imenu)
 (global-set-key [remap describe-bindings] 'helm-descbinds)
-(global-set-key (kbd "C-M-,") 'point-stack-pop)
-(global-set-key (kbd "C-M-.") 'point-stack-forward-stack-pop)
-(global-set-key (kbd "C-M-/") 'point-stack-push)
+(global-set-key (kbd "C-M-,") 'history-prev-history)
+(global-set-key (kbd "C-M-.") 'history-next-history)
+(global-set-key (kbd "C-M-/") 'history-add-history)
 
 (global-set-key "\M-Y" 'cua-paste-pop)
 (global-unset-key (kbd "<S-delete>"))
@@ -72,7 +73,6 @@
 (windmove-default-keybindings 'meta)
 (global-set-key (kbd "M-[") 'other-window)
 (global-set-key (kbd "M-]") (lambda () (interactive) (other-window -1)))
-(global-set-key (kbd "C-x o") 'ace-window)
 
 (define-key isearch-mode-map (kbd "M-w") 'isearch-yank-symbol-at-point)
 
@@ -120,7 +120,7 @@
 (eval-after-load 'company
   '(progn
      (define-key company-active-map (kbd "C-c C-d") 'company-show-doc-buffer)
-     (define-key company-active-map (kbd "C-o") 'ignore)
+     (define-key company-active-map (kbd "C-o") 'company-filter-candidates)
      (define-key company-active-map (kbd "C-/") 'company-complete-common)))
 
 (eval-after-load 'gnus-sum

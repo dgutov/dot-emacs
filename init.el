@@ -23,7 +23,6 @@
 
 (if (file-exists-p locals-file) (load locals-file))
 (update-autoloads)
-(add-to-list 'load-path (expand-file-name ".." autoload-file))
 
 (line-number-mode)
 (column-number-mode)
@@ -45,6 +44,5 @@
 (projectile-global-mode)
 ;;(global-discover-mode)
 (highlight-tail-mode)
-(global-smartscan-mode)
 (sml/setup)
-(ace-link-setup-default)
+(global-page-break-lines-mode)

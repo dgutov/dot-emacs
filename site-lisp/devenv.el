@@ -5,7 +5,14 @@
 (ulp-site "company" t)
 (ulp-site "company-inf-ruby")
 (update-load-path (expand-file-name "~/vc/commit-patch"))
+(update-load-path (expand-file-name "~/vc/emacs-ycmd"))
+(update-load-path (expand-file-name "~/vc/company-anaconda"))
 (require 'commit-patch-buffer)
+
+;; (eval-after-load 'company
+;;   '(progn
+;;      (push '(company-robe :with company-yasnippet) company-backends)))
+
 (eval-after-load 'company
   '(progn
      (push 'company-robe company-backends)))
@@ -29,7 +36,8 @@
   '(progn
      (push 'robe-jump-to point-stack-advised-functions)
      (push 'robe-jump-to-module point-stack-advised-functions)
-     (point-stack-setup-advices)))
+     ;;(point-stack-setup-advices)
+     ))
 
 (eval-after-load 'ido-ubiquitous
   '(push '(disable exact "magit-read-rev") ido-ubiquitous-command-overrides))
@@ -74,10 +82,19 @@
 (put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
 (put 'font-lock-regexp-grouping-construct 'face-alias 'font-lock-builtin-face)
 
-(add-hook 'dired-mode-hook 'diff-hl-dired-mode)
+(add-hook 'dired-mode-hook 'diff-hl-dired-mode-unless-remote)
 (add-hook 'dired-mode-hook 'rspec-dired-mode)
 
-(eval-after-load 'projectile
-  '(delete "lib" projectile-ruby-rspec))
+(defvar history-advised-functions
+  '(isearch-mode find-function-do-it find-library
+    imenu beginning-of-buffer end-of-buffer
+    xref-find-definitions))
+
+(defun history-add-history-etc (&rest _ignore)
+  (history-add-history))
+
+(dolist (fun history-advised-functions)
+  (advice-add fun :before
+              #'history-add-history-etc))
 
 (provide 'devenv)
