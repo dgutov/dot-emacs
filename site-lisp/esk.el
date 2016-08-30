@@ -42,8 +42,8 @@
 
 (eval-after-load 'magit
   '(progn
-     (set-face-foreground 'magit-diff-add "green4")
-     (set-face-foreground 'magit-diff-del "red3")))
+     (set-face-foreground 'magit-diff-added "green4")
+     (set-face-foreground 'magit-diff-removed "red3")))
 
 (defun esk-local-comment-auto-fill ()
   (set (make-local-variable 'comment-auto-fill-only-comments) t)
@@ -65,13 +65,6 @@
    nil '(("\\<\\(FIX\\(ME\\)?\\|TODO\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
           1 font-lock-warning-face t))))
 
-(defun esk-paredit-nonlisp ()
-  "Turn on paredit mode for non-lisps."
-  (interactive)
-  (set (make-local-variable 'paredit-space-for-delimiter-predicates)
-       '((lambda (endp delimiter) nil)))
-  (paredit-mode 1))
-
 (add-hook 'prog-mode-hook 'esk-local-comment-auto-fill)
 (add-hook 'prog-mode-hook 'esk-turn-on-save-place-mode)
 (add-hook 'prog-mode-hook 'esk-pretty-lambdas)
@@ -87,19 +80,6 @@
             (lambda ()
               (make-local-variable 'font-lock-extra-managed-props)
               (push 'composition font-lock-extra-managed-props))))
-
-(dolist (mode '(js2 js))
-  (add-hook (intern (format "%s-mode-hook" mode)) 'esk-paredit-nonlisp-no-mmm))
-
-(defun esk-paredit-nonlisp-no-mmm ()
-  (unless (and (boundp 'mmm-mode)
-               (let ((base (buffer-base-buffer (current-buffer))))
-                 (and base
-                      (with-current-buffer base
-                        mmm-mode))))
-    (esk-paredit-nonlisp)))
-
-(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 
 (define-key emacs-lisp-mode-map (kbd "C-c v") 'eval-buffer)
 
