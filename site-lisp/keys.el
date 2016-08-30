@@ -6,7 +6,6 @@
 
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-(global-set-key (kbd "C-c M-x") 'execute-extended-command)
 (global-set-key (kbd "C-c C-v") 'eval-region)
 
 (global-set-key (kbd "C-x 2") 'split-window-vertically-1)
@@ -46,11 +45,14 @@
 (global-set-key (kbd "C-h j") 'javadoc-lookup)
 (global-set-key (kbd "C-c a") 'zeal-at-point)
 (global-set-key (kbd "C-;") 'helm-projectile)
-(global-set-key (kbd "C-x C-i") 'helm-imenu)
-(global-set-key [remap describe-bindings] 'helm-descbinds)
+(global-set-key (kbd "C-x C-i") 'counsel-imenu)
+(global-set-key (kbd "C-x g") 'counsel-git-grep)
+(global-set-key [remap describe-bindings] 'counsel-descbinds)
 (global-set-key (kbd "C-M-,") 'history-prev-history)
 (global-set-key (kbd "C-M-.") 'history-next-history)
 (global-set-key (kbd "C-M-/") 'history-add-history)
+(global-set-key (kbd "M-s M-s") 'swiper)
+(global-set-key (kbd "M-S M-S") 'swiper-all)
 
 (global-set-key "\M-Y" 'cua-paste-pop)
 (global-unset-key (kbd "<S-delete>"))
