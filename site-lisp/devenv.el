@@ -7,6 +7,7 @@
 (update-load-path (expand-file-name "~/vc/commit-patch"))
 (update-load-path (expand-file-name "~/vc/emacs-ycmd"))
 (update-load-path (expand-file-name "~/vc/company-anaconda"))
+(update-load-path (expand-file-name "~/vc/magit/lisp"))
 (require 'commit-patch-buffer)
 
 ;; (eval-after-load 'company
@@ -15,7 +16,8 @@
 
 (eval-after-load 'company
   '(progn
-     (push 'company-robe company-backends)))
+     (cl-pushnew '(company-robe :with company-dabbrev-code :separate)
+                 company-backends)))
 
 (eval-after-load 'yasnippet
   '(progn
@@ -88,7 +90,7 @@
 (defvar history-advised-functions
   '(isearch-mode find-function-do-it find-library
     imenu beginning-of-buffer end-of-buffer
-    xref-find-definitions))
+    xref-find-definitions counsel-imenu counsel-git-grep))
 
 (defun history-add-history-etc (&rest _ignore)
   (history-add-history))
