@@ -55,7 +55,7 @@
   (when (memq last-command '(self-insert-command undo))
     ad-do-it))
 
-(eval-after-load 'inf-ruby '(inf-ruby-switch-setup))
+(add-hook 'compilation-filter-hook 'inf-ruby-auto-enter)
 
 (defadvice flymake-parse-residual (after clear-ruby-warnings () activate)
   (setq flymake-new-err-info
@@ -71,7 +71,9 @@
 
 (when (string-lessp "24.3.50" emacs-version)
   (eval-after-load 'rspec-mode
-    '(rspec-install-snippets)))
+    '(progn
+       (rspec-install-snippets)
+       (inf-ruby-switch-setup))))
 
 (add-lambda 'prog-mode-hook
   (add-hook 'hack-local-variables-hook #'whitespace-mode t t))
