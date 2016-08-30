@@ -8,7 +8,7 @@
       autoload-file (expand-file-name ".emacs-loaddefs.el"
                                       (concat user-emacs-directory
                                               "site-lisp"))
-      locals-file (expand-file-name "~/.emacs-locals.el")
+      locals-file (concat user-emacs-directory ".emacs-locals.el")
       helm-c-adaptive-history-file "~/.helm-c-adaptive-history"
       make-backup-files t
       version-control t
@@ -46,8 +46,9 @@
       css-indent-offset 2
       flyspell-auto-correct-binding [(control ?\')]
       flymake-start-syntax-check-on-find-file nil
-      projectile-completion-system 'ido
+      projectile-completion-system 'ivy
       projectile-keymap-prefix (kbd "C-c j")
+      ivy-re-builders-alist '((t . ivy--regex-fuzzy))
       ido-max-directory-size nil
       ido-save-directory-list-file "~/.ido.last"
       yas-prompt-functions '(yas-ido-prompt)
@@ -170,7 +171,7 @@
      (add-hook 'helm-before-initialize-hook 'helm-toggle-header-line)))
 
 (eval-after-load 'ido-ubiquitous
-  '(delete '(enable prefix "xref-") ido-ubiquitous-default-command-overrides))
+  '(delete '(enable prefix "xref-") ido-ubiquitous-command-overrides))
 
 (defun scale-default-face ()
   (setq-local face-remapping-alist '((default :height 1.05))))
@@ -182,5 +183,13 @@
 
 (with-current-buffer (get-buffer " *Echo Area 1*")
   (scale-default-face))
+
+(add-hook 'json-mode-hook (lambda () (setq-local js-indent-level 4)))
+
+(eval-after-load 'ivy
+  '(add-to-list 'ivy-sort-functions-alist
+                '(projectile-switch-project . nil)))
+
+(setq-default right-margin-width 2)
 
 (provide 'prefs)
