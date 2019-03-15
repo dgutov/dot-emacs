@@ -37,8 +37,17 @@
 
 (eval-after-load 'diff-mode
   '(progn
-     (set-face-foreground 'diff-added "green4")
-     (set-face-foreground 'diff-removed "red3")))
+     (set-face-background 'diff-refine-added "#d0ffd0")
+     (set-face-background 'diff-refine-removed "#ffd6d6")
+     ;; GitLab:
+     ;; (set-face-background 'diff-refine-added "#acf2bd")
+     ;; (set-face-background 'diff-refine-removed "#fdb8c0")
+     ))
+
+(eval-after-load 'tango-plus-theme
+  '(progn
+     (set-face-background 'deemphasized nil)
+     (set-face-foreground 'deemphasized "#5f615c")))
 
 (eval-after-load 'magit
   '(progn

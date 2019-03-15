@@ -15,7 +15,7 @@
 (global-set-key (kbd "<C-tab>") 'iflipb-next-buffer)
 (global-set-key (kbd "<C-S-tab>") 'iflipb-previous-buffer)
 (global-set-key (kbd "<C-S-iso-lefttab>") 'iflipb-previous-buffer)
-(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+(global-set-key (kbd "C-x C-b") 'counsel-switch-buffer)
 (global-set-key (kbd "M-n") 'next-error)
 (global-set-key (kbd "M-p") 'previous-error)
 
@@ -37,16 +37,13 @@
 (global-set-key (kbd "<M-S-down>") 'move-text-down)
 (global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key (kbd "C-=") 'easy-mark)
-(global-set-key (kbd "C-.") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-,") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-x C-;") 'mc/mark-all-like-this-dwim)
 
 (global-set-key (kbd "C-/") 'company-complete)
 (global-set-key (kbd "C-h j") 'javadoc-lookup)
 (global-set-key (kbd "C-c a") 'zeal-at-point)
-(global-set-key (kbd "C-;") 'helm-projectile)
+(global-set-key (kbd "C-;") 'iedit-mine)
 (global-set-key (kbd "C-x C-i") 'counsel-imenu)
-(global-set-key (kbd "C-x g") 'counsel-git-grep)
+(global-set-key (kbd "C-x g") 'project-find-regexp)
 (global-set-key [remap describe-bindings] 'counsel-descbinds)
 (global-set-key (kbd "C-M-,") 'history-prev-history)
 (global-set-key (kbd "C-M-.") 'history-next-history)
@@ -91,6 +88,7 @@
      (define-key paredit-mode-map (kbd "M-S") nil)
      (define-key paredit-mode-map (kbd "<M-up>") nil)
      (define-key paredit-mode-map (kbd "<M-down>") nil)
+     (define-key paredit-mode-map (kbd "M-?") nil)
      (define-key paredit-mode-map (kbd "M-i") 'paredit-splice-sexp)
      (define-key paredit-mode-map (kbd "<M-backspace>") 'paredit-backward-kill-word)
      (define-key paredit-mode-map (kbd "<M-DEL>") 'paredit-forward-kill-word)))
@@ -135,6 +133,11 @@
 
 (eval-after-load 'inf-ruby
   '(define-key inf-ruby-mode-map (kbd "TAB") 'company-complete))
+
+(eval-after-load 'grep
+  '(progn
+     (define-key grep-mode-map (kbd "M-n") nil)
+     (define-key grep-mode-map (kbd "M-p") nil)))
 
 (add-lambda 'eshell-mode-hook
   (define-key eshell-mode-map [home] 'eshell-bol))

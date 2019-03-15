@@ -6,14 +6,20 @@
 
 (if (string-match "mingw" system-configuration)
     (set-face-attribute 'default nil :height 115 :family "Consolas")
-  ;; (set-face-attribute 'default nil :height 105 :family "Source Code Pro")
+  ;; (set-face-attribute 'default nil :height 115 :family "Source Code Pro")
   ;; (set-face-attribute 'default nil :height 105 :family "Fira Mono")
-  (set-face-attribute 'default nil :height 105 :family "Fira Code")
+  ;; (set-face-attribute 'default nil :height 110 :family "Fira Code")
+  ;; (set-face-attribute 'default nil :height 120 :family "Courier Prime Code")
+  ;; (set-face-attribute 'default nil :height 110 :family "Input Mono")
+  (set-face-attribute 'default nil :height 113 :family "Inconsolata LGC")
+
+  ;; (set-face-attribute 'default nil :height 112 :family "Hack")
+  ;; (set-face-attribute 'default nil :height 130 :family "Fantasque Sans Mono")
+  ;; (set-face-attribute 'default nil :height 125 :family "Anonymous Pro")
   (setq-default line-spacing 0)
   ;; (set-face-attribute 'default nil :height 105 :family "Monoid")
-  ;; (set-face-attribute 'default nil :height 105 :family "Droid Sans Mono for Powerline")
   ;; (set-face-attribute 'default nil :height 105 :family "Droid Sans Mono")
-  ;; (set-face-attribute 'default nil :height 105 :family "Ubuntu Mono")
+  ;; (set-face-attribute 'default nil :height 130 :family "Ubuntu Mono")
   )
 
 (add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
@@ -24,7 +30,8 @@
 
 (mapc #'safe-require '(defuns prefs keys progmodes mmm devenv esk prelude))
 
-(package-initialize)
+(when (version< emacs-version "27")
+  (package-initialize))
 
 (if (file-exists-p locals-file) (load locals-file))
 (update-autoloads)
@@ -38,7 +45,7 @@
 (global-auto-revert-mode)
 (show-paren-mode)
 (ido-mode)
-(ido-ubiquitous)
+(ido-ubiquitous-mode)
 (global-whitespace-cleanup-mode)
 (yas-global-mode)
 (savehist-mode)
@@ -51,3 +58,4 @@
 (highlight-tail-mode)
 (sml/setup)
 (global-page-break-lines-mode)
+(global-robe-mode)

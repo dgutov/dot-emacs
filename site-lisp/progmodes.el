@@ -16,7 +16,7 @@
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map (kbd "C-c h") 'haskell-hoogle))
 
-(add-hook 'ruby-mode-hook 'flycheck-mode)
+(add-hook 'ruby-mode-hook 'flymake-mode)
 
 (eval-after-load 'js2-mode
   '(js2-imenu-extras-setup))
@@ -48,7 +48,7 @@
 (add-auto-mode 'markdown-mode "\\.md\\'")
 (add-auto-mode 'yaml-mode "\\.yml\\'")
 
-(add-hook 'ruby-mode-hook 'robe-mode)
+;(add-hook 'ruby-mode-hook 'robe-mode)
 
 (defadvice* check-last-command around (ruby-electric-space-can-be-expanded-p
                                        ruby-electric-return-can-be-expanded-p)
@@ -56,12 +56,6 @@
     ad-do-it))
 
 (add-hook 'compilation-filter-hook 'inf-ruby-auto-enter)
-
-(defadvice flymake-parse-residual (after clear-ruby-warnings () activate)
-  (setq flymake-new-err-info
-        (delete-if (lambda (item) (string-match "ambiguous first argument; put"
-                                           (flymake-ler-text (caadr item))))
-                   flymake-new-err-info)))
 
 (eval-after-load 'ruby-mode
   '(progn
@@ -85,7 +79,10 @@
             (lambda ()
               (add-hook 'after-save-hook 'check-parens nil t))))
 
-(add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (remove-hook 'flymake-diagnostic-functions 'elisp-flymake-checkdoc t)
+            (flymake-mode)))
 
 (eval-after-load 'eldoc
   '(eldoc-add-command 'ruby-end-space 'paredit-backward-delete

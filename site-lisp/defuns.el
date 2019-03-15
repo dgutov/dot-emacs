@@ -9,8 +9,8 @@
   (let ((generated-autoload-file autoload-file)
         (dirs (if (or force-regen (not (file-exists-p autoload-file)))
                   autoload-directory-list
-                (loop for directory in autoload-directory-list
-                      when (some (lambda (f) (file-newer-than-file-p f autoload-file))
+                (cl-loop for directory in autoload-directory-list
+                      when (cl-some (lambda (f) (file-newer-than-file-p f autoload-file))
                                  (directory-files directory t "\\.el$"))
                       collect directory))))
     (dolist (dir dirs)
@@ -53,7 +53,7 @@
 
 (defadvice delete-window (around select-window-at-coords (&optional window) activate)
   "Selects window that takes space of the deleted one."
-  (let ((coords (subseq (window-edges window) 0 2)))
+  (let ((coords (cl-subseq (window-edges window) 0 2)))
     ad-do-it
     (select-window (apply 'window-at coords))))
 
@@ -155,7 +155,7 @@ Returns the deleted character count."
   (let* ((windows (window-list))
          (buffers (mapcar 'window-buffer windows))
          (windows (nconc (cdr windows) (list (car windows)))))
-    (mapcar* (lambda (w b) (set-window-buffer w b))
+    (cl-mapcar (lambda (w b) (set-window-buffer w b))
              windows buffers)
     (other-window 1)))
 
@@ -233,6 +233,17 @@ Returns the deleted character count."
   (interactive)
   (goto-char (beginning-of-thing 'symbol))
   (isearch-yank-internal (lambda () (end-of-thing 'symbol))))
+
+(defun iedit-mine (arg)
+  "Starts iedit but uses \\[narrow-to-defun] to limit its scope."
+  (interactive "P")
+  (defvar iedit-mode)
+  (if arg
+      (iedit-mode)
+    (if (bound-and-true-p iedit-mode)
+        (iedit-done)
+      (iedit-mode arg)
+      (iedit-restrict-function))))
 
 (defmacro dg-time (form)
   "Evaluate FORM, discard result, and return elapsed time in sec."

@@ -15,15 +15,15 @@
 ;;      (push '(company-robe :with company-yasnippet) company-backends)))
 
 (eval-after-load 'company
-  '(progn
-     (cl-pushnew '(company-robe :with company-dabbrev-code :separate)
-                 company-backends)))
+  '(cl-pushnew 'company-robe company-backends))
+
+(eldoc-add-command 'ruby-end-return)
 
 (eval-after-load 'yasnippet
   '(progn
      (setq yas-snippet-dirs
            (cons (get-site-dir "js-snippets")
-                 (delete-if-not (lambda (dir)
+                 (cl-delete-if-not (lambda (dir)
                                   (when (symbolp dir)
                                     (setq dir (symbol-value dir)))
                                   (file-directory-p dir))
@@ -90,7 +90,9 @@
 (defvar history-advised-functions
   '(isearch-mode find-function-do-it find-library
     imenu beginning-of-buffer end-of-buffer
-    xref-find-definitions counsel-imenu counsel-git-grep))
+    xref-find-definitions counsel-imenu counsel-git-grep
+    xref-find-references
+    paredit-backward-up backward-up-list))
 
 (defun history-add-history-etc (&rest _ignore)
   (history-add-history))

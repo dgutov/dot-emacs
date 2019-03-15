@@ -23,7 +23,7 @@
       initial-major-mode 'emacs-lisp-mode
       scroll-conservatively 5
       scroll-preserve-screen-position t
-      truncate-lines t
+      ;truncate-lines t
       kill-whole-line t
       mouse-wheel-scroll-amount '(3)
       mouse-wheel-progressive-speed nil
@@ -48,9 +48,12 @@
       flymake-start-syntax-check-on-find-file nil
       projectile-completion-system 'ivy
       projectile-keymap-prefix (kbd "C-c j")
-      ivy-re-builders-alist '((t . ivy--regex-fuzzy))
+      ivy-re-builders-alist '((t . ivy--regex))
       ido-max-directory-size nil
       ido-save-directory-list-file "~/.ido.last"
+      ivy-display-function #'ivy-posframe-display-at-window-bottom-left
+      ivy-posframe-border-width 1
+      ivy-height 15
       yas-prompt-functions '(yas-ido-prompt)
       yas-expand-only-for-last-commands '(self-insert-command undo)
       yas-verbosity 1
@@ -65,9 +68,9 @@
       gnus-interactive-exit nil
       gnus-check-new-newsgroup nil
       gnus-always-read-dribble-file t
-      message-send-mail-function 'smtpmail-send-it
-      smtpmail-default-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-service 587
+      ;; message-send-mail-function 'smtpmail-send-it
+      ;; smtpmail-default-smtp-server "smtp.gmail.com"
+      ;; smtpmail-smtp-service 587
       echo-keystrokes 0.02
       undo-no-redo t
       winring-keymap-prefix (kbd "C-x w")
@@ -84,12 +87,10 @@
       mm-discouraged-alternatives '("text/html")
       highlight-tail-steps 8
       highlight-tail-timer 0.05
-      company-idle-delay 0.3
+      company-idle-delay 0.2
+      company-minimum-prefix-length 2
       company-transformers '(company-sort-by-occurrence)
-      flycheck-rubylintrc "ruby-lint.yml"
-      flycheck-disabled-checkers '(ruby-rubylint emacs-lisp-checkdoc ruby-rubocop)
-      flycheck-emacs-lisp-initialize-packages nil
-      flycheck-emacs-lisp-load-path 'inherit
+      flymake-no-changes-timeout nil
       aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?\;)
       sml/theme 'light
       whitespace-cleanup-mode-preserve-point t
@@ -101,6 +102,10 @@
       ycmd-server-command '("python" "/home/gutov/vc/ycmd/ycmd")
       markdown-command "kramdown"
       inferior-lisp-program "sbcl"
+      vc-git-print-log-follow t
+      vc-git-resolve-conflicts nil
+      robe-completing-read-func #'ivy-completing-read
+      company-dabbrev-downcase nil
       )
 
 (setq-default indent-tabs-mode nil
@@ -112,7 +117,7 @@
 
 (custom-set-variables
  '(help-at-pt-timer-delay 0.1)
- '(help-at-pt-display-when-idle '(flymake-overlay)))
+ '(help-at-pt-display-when-idle '(flymake-diagnostic)))
 
 (eval-after-load 'em-prompt
   '(set-face-attribute 'eshell-prompt nil
@@ -129,8 +134,7 @@
 (eval-after-load 'package
   '(setq package-archives
          (append package-archives
-                 '(;; ("marmalade" . "http://marmalade-repo.org/packages/")
-                   ("melpa"     . "http://melpa.milkbox.net/packages/")))))
+                 '(("melpa"     . "http://melpa.milkbox.net/packages/")))))
 
 (defadvice* hide-from-recentf around (ido-save-history update-autoloads)
   (let (write-file-functions
@@ -187,9 +191,19 @@
 (add-hook 'json-mode-hook (lambda () (setq-local js-indent-level 4)))
 
 (eval-after-load 'ivy
-  '(add-to-list 'ivy-sort-functions-alist
-                '(projectile-switch-project . nil)))
+  '(progn (push '(projectile-switch-project . nil)
+                ivy-sort-functions-alist)
+          (push '(robe-jump . nil)
+                ivy-sort-functions-alist)
+          (ivy-posframe-enable)))
 
-(setq-default right-margin-width 2)
+(setq-default right-margin-width 0)
+(setq-default left-fringe-width 16)
+
+(setq ivy-posframe-parameters
+      `((left-fringe . ,left-fringe-width)
+        (right-fringe . ,right-fringe-width)))
+
+(add-hook 'inf-ruby-mode-hook (lambda () (setq-local company-idle-delay nil)))
 
 (provide 'prefs)
