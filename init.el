@@ -59,3 +59,4 @@
 (sml/setup)
 (global-page-break-lines-mode)
 (global-robe-mode)
+(company-posframe-mode)

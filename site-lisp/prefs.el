@@ -106,12 +106,13 @@
       vc-git-resolve-conflicts nil
       robe-completing-read-func #'ivy-completing-read
       company-dabbrev-downcase nil
+      company-posframe-show-metadata nil
       )
 
 (setq-default indent-tabs-mode nil
               dired-listing-switches "-AlGhv"
               dired-recursive-copies 'always
-              bidi-display-reordering nil
+              bidi-inhibit-bpa t
               ;; !! electric-indent-inhibit t
               )
 
@@ -180,13 +181,13 @@
 (defun scale-default-face ()
   (setq-local face-remapping-alist '((default :height 1.05))))
 
-(add-hook 'minibuffer-setup-hook 'scale-default-face)
+;(add-hook 'minibuffer-setup-hook 'scale-default-face)
 
-(with-current-buffer (get-buffer " *Echo Area 0*")
-  (scale-default-face))
+;; (with-current-buffer (get-buffer " *Echo Area 0*")
+;;   (scale-default-face))
 
-(with-current-buffer (get-buffer " *Echo Area 1*")
-  (scale-default-face))
+;; (with-current-buffer (get-buffer " *Echo Area 1*")
+;;   (scale-default-face))
 
 (add-hook 'json-mode-hook (lambda () (setq-local js-indent-level 4)))
 
