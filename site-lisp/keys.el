@@ -121,6 +121,8 @@
   '(progn
      (define-key company-active-map (kbd "C-c C-d") 'company-show-doc-buffer)
      (define-key company-active-map (kbd "C-o") 'company-filter-candidates)
+     (define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
+     (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
      (define-key company-active-map (kbd "C-/") 'company-complete-common)))
 
 (eval-after-load 'gnus-sum
