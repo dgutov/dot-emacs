@@ -30,6 +30,7 @@
                                    yas-snippet-dirs)))
      (let ((color (face-attribute 'region :background)))
        (defface yas-field-highlight-box
+         ;; set it to (-1 . -1) for Emacs 28 later
          `((t :box (:line-width -1 :color ,color)))
          "Box the color of region."))
      (put 'yas-field-highlight-face 'face-alias 'yas-field-highlight-box)))
