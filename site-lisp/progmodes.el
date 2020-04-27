@@ -48,8 +48,6 @@
 (add-auto-mode 'markdown-mode "\\.md\\'")
 (add-auto-mode 'yaml-mode "\\.yml\\'")
 
-;(add-hook 'ruby-mode-hook 'robe-mode)
-
 (defadvice* check-last-command around (ruby-electric-space-can-be-expanded-p
                                        ruby-electric-return-can-be-expanded-p)
   (when (memq last-command '(self-insert-command undo))
@@ -68,6 +66,25 @@
     '(progn
        (rspec-install-snippets)
        (inf-ruby-switch-setup))))
+
+(update-load-path "~/vc/elixir-mode")
+(autoload 'elixir-mode "elixir-mode" nil t)
+(add-auto-mode 'elixir-mode "\\.exs?\\'")
+
+(eval-after-load 'elixir-mode
+  '(progn
+     (define-key elixir-mode-map (kbd "C-c ,a") 'exunit-verify-all)
+     (define-key elixir-mode-map (kbd "C-c ,v") 'exunit-verify)
+     (define-key elixir-mode-map (kbd "C-c ,r") 'exunit-rerun)
+     (define-key elixir-mode-map (kbd "C-c ,s") 'exunit-verify-single)
+     (define-key elixir-mode-map (kbd "C-c ,t") 'exunit-toggle-file-and-test)
+     ))
+
+(eval-after-load 'eglot
+  '(progn
+     (add-to-list 'eglot-server-programs
+                  `(elixir-mode ,(get-vc-dir "elixir-ls/release/language_server.sh")))
+     (define-key eglot-mode-map (kbd "C-c C-d") #'eglot-help-at-point)))
 
 (add-lambda 'prog-mode-hook
   (add-hook 'hack-local-variables-hook #'whitespace-mode t t))
