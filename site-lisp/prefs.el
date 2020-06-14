@@ -51,7 +51,8 @@
       ivy-re-builders-alist '((t . ivy--regex))
       ido-max-directory-size nil
       ido-save-directory-list-file "~/.ido.last"
-      ivy-display-function #'ivy-posframe-display-at-window-bottom-left
+      ;ivy-display-function #'ivy-posframe-display-at-window-bottom-left
+      ivy-posframe-display-functions-alist '((t . ivy-posframe-display))
       ivy-posframe-border-width 1
       ivy-height 15
       yas-prompt-functions '(yas-ido-prompt)
@@ -107,6 +108,8 @@
       robe-completing-read-func #'ivy-completing-read
       company-dabbrev-downcase nil
       company-posframe-show-metadata nil
+      lsp-clients-elixir-server-executable (get-vc-dir "elixir-ls/release/language_server.sh")
+      lsp-keymap-prefix "C-c l"
       )
 
 (setq-default indent-tabs-mode nil
@@ -195,8 +198,7 @@
   '(progn (push '(projectile-switch-project . nil)
                 ivy-sort-functions-alist)
           (push '(robe-jump . nil)
-                ivy-sort-functions-alist)
-          (ivy-posframe-enable)))
+                ivy-sort-functions-alist)))
 
 (setq-default right-margin-width 0)
 (setq-default left-fringe-width 16)

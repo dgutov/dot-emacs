@@ -75,6 +75,8 @@
 
 (define-key isearch-mode-map (kbd "M-w") 'isearch-yank-symbol-at-point)
 
+(global-set-key (kbd "C-c C-j") 'project-find-file)
+
 (eval-after-load 'dired
   '(progn
      (define-key dired-mode-map (kbd "RET") 'dired-find-file-same-buffer)
@@ -129,9 +131,6 @@
   '(progn
      (define-key gnus-summary-mode-map [(meta down)] nil)
      (define-key gnus-summary-mode-map [(meta up)] nil)))
-
-(eval-after-load 'projectile
-  '(define-key projectile-mode-map (kbd "C-c C-j") 'projectile-find-file))
 
 (eval-after-load 'inf-ruby
   '(define-key inf-ruby-mode-map (kbd "TAB") 'company-complete))

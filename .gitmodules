@@ -31,3 +31,6 @@
 [submodule "site-lisp/company-inf-ruby"]
 	path = site-lisp/company-inf-ruby
 	url = git@github.com:company-mode/company-inf-ruby.git
+[submodule "site-lisp/highlight-tail"]
+	path = site-lisp/highlight-tail
+	url = https://github.com/kangjianbin/highlight-tail.git

@@ -4,6 +4,7 @@
 (ulp-site "robe" t)
 (ulp-site "company" t)
 (ulp-site "company-inf-ruby")
+(ulp-site "highlight-tail" t)
 (update-load-path (expand-file-name "~/vc/commit-patch"))
 (update-load-path (expand-file-name "~/vc/emacs-ycmd"))
 (update-load-path (expand-file-name "~/vc/company-anaconda"))
@@ -45,7 +46,7 @@
 (eval-after-load 'ido-ubiquitous
   '(push '(disable exact "magit-read-rev") ido-ubiquitous-command-overrides))
 
-(dolist (mode '(ruby js2 js coffee html))
+(dolist (mode '(ruby js2 js coffee html elixir))
   (add-lambda (intern (format "%s-mode-hook" mode))
     (subword-mode 1)))
 
@@ -92,7 +93,7 @@
   '(isearch-mode find-function-do-it find-library
     imenu beginning-of-buffer end-of-buffer
     xref-find-definitions counsel-imenu counsel-git-grep
-    xref-find-references
+    xref-find-references robe-jump
     paredit-backward-up backward-up-list))
 
 (defun history-add-history-etc (&rest _ignore)
@@ -101,5 +102,13 @@
 (dolist (fun history-advised-functions)
   (advice-add fun :before
               #'history-add-history-etc))
+
+(defun complete-with-ivy (fun &rest args)
+  (let ((completing-read-function #'ivy-completing-read))
+    (apply fun args)))
+
+(advice-add #'project-find-file-in :around #'complete-with-ivy)
+
+(advice-add #'project-prompt-project-dir :around #'complete-with-ivy)
 
 (provide 'devenv)
